@@ -7,11 +7,11 @@ public class check_battle_stat {
 				if(select_ally.ally[y].health<=0) { select_ally.ally[y].alive=false;
 					System.out.println(select_ally.ally[y].name+"이 사망하였습니다.");
 				}
-			}
+			}// 아군의 체력을 먼저 순서대로 출력 및 사망여부 판단
 			else System.out.println(select_enemy.enemy[y-4].name+"의 체력 : "+select_enemy.enemy[y-4].health);
 				if(select_enemy.enemy[y-4].health<=0) { select_enemy.enemy[y-4].alive=false;
 				System.out.println(select_enemy.enemy[y-4].name+"이 사망하였습니다.");
-				}
+				}// 적군의 체력을 순서대로 출력 및 사망여부 판단
 		}
 	}
 
@@ -29,8 +29,7 @@ public class check_battle_stat {
 	            break;  // 하나라도 살아있으면 즉시 종료
 	        }
 	    }
-		if(allyend||enemyend) isend=true;
-		
+		if(allyend||enemyend) isend=true; //적, 아군 중에서 한쪽 진영이라도 전부 사망 시 전투종료 트리거를 true로 변환
 		return isend;
 	}
 }

@@ -44,5 +44,5 @@ public class select_enemy {
 	enemy[2] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 6, true, false,"charie",  1, 0);
 	enemy[3] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 8, true, false,"delta",  1, 0);
 	}
-	//WIP 추후에 데이터를 받아서 랜덤 생성
+	//WIP 추후에 도감과 연동하여 데이터를 받아서 코스트 값의 한도 내에서 랜덤 생성
 }
