@@ -39,10 +39,10 @@ public class select_enemy {
     
 	public static select_enemy[] enemy = new select_enemy[4];//select_enemy의 특성을 가진 enemy객체 배열로생성
 	public static void select_enemychar() {
-	enemy[0] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 2, true,false,"alpha",  1, 0);
-	enemy[1] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 4, true, false,"bravo",  1, 0);
-	enemy[2] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 6, true, false,"charie",  1, 0);
-	enemy[3] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 8, true, false,"delta",  1, 0);
+	enemy[0] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 2, true,false,"적1",  1, 0);
+	enemy[1] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 4, true, false,"적2",  1, 0);
+	enemy[2] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 6, true, false,"적3",  1, 0);
+	enemy[3] = new select_enemy(10, 10, 5, 1, 0, 1, 10, 1, 8, true, false,"적4",  1, 0);
 	}
 	//WIP 추후에 도감과 연동하여 데이터를 받아서 코스트 값의 한도 내에서 랜덤 생성
 }
