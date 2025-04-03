@@ -11,6 +11,8 @@ public class only_test {
 		Mk_Use_Map.mkroom();
 		EntryPointSelector.EntryPoint();
 		Mk_Use_Map.loadmap();
+		for(int i = 0; i<5 ;i++)
+		Mk_Use_Map.move_map();
 	}// 각각의 코드를 실험하기위한 임시 클래스 이므로 이 클래스는 무시할것
 
 }
