@@ -1,0 +1,33 @@
+{
+    "equipment":
+    [
+        {
+            "id":1,
+            "type":"방어구",
+            "name":"플레이트 갑옷",
+            "defense": 30,
+            "defense_growth":5,
+            "attack":0,
+            "attack_growth":0,
+            "health":20,
+            "health_growth":6,
+            "evade":10,
+            "evadereduction":0,
+            "owner":"기사"
+        },
+        {
+            "id":2,
+            "type":"방어구",
+            "name":"가죽 갑옷",
+            "defense": 15,
+            "defense_growth":5,
+            "attack":0,
+            "attack_growth":0,
+            "health":15,
+            "health_growth":5,
+            "evade":20,
+            "evadereduction":0,
+            "owner":"사수"
+        }
+    ]
+}
