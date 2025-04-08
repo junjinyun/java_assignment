@@ -1,0 +1,36 @@
+{
+    "ally" : [
+      {
+        "id": 1,
+        "name" : "기사",
+        "health": 10,
+        "max_health": 10,
+        "attack" : 1,
+        "defense" : 1,
+        "min_speed" : 1,
+        "max_speed" : 10,
+        "action_order" : 1,
+        "evasion" : 0,
+        "cost" : 2,
+        "evadereduction" : 0,
+        "alive" : true,
+        "isAttackable" : true
+      },
+      {
+        "id": 2,
+        "name" : "사수",
+        "health": 20,
+        "max_health": 20,
+        "attack" : 2,
+        "defense" : 1,
+        "min_speed" : 1,
+        "max_speed" : 10,
+        "action_order" : 2,
+        "evasion" : 0,
+        "cost" : 2,
+        "evadereduction" : 0,
+        "alive" : true,
+        "isAttackable" : true
+      }
+    ]
+  }
