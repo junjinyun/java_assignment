@@ -1,7 +1,6 @@
 package dungeon;
 
 public class UsableItem(){
-    private int id;
     private String name;
     private String information;
     private int strength;
@@ -17,12 +16,11 @@ public class UsableItem(){
 } 
 public UsableItem() {}
 
-    public UsableItem(int id, String name, int information, int strength, int applyChance, int price, int max_number, int mindrop_amount, int maxdrop_amount, int type, int a_effect) {
+    public UsableItem(String name, int information, int strength, int applyChance, int price, int max_number, int mindrop_amount, int maxdrop_amount, int type, int a_effect) {
         
         String[] a_effect_part = a_effect.split(", ");
         int a_e_s = Integer.parseInt(a_effect_part[1]);
         int a_e_d = Integer.parseInt(a_effect_part[2]);
-        this.id = id;
         this.name = name;
         this.information = information;
         this.strength = strength;
@@ -37,9 +35,6 @@ public UsableItem() {}
         this.a_effect_duration = a_e_d;
     }
 
-    public int get_Id() {
-        return id;
-    }
         public int get_name() {
         return name;
     }
