@@ -11,17 +11,17 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public class UsableItemManager {
-    private static final String JSON_PATH = "src/data/usableItem.json"; // JSON 파일 경로
+public class GimmickItemManager {
+    private static final String JSON_PATH = "src/data/GimmickItem.json"; // JSON 파일 경로
 
-    public static List<UsableItem> loadUsableItem() {
+    public static List<GimmickItem> loadGimmickItem() {
         try (FileReader reader = new FileReader(JSON_PATH)) {
             Gson gson = new Gson();
 
             // JSON을 Map 형태로 읽기
-            Map<String, List<UsableItem>> list = gson.fromJson(reader, new TypeToken<Map<String, List<UsableItem>>>(){}.getType());
+            Map<String, List<GimmickItem>> list = gson.fromJson(reader, new TypeToken<Map<String, List<GimmickItem>>>(){}.getType());
 
-            return list.get("UsableItem"); // "UsableItem" 키에 해당하는 리스트 가져오기
+            return list.get("GimmickItem"); // "GimmickItem" 키에 해당하는 리스트 가져오기
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -29,9 +29,9 @@ public class UsableItemManager {
     }
 
     public static void main(String[] args) {
-        List<UsableItem> UsableItems = loadUsableItem();
+        List<GimmickItem> GimmickItems = loadGimmickItem();
         if (UsableItems != null) {
-            for (UsableItem a : UsableItems) {
+            for (GimmickItem a : GimmickItems) {
                 System.out.println("아이템 이름: " + a.getName() + ", 정보: " + a.get_information());
             }
         } else {
