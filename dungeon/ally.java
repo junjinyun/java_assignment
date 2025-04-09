@@ -2,84 +2,84 @@ package dungeon;
 
 /* 적 정보 클래스 */
 
-public class ally {
-	private int id; // 아이디
-	private String name; // 이름
-	private int health; // 현재_체력
-	private int max_health; // 최대_체력
-	private int attack; // 공격력
-	private int defense; // 방어력
-	private int min_speed; // 최소 스피드
-	private int max_speed; // 최대 스피드
-	private int evasion; // 회피율
-	private int evadereduction; // 회피율 무시
-	private boolean alive; // 생사 여부
-	private boolean isAttackable; // 공격 가능 여
+public class Ally {
+    private int Id; // 아이디
+    private String Name; // 이름
+    private int Health; // 현재_체력
+    private int MaxHealth; // 최대_체력
+    private int Attack; // 공격력
+    private int Defense; // 방어력
+    private int MinSpeed; // 최소 스피드
+    private int MaxSpeed; // 최대 스피드
+    private int Evasion; // 회피율
+    private int Evadereduction; // 회피율 무시
+    private boolean Alive; // 생사 여부
+    private boolean IsAttackable; // 공격 가능 여부
 
-	public ally() {
-	}
+    public Ally() {
+    }
 
-	public ally(int id, String name, int health, int max_health, int attack, int defense, int min_speed, int max_speed,
-			int evasion, int evadereduction, boolean alive, boolean isAttackable) {
-		this.id = id;
-		this.name = name;
-		this.health = health;
-		this.max_health = max_health;
-		this.attack = attack;
-		this.defense = defense;
-		this.min_speed = min_speed;
-		this.max_speed = max_speed;
-		this.evasion = evasion;
-		this.evadereduction = evadereduction;
-		this.alive = alive;
-		this.isAttackable = isAttackable;
-	}
+    public Ally(int id, String name, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed,
+                int evasion, int evadereduction, boolean alive, boolean isAttackable) {
+        this.Id = id;
+        this.Name = name;
+        this.Health = health;
+        this.MaxHealth = maxHealth;
+        this.Attack = attack;
+        this.Defense = defense;
+        this.MinSpeed = minSpeed;
+        this.MaxSpeed = maxSpeed;
+        this.Evasion = evasion;
+        this.Evadereduction = evadereduction;
+        this.Alive = alive;
+        this.IsAttackable = isAttackable;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return Id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return Name;
+    }
 
-	public int getHealth() {
-		return health;
-	}
+    public int getHealth() {
+        return Health;
+    }
 
-	public int getMaxHealth() {
-		return max_health;
-	}
+    public int getMaxHealth() {
+        return MaxHealth;
+    }
 
-	public int getAttack() {
-		return attack;
-	}
+    public int getAttack() {
+        return Attack;
+    }
 
-	public int getDefense() {
-		return defense;
-	}
+    public int getDefense() {
+        return Defense;
+    }
 
-	public int getMinSpeed() {
-		return min_speed;
-	}
+    public int getMinSpeed() {
+        return MinSpeed;
+    }
 
-	public int getMaxSpeed() {
-		return max_speed;
-	}
+    public int getMaxSpeed() {
+        return MaxSpeed;
+    }
 
-	public int getEvasion() {
-		return evasion;
-	}
+    public int getEvasion() {
+        return Evasion;
+    }
 
-	public int getEvadereduction() {
-		return evadereduction;
-	}
+    public int getEvadereduction() {
+        return Evadereduction;
+    }
 
-	public boolean isAlive() {
-		return alive;
-	}
+    public boolean isAlive() {
+        return Alive;
+    }
 
-	public boolean isAttackable() {
-		return isAttackable;
-	}
+    public boolean isAttackable() {
+        return IsAttackable;
+    }
 }

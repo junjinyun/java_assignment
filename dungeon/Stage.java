@@ -3,16 +3,16 @@ package dungeon;
 /* 스테이지 클래스 */
 
 public class Stage {
-    int stage;
-    int cost;
+    private int Stage;
+    private int Cost;
 
     public Stage() {}
 
     public int getStage() {
-        return stage;
+        return Stage;
     }
 
     public int getCost() {
-        return cost;
+        return Cost;
     }
 }

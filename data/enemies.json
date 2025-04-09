@@ -1,36 +1,36 @@
 {
-  "enemies" : [
+  "Enemies": [
     {
-      "id": 1,
-      "name" : "슬라임",
-      "health": 10,
-      "max_health": 10,
-      "attack" : 1,
-      "defense" : 1,
-      "min_speed" : 1,
-      "max_speed" : 10,
-      "action_order" : 1,
-      "evasion" : 0,
-      "cost" : 2,
-      "evadereduction" : 0,
-      "alive" : true,
-      "isAttackable" : true
+      "Id": 1,
+      "Name": "슬라임",
+      "Health": 10,
+      "MaxHealth": 10,
+      "Attack": 1,
+      "Defense": 1,
+      "MinSpeed": 1,
+      "MaxSpeed": 10,
+      "ActionOrder": 1,
+      "Evasion": 0,
+      "Cost": 2,
+      "EvadeReduction": 0,
+      "Alive": true,
+      "IsAttackable": true
     },
     {
-      "id": 2,
-      "name" : "고블린",
-      "health": 20,
-      "max_health": 20,
-      "attack" : 2,
-      "defense" : 1,
-      "min_speed" : 1,
-      "max_speed" : 10,
-      "action_order" : 2,
-      "evasion" : 0,
-      "cost" : 2,
-      "evadereduction" : 0,
-      "alive" : true,
-      "isAttackable" : true
+      "Id": 2,
+      "Name": "고블린",
+      "Health": 20,
+      "MaxHealth": 20,
+      "Attack": 2,
+      "Defense": 1,
+      "MinSpeed": 1,
+      "MaxSpeed": 10,
+      "ActionOrder": 2,
+      "Evasion": 0,
+      "Cost": 2,
+      "EvadeReduction": 0,
+      "Alive": true,
+      "IsAttackable": true
     }
   ]
 }

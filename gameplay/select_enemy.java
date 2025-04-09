@@ -5,56 +5,63 @@ import java.util.Random;
 
 import dungeon.*;
 
-public class select_enemy {
-	String name; // 이름
-	int health; // 체력
-	int max_health; // 최대체력
-	int attack; // 공격력
-	int defense; // 방어력
-	int min_speed; // 최소속도
-	int max_speed; // 최대속도
-	int evasion; // 회피율
-	int current_speed; // 현재속도
-	int action_order; // 행동순서
-	int cost; // 적 조합 생성시 필요한 코스트 소비량
-	int evadereduction; // 공격시 회피수치 무시율
-	Boolean alive; // 생사여부
-	Boolean isAttackable; // 대상의 공격 가능 여부
+public class SelectEnemy {
+    String Name; // 이름
+    int Health; // 체력
+    int MaxHealth; // 최대체력
+    int Attack; // 공격력
+    int Defense; // 방어력
+    int MinSpeed; // 최소속도
+    int MaxSpeed; // 최대속도
+    int Evasion; // 회피율
+    int CurrentSpeed; // 현재속도
+    int ActionOrder; // 행동순서
+    int Cost; // 적 조합 생성시 필요한 코스트 소비량
+    int Evadereduction; // 공격시 회피수치 무시율
+    Boolean Alive; // 생사여부
+    Boolean IsAttackable; // 대상의 공격 가능 여부
 
-	// 생성자
-	public select_enemy(String name, int health, int max_health, int attack, int defense, int min_speed, int max_speed,
-			int evasion, int cost, int evadereduction, boolean alive, boolean isAttackable) {
-		this.name = name;
-		this.health = health;
-		this.max_health = max_health;
-		this.attack = attack;
-		this.defense = defense;
-		this.min_speed = min_speed;
-		this.max_speed = max_speed;
-		this.evasion = evasion;
-		// this.current_speed = current_speed;
-		// this.action_order = action_order;
-		this.cost = cost;
-		this.evadereduction = evadereduction;
-		this.alive = alive;
-		this.isAttackable = isAttackable;
-	}
+    // 생성자
+    public SelectEnemy(String name, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed,
+                       int evasion, int cost, int evadereduction, boolean alive, boolean isAttackable) {
+        this.Name = name;
+        this.Health = health;
+        this.MaxHealth = maxHealth;
+        this.Attack = attack;
+        this.Defense = defense;
+        this.MinSpeed = minSpeed;
+        this.MaxSpeed = maxSpeed;
+        this.Evasion = evasion;
+        this.Cost = cost;
+        this.Evadereduction = evadereduction;
+        this.Alive = alive;
+        this.IsAttackable = isAttackable;
+    }
 
-	public static select_enemy[] enemy = new select_enemy[4];// select_enemy의 특성을 가진 enemy객체 배열로생성
-	public static List<Enemy> enemies = EnemyFactory.loadEnemies();// 적 도감 불러와서 enemies에 리스트로 저장
+    public static SelectEnemy[] Enemy = new SelectEnemy[4]; // SelectEnemy의 특성을 가진 Enemy 객체 배열로 생성
+    public static List<Enemy> Enemies = EnemyFactory.loadEnemies(); // 적 도감 불러와서 Enemies에 리스트로 저장
 
-	public static void select_enemychar() {
-		for (int i = 0; i < enemy.length; i++) {
-			Random RandomEnenmy = new Random();
-			int C_enemy = RandomEnenmy.nextInt(enemies.size());// 도감에서 랜덤한 칸의 적의 주소를 불러옴으로서 정보를 확인 하는데 사용
-			enemy[i] = new select_enemy(enemies.get(C_enemy).getName(), enemies.get(C_enemy).getHealth(),
-					enemies.get(C_enemy).getMaxHealth(), enemies.get(C_enemy).getAttack(),
-					enemies.get(C_enemy).getDefense(), enemies.get(C_enemy).getMinSpeed(),
-					enemies.get(C_enemy).getMaxSpeed(), enemies.get(C_enemy).getEvasion(),
-					enemies.get(C_enemy).getCost(), enemies.get(C_enemy).getEvadereduction(),
-					enemies.get(C_enemy).isAlive(), enemies.get(C_enemy).isAttackable());
-		}
-	}
-	
-	// WIP 추후에 도감과 연동하여 데이터를 받아서 코스트 값의 한도 내에서 랜덤 생성
+    // 적 선택 메서드
+    public static void SelectEnemyChar() {
+        for (int i = 0; i < Enemy.length; i++) {
+            Random randomEnemy = new Random();
+            int CurrentEnemy = randomEnemy.nextInt(Enemies.size()); // 도감에서 랜덤한 칸의 적의 주소를 불러옴으로서 정보를 확인하는데 사용
+            Enemy[i] = new SelectEnemy(
+                Enemies.get(CurrentEnemy).getName(),
+                Enemies.get(CurrentEnemy).getHealth(),
+                Enemies.get(CurrentEnemy).getMaxHealth(),
+                Enemies.get(CurrentEnemy).getAttack(),
+                Enemies.get(CurrentEnemy).getDefense(),
+                Enemies.get(CurrentEnemy).getMinSpeed(),
+                Enemies.get(CurrentEnemy).getMaxSpeed(),
+                Enemies.get(CurrentEnemy).getEvasion(),
+                Enemies.get(CurrentEnemy).getCost(),
+                Enemies.get(CurrentEnemy).getEvadereduction(),
+                Enemies.get(CurrentEnemy).isAlive(),
+                Enemies.get(CurrentEnemy).isAttackable()
+            );
+        }
+    }
+    
+    // WIP 추후에 도감과 연동하여 데이터를 받아서 코스트 값의 한도 내에서 랜덤 생성
 }

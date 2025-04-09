@@ -1,43 +1,38 @@
 package dungeon;
 
 public class GimmickItem {
-    private int id;
-    private String name;
-    private String information;
-    private int price;
-    private int max_number;
+
+    private String Name;
+    private String Information;
+    private int Price;
+    private int MaxNumber;
 
     // 기본 생성자
     public GimmickItem() {
     }
 
     // 매개변수가 있는 생성자
-    public GimmickItem(int id, String name, String information, int price, int max_number) {
-        this.id = id;
-        this.name = name;
-        this.information = information;
-        this.price = price;
-        this.max_number = max_number;
+    public GimmickItem(String name, String information, int price, int maxNumber) {
+        this.Name = name;
+        this.Information = information;
+        this.Price = price;
+        this.MaxNumber = maxNumber;
     }
 
     // Getter 메서드들
-    public int getId() {
-        return id;
-    }
-
     public String getName() {
-        return name;
+        return Name;
     }
 
     public String getInformation() {
-        return information;
+        return Information;
     }
 
     public int getPrice() {
-        return price;
+        return Price;
     }
 
     public int getMaxNumber() {
-        return max_number;
+        return MaxNumber;
     }
 }

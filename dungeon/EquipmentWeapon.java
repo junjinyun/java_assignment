@@ -1,55 +1,55 @@
 package dungeon;
 
 public class EquipmentWeapon {
-    private String name;
-    private int attack;
-    private int attack_growth;
-    private int evadereduction_growth;
-    private int level;
-    private int max_level;
-    private String owner;
+    private String Name;
+    private int Attack;
+    private int AttackGrowth;
+    private int EvadereductionGrowth;
+    private int Level;
+    private int MaxLevel;
+    private String Owner;
 
     // 기본 생성자
     public EquipmentWeapon() {
     }
 
     // 매개변수가 있는 생성자
-    public EquipmentWeapon(String name, int attack, int attack_growth, int evadereduction_growth, int level, int max_level, String owner) {
-        this.name = name;
-        this.attack = attack;
-        this.attack_growth = attack_growth;
-        this.evadereduction_growth = evadereduction_growth;
-        this.level = level;
-        this.max_level = max_level;
-        this.owner = owner;
+    public EquipmentWeapon(String name, int attack, int attackGrowth, int evadereductionGrowth, int level, int maxLevel, String owner) {
+        this.Name = name;
+        this.Attack = attack;
+        this.AttackGrowth = attackGrowth;
+        this.EvadereductionGrowth = evadereductionGrowth;
+        this.Level = level;
+        this.MaxLevel = maxLevel;
+        this.Owner = owner;
     }
 
     // Getter 메서드들
     public String getName() {
-        return name;
+        return Name;
     }
 
     public int getAttack() {
-        return attack;
+        return Attack;
     }
 
     public int getAttackGrowth() {
-        return attack_growth;
+        return AttackGrowth;
     }
 
     public int getEvadereductionGrowth() {
-        return evadereduction_growth;
+        return EvadereductionGrowth;
     }
 
     public int getLevel() {
-        return level;
+        return Level;
     }
 
     public int getMaxLevel() {
-        return max_level;
+        return MaxLevel;
     }
 
     public String getOwner() {
-        return owner;
+        return Owner;
     }
 }
