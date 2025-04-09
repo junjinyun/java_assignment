@@ -2,43 +2,120 @@
     "EquipmentArmor": [
       {
         "Id": 1,
-        "Name": "플레이트 갑옷",
+        "Name": "a",
         "Defense": 30,
         "DefenseGrowth": 5,
         "Health": 20,
         "HealthGrowth": 6,
         "Evade": 10,
         "EvadeGrowth": 0,
-        "Owner": "기사"
+        "Owner": "전사"
       },
       {
         "Id": 2,
-        "Name": "가죽 갑옷",
+        "Name": "b",
         "Defense": 15,
         "DefenseGrowth": 5,
         "Health": 15,
         "HealthGrowth": 5,
         "Evade": 20,
         "EvadeGrowth": 5,
-        "Owner": "사수"
-      }
+        "Owner": "기사"
+      },
+      {
+      "Id": 3,
+      "Name": "c",
+      "Defense": 30,
+      "DefenseGrowth": 5,
+      "Health": 20,
+      "HealthGrowth": 6,
+      "Evade": 10,
+      "EvadeGrowth": 0,
+      "Owner": "도적"
+    },
+    {
+      "Id": 4,
+      "Name": "d",
+      "Defense": 15,
+      "DefenseGrowth": 5,
+      "Health": 15,
+      "HealthGrowth": 5,
+      "Evade": 20,
+      "EvadeGrowth": 5,
+      "Owner": "사수"
+    },      
+    {
+      "Id": 5,
+      "Name": "e",
+      "Defense": 30,
+      "DefenseGrowth": 5,
+      "Health": 20,
+      "HealthGrowth": 6,
+      "Evade": 10,
+      "EvadeGrowth": 0,
+      "Owner": "사제"
+    },
+    {
+      "Id": 6,
+      "Name": "f",
+      "Defense": 15,
+      "DefenseGrowth": 5,
+      "Health": 15,
+      "HealthGrowth": 5,
+      "Evade": 20,
+      "EvadeGrowth": 5,
+      "Owner": "마법사"
+    }
+    
     ],
     "EquipmentWeapon": [
       {
         "Id": 1,
-        "Name": "대검",
+        "Name": "도끼 & 대검",
+        "Attack": 10,
+        "AttackGrowth": 3,
+        "EvadeReductionGrowth": 5,
+        "Owner": "사제"
+      },
+      {
+        "Id": 2,
+        "Name": "롱소드 & 방패",
         "Attack": 10,
         "AttackGrowth": 3,
         "EvadeReductionGrowth": 5,
         "Owner": "기사"
       },
       {
-        "Id": 2,
-        "Name": "석궁",
+        "Id": 3,
+        "Name": "단검 & 플린트락 권총",
+        "Attack": 10,
+        "AttackGrowth": 3,
+        "EvadeReductionGrowth": 5,
+        "Owner": "도적"
+      },
+      {
+        "Id": 4,
+        "Name": "석궁 & 머스킷",
         "Attack": 10,
         "AttackGrowth": 3,
         "EvadeReductionGrowth": 5,
         "Owner": "사수"
+      },
+      {
+        "Id": 5,
+        "Name": "성서 & 철퇴",
+        "Attack": 10,
+        "AttackGrowth": 3,
+        "EvadeReductionGrowth": 5,
+        "Owner": "사제"
+      },
+      {
+        "Id": 6,
+        "Name": "지팡이 & 주술도구",
+        "Attack": 10,
+        "AttackGrowth": 3,
+        "EvadeReductionGrowth": 5,
+        "Owner": "기사"
       }
     ]
   }

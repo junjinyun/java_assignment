@@ -5,6 +5,7 @@ package dungeon;
 public class Enemy {
     private int Id; // 아이디
     private String Name; // 이름
+    private String Category; // 카테고리 (Name 아래로 이동)
     private int Health; // 현재_체력
     private int MaxHealth; // 최대_체력
     private int Attack; // 공격력
@@ -19,9 +20,11 @@ public class Enemy {
 
     public Enemy() {}
 
-    public Enemy(int id, String name, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed, int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable) {
+    public Enemy(int id, String name, String category, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed, 
+                 int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable) {
         this.Id = id;
         this.Name = name;
+        this.Category = category; // Category 초기화
         this.Health = health;
         this.MaxHealth = maxHealth;
         this.Attack = attack;
@@ -41,6 +44,10 @@ public class Enemy {
 
     public String getName() {
         return Name;
+    }
+
+    public String getCategory() {
+        return Category; // Category getter
     }
 
     public int getHealth() {

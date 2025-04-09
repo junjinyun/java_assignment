@@ -4,16 +4,16 @@
             {
                 "Id":1,
                 "Name": "미술품",
-                "Information": "",
-                "MarketPrice": 200,
-                "Maxnumber": 8,
+                "Information": "과거에 이곳을 지나가던 운없는 수집가의 소지품 이었던 미술품으로 고가에 거래되나 공간을 많이 차지 합니다.",
+                "MarketPrice": 400,
+                "Maxnumber": 3,
                 "MinDropAmount": 1,
-                "MaxDropAmount": 3
+                "MaxDropAmount": 2
             },
             {
                 "Id":2,
                  "Name": "보석",
-                 "Information": "",
+                 "Information": "언제나 수요가 끊이지 않는 불변의 가치를 가진 돌",
                  "MarketPrice": 300,
                  "Maxnumber": 8,
                  "MinDropAmount": 1,
@@ -22,11 +22,29 @@
            {
                 "Id":3,
                 "Name": "유물",
-                "Information": "",
-                "MarketPrice": 400,
-                "Maxnumber": 8,
-                "MinDropAmount": 1,
+                "Information": "과거에 이 지역에서 만들어진 알수 없는 유물로 특정 사람들 에게서 매우 고가에 거래 됩니다.",
+                "MarketPrice": 500,
+                "Maxnumber": 6,
+                "MinDropAmount": 0,
                 "MaxDropAmount": 2
+            },
+            {
+                "Id":4,
+                "Name": "생체샘플",
+                "Information": "몬스터 들의 생체 조직, 던전의 환경 생물이나 자생하고 있는 식물 등 연구원 들에게 큰 가치를 가진 물품 입니다.",
+                "MarketPrice": 50,
+                "Maxnumber": 20,
+                "MinDropAmount": 4,
+                "MaxDropAmount": 8
+            },
+            {
+                "Id":5,
+                "Name": "금속 덩어리",
+                "Information": "손상된 다양한 종류의 금속으로 일반적으로 가치가 낮으나 대장간에서 제련하여 가치를 향상 시킬 수 있습니다.",
+                "MarketPrice": 100,
+                "Maxnumber": 10,
+                "MinDropAmount": 2,
+                "MaxDropAmount": 4
             }
 
        

@@ -3,8 +3,8 @@ package dungeon;
 /* 적 정보 클래스 */
 
 public class Ally {
-    private int Id; // 아이디
     private String Name; // 이름
+    private String Information; // 추가 정보 (Name 아래로 이동)
     private int Health; // 현재_체력
     private int MaxHealth; // 최대_체력
     private int Attack; // 공격력
@@ -19,10 +19,10 @@ public class Ally {
     public Ally() {
     }
 
-    public Ally(int id, String name, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed,
+    public Ally(String name, String information, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed,
                 int evasion, int evadereduction, boolean alive, boolean isAttackable) {
-        this.Id = id;
         this.Name = name;
+        this.Information = information; // 정보 초기화
         this.Health = health;
         this.MaxHealth = maxHealth;
         this.Attack = attack;
@@ -35,12 +35,12 @@ public class Ally {
         this.IsAttackable = isAttackable;
     }
 
-    public int getId() {
-        return Id;
-    }
-
     public String getName() {
         return Name;
+    }
+
+    public String getInformation() {
+        return Information; // Information getter
     }
 
     public int getHealth() {
@@ -75,11 +75,11 @@ public class Ally {
         return Evadereduction;
     }
 
-    public boolean isAlive() {
+    public boolean getAlive() {
         return Alive;
     }
 
-    public boolean isAttackable() {
+    public boolean getisAttackable() {
         return IsAttackable;
     }
 }
