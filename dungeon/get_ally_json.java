@@ -15,15 +15,15 @@ import java.util.Map;
 public class get_ally_json {
 	private static final String JSON_PATH = "src/data/ally.json"; // JSON 파일 경로
 
-	public static List<ally> loadAlly() {
+	public static List<Ally> loadAlly() {
 		try (FileReader reader = new FileReader(JSON_PATH)) {
 			Gson gson = new Gson();
 
 			// JSON을 Map 형태로 읽기
-			Map<String, List<ally>> list = gson.fromJson(reader, new TypeToken<Map<String, List<ally>>>() {
+			Map<String, List<Ally>> list = gson.fromJson(reader, new TypeToken<Map<String, List<Ally>>>() {
 			}.getType());
 
-			return list.get("ally"); // "enemies" 키에 해당하는 리스트 가져오기
+			return list.get("Ally"); // "enemies" 키에 해당하는 리스트 가져오기
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;

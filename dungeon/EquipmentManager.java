@@ -17,7 +17,7 @@ public class EquipmentManager {
             // JSON을 Map 형태로 읽기
             Map<String, List<EquipmentArmor>> list = gson.fromJson(reader, new TypeToken<Map<String, List<EquipmentArmor>>>(){}.getType());
 
-            return list.get("equipment_armor"); // "equipment_armor" 키에 해당하는 리스트 가져오기
+            return list.get("EquipmentArmor"); // "equipment_armor" 키에 해당하는 리스트 가져오기
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -31,7 +31,7 @@ public class EquipmentManager {
             // JSON을 Map 형태로 읽기
             Map<String, List<EquipmentWeapon>> list = gson.fromJson(reader, new TypeToken<Map<String, List<EquipmentWeapon>>>(){}.getType());
 
-            return list.get("equipment_weapon"); // "equipment_weapon" 키에 해당하는 리스트 가져오기
+            return list.get("EquipmentWeapon"); // "equipment_weapon" 키에 해당하는 리스트 가져오기
         } catch (IOException e) {
             e.printStackTrace();
             return null;

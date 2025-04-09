@@ -21,7 +21,7 @@ public class EnemyFactory {
 
             // JSON을 Map 형태로 읽기
             Map<String, List<Enemy>> list = gson.fromJson(reader, new TypeToken<Map<String, List<Enemy>>>(){}.getType());
-            return list.get("enemies"); // "enemies" 키에 해당하는 리스트 가져오기
+            return list.get("Enemies"); // "enemies" 키에 해당하는 리스트 가져오기
         } catch (IOException e) {
             e.printStackTrace();
             return null;
