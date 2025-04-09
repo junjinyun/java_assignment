@@ -1,0 +1,95 @@
+{
+    "Humanoid": [
+      {
+        "Id": 1,
+        "Name": "무기 휘두르기",
+        "damageMultiplier":80,
+        "AEffect":"없음",
+        "skillActivationZone":"1 2",
+        "targetLocation":"1 2",
+        "Ownertype": "인간형"
+      },
+      {
+        "Id": 1,
+        "Name": "목표타격",
+        "damageMultiplier":100,
+        "AEffect":"없음",
+        "skillActivationZone":"1 2",
+        "targetLocation":"1 2",
+        "Ownertype": "인간형"
+      },
+      {
+        "Id": 2,
+        "Name": "잡동사니 투척",
+        "damageMultiplier":70,
+        "AEffect":"없음",
+        "skillActivationZone":"3 4",
+        "targetLocation":"1 2 3",
+        "Ownertype": "인간형"
+      },
+      {
+        "Id": 3,
+        "Name": "원거리사격",
+        "damageMultiplier":80,
+        "AEffect":"없음",
+        "skillActivationZone":"3 4",
+        "targetLocation":"2 3 4",
+        "Ownertype": "인간형"
+      },
+      {
+        "Id": 4,
+        "Name": "후퇴사격",
+        "damageMultiplier":50,
+        "AEffect":"후방이동 2",
+        "skillActivationZone":"1 2",
+        "targetLocation":"1 2",
+        "Ownertype": "인간형"
+      },
+      {
+        "Id": 4,
+        "Name": "지정사격",
+        "damageMultiplier":100,
+        "AEffect":"",
+        "skillActivationZone":"1 2",
+        "targetLocation":"1 2",
+        "Ownertype": "인간형"
+      },
+      
+      {
+        "Id": 5,
+        "Name": "약점 찌르기",
+        "damageMultiplier":80,
+        "AEffect":"출혈 3 2",
+        "skillActivationZone":"2 3",
+        "targetLocation":"1 2 3",
+        "Ownertype": "인간형"
+      },
+      {
+        "Id": 6,
+        "Name": "대상지정",
+        "damageMultiplier":40,
+        "AEffect":"표식",
+        "skillActivationZone":"2 3",
+        "targetLocation":"1 2 3 4",
+        "Ownertype": "인간형"
+      },
+      {
+        "Id": 7,
+        "Name": "부식성 물질 투척",
+        "damageMultiplier":20,
+        "AEffect":"공방감소 20 3",
+        "skillActivationZone":"3 4",
+        "targetLocation":"1 2 3",
+        "Ownertype": "인간형"
+      },
+      {
+        "Id": 8,
+        "Name": "대상 끌어오기",
+        "damageMultiplier":50,
+        "AEffect":"후방이동 2",
+        "skillActivationZone":"2 3 4",
+        "targetLocation":"3 4",
+        "Ownertype": "인간형"
+      }
+    ],
+  }

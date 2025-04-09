@@ -1,0 +1,14 @@
+ {
+    "AllySkill": [
+      {
+        "Id": 1,
+        "Name": "a",
+        "damageMultiplier":"",
+        "AEffect":"없음",
+        "DamageGrowth":"",
+        "skillActivationZone":"",
+        "targetLocation":"",
+        "Owner": "전사"
+      }
+    ]
+}
