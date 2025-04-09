@@ -1,0 +1,34 @@
+{
+    "CashableItem" : 
+    [
+            {
+                "Id":1,
+                "Name": "미술품",
+                "Information": "",
+                "MarketPrice": 200,
+                "Maxnumber": 8,
+                "MinDropAmount": 1,
+                "MaxDropAmount": 3
+            },
+            {
+                "Id":2,
+                 "Name": "보석",
+                 "Information": "",
+                 "MarketPrice": 300,
+                 "Maxnumber": 8,
+                 "MinDropAmount": 1,
+                 "MaxDropAmount": 3
+           },
+           {
+                "Id":3,
+                "Name": "유물",
+                "Information": "",
+                "MarketPrice": 400,
+                "Maxnumber": 8,
+                "MinDropAmount": 1,
+                "MaxDropAmount": 2
+            }
+
+       
+    ]
+}
