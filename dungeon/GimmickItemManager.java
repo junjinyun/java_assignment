@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GimmickItemManager {
-    private static final String JSON_PATH = "src/data/GimmickItem.json"; // JSON 파일 경로
+    private static final String JSON_PATH = "src/data/gimmickitem.json"; // JSON 파일 경로
 
     public static List<GimmickItem> loadGimmickItem() {
         try (FileReader reader = new FileReader(JSON_PATH)) {

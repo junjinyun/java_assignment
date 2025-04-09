@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class UsableItemManager {
-    private static final String JSON_PATH = "src/data/UsableItem.json"; // JSON 파일 경로
+    private static final String JSON_PATH = "src/data/usableitem.json"; // JSON 파일 경로
 
     public static List<UsableItem> loadUsableItem() {
         try (FileReader reader = new FileReader(JSON_PATH)) {

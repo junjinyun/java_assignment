@@ -1,5 +1,5 @@
 {
-    "UsableItem" : [
+    "usableitem" : [
      {
 	    "id":1,
         "name": "휴대식량",
