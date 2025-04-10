@@ -17,10 +17,10 @@ public class only_test {
 		} 
 		*/
 		/*
-		Mk_Use_Map.mkmap();
-		Mk_Use_Map.mkroom();
+		MakeUseMap.java.mkmap();
+		MakeUseMap.java.mkroom();
 		EntryPointSelector.EntryPoint();
-		Mk_Use_Map.loadmap();
+		MakeUseMap.java.loadmap();
 		*/
 	}// 각각의 코드를 실험하기위한 임시 클래스 이므로 이 클래스는 무시할것
 
