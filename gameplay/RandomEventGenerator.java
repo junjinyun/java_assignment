@@ -16,17 +16,18 @@ public class RandomEventGenerator {
     private String Information;
     private String RequestedItem;
     private String EventType;
-
+    private String InternalId;
     // 생성자
-    public MapEvent(int id, String name, String information, String requestedItem, String eventType) {
+    public MapEvent(int id, String name, String information, String requestedItem, String eventType, String internalId) {
         this.Id = id;
         this.Name = name;
         this.Information = information;
         this.RequestedItem = requestedItem;
         this.EventType = eventType;
+        this.InternalId = internalId;
     }
 
-    public static List<Ally> MapEvent = GetAllyJson.loadAlly();
+    public static List<MapEvent> MapEvent = EventManager.loadMapEvents();
 
     // 각 이벤트의 ID와 난수를 비교하여 일치하는 이벤트를 불러와 실행
     public static void EventGenerator() {
@@ -42,7 +43,7 @@ public class RandomEventGenerator {
                 //call
 
         else if(MapEvent[key].EventType == "아이템 제출"){
-            SelectedItem = = scan.nextline();// 제출 할 아이템 선택
+            SelectedItem = scan.nextline();// 제출 할 아이템 선택
             YesOrNo = scan.nextline();// yes = SelectedItem으로 받아온 아이템을 제출하고 이벤트 진행 no = 아이템을 제출하지 않고 진행
 
             //call
@@ -50,4 +51,6 @@ public class RandomEventGenerator {
         }
 
     }
-}// 각주 처리된 call 부분에 danymic을 이용한 string값과 같은 메서드를 불러오는 기능으로 이벤트 매서드(다른 클래스에 생성) 실행
+}
+}
+// 각주 처리된 call 부분에 danymic을 이용한 string값과 같은 메서드를 불러오는 기능으로 이벤트 매서드(다른 클래스에 생성) 실행
