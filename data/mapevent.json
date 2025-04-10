@@ -41,7 +41,7 @@
         "Information": "온갖 더러운 경로로 들여온 물건들을 파는 암상인 무리로 그들은 당신에게 '약간의' 가입비용을 지급 할 시 그들과 거래 할 수 있게 해주겠다고 합니다.",
         "RequestedItem": "돈(800), 암상인, 없음",
         "EventType": "아이템 제출",
-        "internalId": "BlackMarketMerchantEvent"
+        "internalId": "BlackMarketEvent"
     },
     {
         "Id": 3,
