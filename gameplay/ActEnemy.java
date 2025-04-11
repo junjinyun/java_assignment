@@ -4,24 +4,46 @@ import java.util.Random;
 
 public class ActEnemy {
 
-	public static void enemyattack(int attacker) {
-		if (SelectEnemy.Enemy[attacker].Alive = true) {
-			while (true) {
-				Random random = new Random();// Random 객체로 난수 시드 생성
-				int target = random.nextInt(SelectAlly.Ally.length);// 아군배열 크기를 최대 값으로 하는 난수 생성
+    public static void enemyattack(int attacker) {
+        EnemyStatusManager attackerEnemy = EnemyParty.enemyParty[attacker];
 
-				if (SelectAlly.Ally[target].IsAttackable == false || SelectAlly.Ally[target].Alive == false)
-					continue; // 대상이 공격 불가능 하거나 이미 사망 상태일 시 난수 재 생성
+        if (!attackerEnemy.isAlive()) {
+            System.out.println(attackerEnemy.getName() + "는 이미 사망했습니다. 행동 불가.");
+            return;
+        }
 
-				System.out.println(SelectEnemy.Enemy[attacker].Name + "가 " + SelectAlly.Ally[target].Name + "를 공격합니다");
-				SelectAlly.Ally[target].Health -= SelectEnemy.Enemy[attacker].Attack;
-				// 대상의 체력을 공격자의 공격력 만큼 감소(추후에 각 캐릭터 별 기술 구현 후 기술 배율, 공격력, 회피 등의 스텟에 따라 공격 하도록
-				// 변경)
-				System.out.println(SelectAlly.Ally[target].Name + "의 남은 체력 : " + SelectAlly.Ally[target].Health);
-				break; // 대상 공격 후 반복문 종료 및 행동 종료
-			}
-			//System.out.println("공격자가 사망 또는 행동 불가능 상태 입니다.");
-		}
-	}// 추후에 각 적 캐릭터의 행동 알고리즘(ex : 체력이 적은 대상 우선, 특정 스텟이 가장 높거나 낮은 대상) 선정 후 해당 알고리즘에 따라
-		// 행동 하도록 전체적으로 수정 할 것.
+        Random random = new Random();
+
+        while (true) {
+            int target = random.nextInt(AllyParty.party.length);
+
+            // 대상이 공격 불가능하거나 사망 상태일 경우
+            if (!AllyParty.party[target].getBaseStats().getisAttackable() ||
+                !AllyParty.party[target].getBaseStats().getAlive()) {
+                continue;
+            }
+
+            // 공격 로그
+            String attackerName = attackerEnemy.getName();
+            String targetName = AllyParty.party[target].getName();
+
+            System.out.println(attackerName + "가 " + targetName + "를 공격합니다.");
+
+            int damage = attackerEnemy.getBaseStats().getAttack(); // getAttack()은 baseStats에서 가져오는게 더 명확함
+            int originalHP = AllyParty.party[target].getBaseStats().getHealth();
+            int newHP = Math.max(0, originalHP - damage);
+
+            AllyParty.party[target].getBaseStats().setHealth(newHP);
+
+            System.out.println(targetName + "의 남은 체력 : " + newHP);
+
+            if (newHP <= 0) {
+                AllyParty.party[target].getBaseStats().setAlive(false);
+                AllyParty.party[target].getBaseStats().setIsAttackable(false);
+                System.out.println(targetName + "가 쓰러졌습니다!");
+            }
+
+            break; // 공격 성공 후 반복 종료
+        }
+    }
 }

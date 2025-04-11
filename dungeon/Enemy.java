@@ -93,4 +93,16 @@ public class Enemy {
     public boolean getIsAttackable() {
         return IsAttackable;
     }
+
+    public void setHealth(int health) {
+        this.Health = health;
+    }
+
+    public void setIsAttackable(boolean isAttackable) {
+        this.IsAttackable = isAttackable;
+    }
+
+    public void setAlive(boolean alive) {
+        this.Alive = alive;
+    }
 }

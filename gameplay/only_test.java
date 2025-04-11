@@ -2,28 +2,52 @@ package gameplay;
 
 public class only_test {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		SelectEnemy.SelectEnemyChar();// 적군 캐릭터 리스트 생성
-		SelectAlly.SelectAllyChar();// 아군 캐릭터 리스트 생성 (추후 게임 시작시 선택하여 생성하게 변경할 예정[추후에는 삭제])
-		RandomEventGenerator.EventGenerator();
-		/*
-		SetSpeedAct.setSpeed();
-		SetSpeedAct.setActionOrder();
-		for (int i = 0; i < 4; i++) {
-			System.out.println(SelectEnemy.Enemy[i].Name + " " + SelectEnemy.Enemy[i].CurrentSpeed + " "
-					+ SelectEnemy.Enemy[i].ActionOrder);
-			System.out.println(SelectAlly.Ally[i].Name + " " + SelectAlly.Ally[i].CurrentSpeed + " "
-					+ SelectAlly.Ally[i].ActionOrder);
-		} 
-		*/
-		/*
-		MakeUseMap.java.mkmap();
-		MakeUseMap.java.mkroom();
-		EntryPointSelector.EntryPoint();
-		MakeUseMap.java.loadmap();
-		*/
-	}// 각각의 코드를 실험하기위한 임시 클래스 이므로 이 클래스는 무시할것
+    public static void main(String[] args) {
+        // 아군/적군 초기화
+        AllyParty.initializeParty();
+        EnemyParty.initializeEnemies();
 
+        // 속도 및 행동 순서 설정
+        SetSpeedAct.setSpeed(AllyParty.party, EnemyParty.enemyParty);
+        SetSpeedAct.setActionOrder(AllyParty.party, EnemyParty.enemyParty);
+
+        // 아군 정보 출력
+        System.out.println("===== 아군 스탯 출력 =====");
+        for (int i = 0; i < AllyParty.party.length; i++) {
+            AllyStatusManager ally = AllyParty.party[i];
+            System.out.println("▶ [아군] " + ally.getName());
+            System.out.println("  - 위치: " + ally.getPosition());
+            System.out.println("  - 속도: " + ally.getCurrentSpeed());
+            System.out.println("  - 행동순서: " + ally.getActionOrder());
+            if (ally.getStatusEffects().isEmpty()) {
+                System.out.println("  - 상태이상: 없음");
+            } else {
+                System.out.println("  - 상태이상:");
+                for (StatusEffect effect : ally.getStatusEffects()) {
+                    System.out.println("    * " + effect.getName() + " (위력: " + effect.getPower() + ", 남은 턴: " + effect.getDuration() + ")");
+                }
+            }
+            System.out.println();
+        }
+
+        // 적군 정보 출력
+        System.out.println("===== 적군 스탯 출력 =====");
+        for (int i = 0; i < EnemyParty.enemyParty.length; i++) {
+            EnemyStatusManager enemy = EnemyParty.enemyParty[i];
+            System.out.println("▶ [적군] " + enemy.getName());
+            System.out.println("  - 위치: " + enemy.getPosition());
+            System.out.println("  - 속도: " + enemy.getCurrentSpeed());
+            System.out.println("  - 행동순서: " + enemy.getActionOrder());
+            if (enemy.getStatusEffects().isEmpty()) {
+                System.out.println("  - 상태이상: 없음");
+            } else {
+                System.out.println("  - 상태이상:");
+                for (StatusEffect effect : enemy.getStatusEffects()) {
+                    System.out.println("    * " + effect.getName() + " (위력: " + effect.getPower() + ", 남은 턴: " + effect.getDuration() + ")");
+                }
+            }
+            System.out.println();
+        }
+        RandomEventGenerator.EventGenerator();
+    }
 }

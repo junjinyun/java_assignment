@@ -1,9 +1,10 @@
 package gameplay;
 
+// 상태이상 정보 클래스
 public class StatusEffect {
-	private String name;
-	private int power;
-	private int duration;
+	private String name;     // 이름 (중독, 화상 등)
+	private int power;       // 위력 (적용되는 데미지량)
+	private int duration;    // 지속 턴 수
 
 	public StatusEffect(String name, int power, int duration) {
 		this.name = name;
@@ -11,6 +12,7 @@ public class StatusEffect {
 		this.duration = duration;
 	}
 
+	// Getter 및 Setter
 	public String getName() {
 		return name;
 	}

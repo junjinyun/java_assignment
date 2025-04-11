@@ -1,42 +1,57 @@
 package gameplay;
 
 public class CheckBattleStat {
-	public static void CheckHp() {
-		for (int y = 0; y < 8; y++) {
-			if (y < 4) {// System.out.println(select_ally.ally[y].name+"의 체력 :
-						// "+select_ally.ally[y].health);
-				if (SelectAlly.Ally[y].Health <= 0 && SelectAlly.Ally[y].Alive == true) {
-					SelectAlly.Ally[y].Alive = false;
-					System.out.println(SelectAlly.Ally[y].Name + "이 사망하였습니다.");
-				}
-			} // 아군의 체력을 먼저 순서대로 출력 및 사망여부 판단
-			else if (y >= 4) {
-				// System.out.println(select_enemy.enemy[y-4].name+"의 체력 :
-				// "+select_enemy.enemy[y-4].health);
-				if (SelectEnemy.Enemy[y - 4].Health <= 0 && SelectEnemy.Enemy[y - 4].Alive == true) {
-					SelectEnemy.Enemy[y - 4].Alive = false;
-					System.out.println(SelectEnemy.Enemy[y - 4].Name + "이 사망하였습니다.");
-				} // 적군의 체력을 순서대로 출력 및 사망여부 판단
-			}
-		}
-	}
 
-	public static boolean CheckEnd() {
-		boolean isend = false, allyend = true, enemyend = true;
-		for (int i = 0; i < SelectAlly.Ally.length; i++) {
-			if (SelectAlly.Ally[i].Alive) { // 살아있는 아군이 있으면 allyend를 false로 설정
-				allyend = false;
-				break; // 하나라도 살아있으면 즉시 종료
-			}
-		}
-		for (int i = 0; i < SelectEnemy.Enemy.length; i++) {
-			if (SelectEnemy.Enemy[i].Alive) { // 살아있는 적군이 있으면 enemyend를 false로 설정
-				enemyend = false;
-				break; // 하나라도 살아있으면 즉시 종료
-			}
-		}
-		if (allyend || enemyend)
-			isend = true; // 적, 아군 중에서 한쪽 진영이라도 전부 사망 시 전투종료 트리거를 true로 변환
-		return isend;
-	}
+    // 아군과 적군의 체력 확인 후 사망 처리
+    public static void CheckHp() {
+        for (int i = 0; i < 4; i++) {
+            // 아군 체력 확인
+            if (AllyParty.party[i].getBaseStats().getHealth() <= 0 &&
+                AllyParty.party[i].getBaseStats().getAlive()) {
+
+                AllyParty.party[i].getBaseStats().setAlive(false);
+                AllyParty.party[i].getBaseStats().setIsAttackable(false);
+                System.out.println(AllyParty.party[i].getName() + "이(가) 사망하였습니다.");
+            }
+
+            // 적군 체력 확인
+            if (EnemyParty.enemyParty[i].getBaseStats().getHealth() <= 0 &&
+                EnemyParty.enemyParty[i].isAlive()) {
+
+                EnemyParty.enemyParty[i].setAlive(false);
+                EnemyParty.enemyParty[i].setAttackable(false);
+                System.out.println(EnemyParty.enemyParty[i].getName() + "이(가) 사망하였습니다.");
+            }
+        }
+    }
+
+    // 아군 또는 적군이 전멸했는지 확인
+    public static boolean CheckEnd() {
+        boolean allyend = true;
+        boolean enemyend = true;
+
+        // 아군 생존 여부 확인
+        for (int i = 0; i < AllyParty.party.length; i++) {
+            if (AllyParty.party[i].getBaseStats().getAlive()) {
+                allyend = false;
+                break;
+            }
+        }
+
+        // 적군 생존 여부 확인
+        for (int i = 0; i < EnemyParty.enemyParty.length; i++) {
+            if (EnemyParty.enemyParty[i].isAlive()) {
+                enemyend = false;
+                break;
+            }
+        }
+
+        if (allyend) {
+            System.out.println("아군이 전멸했습니다. 패배...");
+        } else if (enemyend) {
+            System.out.println("적군이 전멸했습니다. 승리!");
+        }
+
+        return allyend || enemyend;
+    }
 }

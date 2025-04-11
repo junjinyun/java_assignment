@@ -1,18 +1,16 @@
 package gameplay;
 
 import java.util.Random;
-import gameplay.SelectAlly;
 
 @SuppressWarnings("unused")
 public class EventLauncher {
+
 	public void MerchantEvent(String YesNo) {
 		System.out.println("상점 이벤트 실행됨");
-		// 상점기능 추가후 연동
 	}
 
 	public void BlackMarketEvent(String item, String YesNo, String EventResult) {
 		processItemSubmitResult(EventResult);
-		// 상점기능 추가후 연동
 	}
 
 	public void RoomCollapseEvent(String item, String YesNo, String EventResult) {
@@ -27,22 +25,20 @@ public class EventLauncher {
 	    System.out.println("불가사의한 석상 이벤트 실행됨");
 
 	    if (YesNo.equalsIgnoreCase("yes"))
-	    	executeStatueEffect();
-	    	
+	        executeStatueEffect();
 	    else
-	    	System.out.println("당신은 불길한 기운을 외면한 채 발걸음을 옮깁니다.");
-
-	    
+	        System.out.println("당신은 불길한 기운을 외면한 채 발걸음을 옮깁니다.");
 	}
 
 	public void TreasureChestEvent(String item, String YesNo, String EventResult) {
 		processItemSubmitResult(EventResult);
-		// 인벤토리 구현 후 연동
 	}
 
 	public void TrapActivatedEvent(String item, String YesNo, String EventResult) {
 		processItemSubmitResult(EventResult);
 	}
+
+	// --------------------------- 핵심 이벤트 처리 메서드 ---------------------------
 
 	private void processItemSubmitResult(String EventResult) {
 		if (EventResult.equals("없음")) {
@@ -50,7 +46,6 @@ public class EventLauncher {
 			return;
 		}
 
-		// 보물 이벤트는 하나의 메서드에서 처리
 		if (EventResult.equals("보물") || EventResult.equals("파괴")) {
 			handleTreasureResult(EventResult);
 			return;
@@ -84,85 +79,84 @@ public class EventLauncher {
 	}
 
 	private void applyDamageFromEvent(String EventResult) {
-	    try {
-	        int damagePercent = 0;
-	        if (EventResult.contains("(") && EventResult.contains(")")) {
-	            int percentStart = EventResult.indexOf('(');
-	            int percentEnd = EventResult.indexOf(')');
-	            damagePercent = Integer.parseInt(EventResult.substring(percentStart + 1, percentEnd));
-	        } else {
-	            System.out.println("피해 수치가 명시되지 않았습니다.");
-	            return;
-	        }
+		try {
+			int damagePercent = 0;
+			if (EventResult.contains("(") && EventResult.contains(")")) {
+				int start = EventResult.indexOf('(');
+				int end = EventResult.indexOf(')');
+				damagePercent = Integer.parseInt(EventResult.substring(start + 1, end));
+			} else {
+				System.out.println("피해 수치가 명시되지 않았습니다.");
+				return;
+			}
 
-	        if (EventResult.contains("랜덤")) {
-	            Random rand = new Random();
-	            int targetIndex = rand.nextInt(SelectAlly.Ally.length);
-	            SelectAlly target = SelectAlly.Ally[targetIndex];
-	            int damage = target.MaxHealth * damagePercent / 100;
+			Random rand = new Random();
 
-	            target.Health -= damage;
-	            if (target.Health <= 0) target.Health = 1;
+			if (EventResult.contains("랜덤")) {
+				int index = rand.nextInt(AllyParty.party.length);
+				var ally = AllyParty.party[index];
+				int damage = ally.getBaseStats().getMaxHealth() * damagePercent / 100;
+				int newHealth = Math.max(ally.getBaseStats().getHealth() - damage, 1);
+				ally.getBaseStats().setHealth(newHealth);
 
-	            // 원본에 반영 (참조 방식이므로 자동으로 반영됨)
-	            SelectAlly.Ally[targetIndex] = target;
+				System.out.println("[랜덤 대상] " + ally.getName() + " 이(가) " + damage + " 피해를 입었습니다. 현재 체력: "
+						+ newHealth + "/" + ally.getBaseStats().getMaxHealth());
 
-	            System.out.println("[랜덤 대상] " + target.Name + " 이(가) " + damage + " 피해를 입었습니다. 현재 체력: " + target.Health + "/" + target.MaxHealth);
+			} else if (EventResult.contains("전체")) {
+				for (var ally : AllyParty.party) {
+					int damage = ally.getBaseStats().getMaxHealth() * damagePercent / 100;
+					int newHealth = Math.max(ally.getBaseStats().getHealth() - damage, 1);
+					ally.getBaseStats().setHealth(newHealth);
 
-	        } else if (EventResult.contains("전체")) {
-	            for (int i = 0; i < SelectAlly.Ally.length; i++) {
-	                SelectAlly ally = SelectAlly.Ally[i];
-	                int damage = ally.MaxHealth * damagePercent / 100;
+					System.out.println("[전체 대상] " + ally.getName() + " 이(가) " + damage + " 피해를 입었습니다. 현재 체력: "
+							+ newHealth + "/" + ally.getBaseStats().getMaxHealth());
+				}
+			} else {
+				System.out.println("피해 유형을 확인할 수 없습니다.");
+			}
 
-	                ally.Health -= damage;
-	                if (ally.Health <= 0) ally.Health = 1;
-
-	                // 원본에 반영
-	                SelectAlly.Ally[i] = ally;
-
-	                System.out.println("[전체 대상] " + ally.Name + " 이(가) " + damage + " 피해를 입었습니다. 현재 체력: " + ally.Health + "/" + ally.MaxHealth);
-	            }
-	        } else {
-	            System.out.println("피해 유형을 확인할 수 없습니다.");
-	        }
-	    } catch (Exception e) {
-	        System.out.println("[오류] 피해 처리 중 문제가 발생했습니다.");
-	        e.printStackTrace();
-	    }
+		} catch (Exception e) {
+			System.out.println("[오류] 피해 처리 중 문제가 발생했습니다.");
+			e.printStackTrace();
+		}
 	}
+
 	private void executeStatueEffect() {
-	    Random rand = new Random();
-	    int action = rand.nextInt(4); // 0 ~ 3
+		Random rand = new Random();
+		int action = rand.nextInt(4);
 
-	    switch (action) {
-	        case 0 -> {
-	            System.out.println("석상의 눈이 붉게 빛납니다... 어딘가에서 오래 묻힌 보물이 모습을 드러냅니다");
-	            for (int i = 0; i < 5; i++) {
-	                ItemDrop.runSingleDrop();
-	            }
-	        }
+		switch (action) {
+			case 0 -> {
+				System.out.println("석상의 눈이 붉게 빛납니다... 어딘가에서 오래 묻힌 보물이 모습을 드러냅니다");
+				for (int i = 0; i < 5; i++) {
+					ItemDrop.runSingleDrop();
+				}
+			}
 
-	        case 1 -> {
-	            if (SelectAlly.Ally.length == 0) return;
-	            SelectAlly ally = SelectAlly.Ally[rand.nextInt(SelectAlly.Ally.length)];
-	            int healAmount = ally.MaxHealth * 50 / 100;
-	            ally.Health = Math.min(ally.Health + healAmount, ally.MaxHealth);
-	            System.out.println(ally.Name + " 이(가) 석상의 힘으로 체력을 " + healAmount + " 회복했습니다.");
-	        }
+			case 1 -> {
+				int index = rand.nextInt(AllyParty.party.length);
+				var ally = AllyParty.party[index];
+				int heal = ally.getBaseStats().getMaxHealth() * 50 / 100;
+				int newHealth = Math.min(ally.getBaseStats().getHealth() + heal, ally.getBaseStats().getMaxHealth());
+				ally.getBaseStats().setHealth(newHealth);
 
-	        case 2 -> {
-	            if (SelectAlly.Ally.length == 0) return;
-	            SelectAlly ally = SelectAlly.Ally[rand.nextInt(SelectAlly.Ally.length)];
-	            int damage = ally.MaxHealth * 30 / 100;
-	            ally.Health -= damage;
-	            if (ally.Health < 1) ally.Health = 1;
-	            System.out.println(ally.Name + " 이(가) 석상의 저주로 " + damage + " 피해를 입었습니다.");
-	        }
+				System.out.println(ally.getName() + " 이(가) 석상의 힘으로 체력을 " + heal + " 회복했습니다.");
+			}
 
-	        case 3 -> {
-	            System.out.println("지면이 갈라지고, 어둠 속에서 말 없는 적이 모습을 드러냅니다");
-	            // 전투 로직 등 추가 가능
-	        }
-	    }
+			case 2 -> {
+				int index = rand.nextInt(AllyParty.party.length);
+				var ally = AllyParty.party[index];
+				int damage = ally.getBaseStats().getMaxHealth() * 30 / 100;
+				int newHealth = Math.max(ally.getBaseStats().getHealth() - damage, 1);
+				ally.getBaseStats().setHealth(newHealth);
+
+				System.out.println(ally.getName() + " 이(가) 석상의 저주로 " + damage + " 피해를 입었습니다.");
+			}
+
+			case 3 -> {
+				System.out.println("지면이 갈라지고, 어둠 속에서 말 없는 적이 모습을 드러냅니다");
+				// 전투 로직 등 추가 가능
+			}
+		}
 	}
 }
