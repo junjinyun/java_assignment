@@ -4,9 +4,11 @@ public class only_test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		/*
+		
 		SelectEnemy.SelectEnemyChar();// 적군 캐릭터 리스트 생성
 		SelectAlly.SelectAllyChar();// 아군 캐릭터 리스트 생성 (추후 게임 시작시 선택하여 생성하게 변경할 예정[추후에는 삭제])
+		RandomEventGenerator.EventGenerator();
+		/*
 		SetSpeedAct.setSpeed();
 		SetSpeedAct.setActionOrder();
 		for (int i = 0; i < 4; i++) {

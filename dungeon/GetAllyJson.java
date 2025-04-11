@@ -23,7 +23,7 @@ public class GetAllyJson {
 			Map<String, List<Ally>> list = gson.fromJson(reader, new TypeToken<Map<String, List<Ally>>>() {
 			}.getType());
 
-			return list.get("Ally"); // "enemies" 키에 해당하는 리스트 가져오기
+			return list.get("Ally"); // "Ally" 키에 해당하는 리스트 가져오기
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;

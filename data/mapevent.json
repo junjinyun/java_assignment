@@ -78,7 +78,7 @@
         "Id": 7,
         "Name": "함정발동",
         "Information": "갑자기 불이 꺼졌습니다, 게다가 무언가가 계속 작동하는 소리가 들립니다.",
-        "RequestedItem": "랜턴, 없음, 전체피해(30)",
+        "RequestedItem": "랜턴, 없음, 랜덤피해(50)",
         "EventType": "아이템제출",
         "InternalId": "TrapActivatedEvent"
       }

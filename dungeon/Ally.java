@@ -82,4 +82,8 @@ public class Ally {
     public boolean getisAttackable() {
         return IsAttackable;
     }
+
+    public void setHealth(int health) {
+    	this.Health = Math.max(0, Math.min(health, MaxHealth));
+    }
 }
