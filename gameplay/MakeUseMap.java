@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class MakeUseMap.java {
+public class MakeUseMap {
 	public static ArrayList<Integer> current_loc = new ArrayList<>();// 현제 위치 저장을 위한 어레이 리스트
 
 	public static int[][] standardmap = new int[8][8];
@@ -27,7 +27,7 @@ public class MakeUseMap.java {
 			startlocation = random.nextInt(4); // 선택된 행 또는 열에서 처음으로 방을 생성하기 시작할 위치를 선정(0~3)
 			if (i % 2 == 1) { // 랜덤한 행에 3~8의 크기의 방 생성
 				while (true)
-					if (created_row.equals(startlocation)) {
+					if (created_row.contains(startlocation)) {
 						Random random1 = new Random();// Random 객체로 난수 시드 생성
 						selected_row_or_col = random1.nextInt(8);// 생성할 열 또는 행 지정
 					} else {
@@ -40,7 +40,7 @@ public class MakeUseMap.java {
 				}
 			} else {// 랜덤한 열에 3~8의 크기의 방 생성
 				while (true)
-					if (created_col.equals(startlocation)) {
+					if (created_col.contains(startlocation)) {
 						Random random1 = new Random();// Random 객체로 난수 시드 생성
 						selected_row_or_col = random1.nextInt(8);// 생성할 열 또는 행 지정
 					} else {

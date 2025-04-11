@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EventManager {
-    private static final String JSON_PATH = "src/data/event.json"; // JSON 파일 경로
+    private static final String JSON_PATH = "src/data/mapevent.json"; // JSON 파일 경로
 
     // BattleEvent를 로드하는 메서드
     public static List<BattleEvent> loadBattleEvents() {
@@ -56,7 +56,7 @@ public class EventManager {
         List<MapEvent> mapEvents = loadMapEvents();
         if (mapEvents != null) {
             for (MapEvent event : mapEvents) {
-                System.out.println("맵 이벤트 이름: " + event.getName());
+                System.out.println("맵 이벤트 이름: " + event.getName()+event.getInternalId());
             }
         } else {
             System.out.println("맵 이벤트 데이터를 불러오지 못했습니다.");

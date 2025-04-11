@@ -55,8 +55,8 @@ public class SelectAlly {
                 AllyList.get(CurrentAlly).getMaxSpeed(),
                 AllyList.get(CurrentAlly).getEvasion(),
                 AllyList.get(CurrentAlly).getEvadereduction(),
-                AllyList.get(CurrentAlly).isAlive(),
-                AllyList.get(CurrentAlly).isAttackable()
+                AllyList.get(CurrentAlly).getAlive(),
+                AllyList.get(CurrentAlly).getisAttackable()
             );
         }
         // 추후에 도감 파일과 연동하여 캐릭터 리스트를 출력하며 그 중에서 4명을 선택하여 배치하는 방식으로 변경

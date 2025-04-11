@@ -20,13 +20,13 @@ public class EntryPointSelector {
 	                    for (int j = 0; j < limit; j++) {
 	                        switch (type) {
 	                        case 0:
-	                            if (Mk_Use_Map.standardmap[i][j] == 1) {
-	                                Mk_Use_Map.standardmap[i][j] = 3;
+	                            if (MakeUseMap.standardmap[i][j] == 1) {
+	                                MakeUseMap.standardmap[i][j] = 3;
 	                                break find;
 	                            }
 	                        case 1:
-	                            if (Mk_Use_Map.standardmap[i][7 - j] == 1) {
-	                                Mk_Use_Map.standardmap[i][7 - j] = 3;
+	                            if (MakeUseMap.standardmap[i][7 - j] == 1) {
+	                                MakeUseMap.standardmap[i][7 - j] = 3;
 	                                break find;
 	                            }
 	                        }
@@ -35,13 +35,13 @@ public class EntryPointSelector {
 	                    for (int j = 0; j < 8; j++) {
 	                        switch (type) {
 	                        case 0:
-	                            if (Mk_Use_Map.standardmap[i][j] == 1) {
-	                                Mk_Use_Map.standardmap[i][j] = 3;
+	                            if (MakeUseMap.standardmap[i][j] == 1) {
+	                            	MakeUseMap.standardmap[i][j] = 3;
 	                                break find;
 	                            }
 	                        case 1:
-	                            if (Mk_Use_Map.standardmap[i][7 - j] == 1) {
-	                                Mk_Use_Map.standardmap[i][7 - j] = 3;
+	                            if (MakeUseMap.standardmap[i][7 - j] == 1) {
+	                            	MakeUseMap.standardmap[i][7 - j] = 3;
 	                                break find;
 	                            }
 	                        }
@@ -55,13 +55,13 @@ public class EntryPointSelector {
 	                    for (int j = 0; j < limit; j++) {
 	                        switch (type) {
 	                        case 2:
-	                            if (Mk_Use_Map.standardmap[i][j] == 1) {
-	                                Mk_Use_Map.standardmap[i][j] = 3;
+	                            if (MakeUseMap.standardmap[i][j] == 1) {
+	                                MakeUseMap.standardmap[i][j] = 3;
 	                                break find;
 	                            }
 	                        case 3:
-	                            if (Mk_Use_Map.standardmap[i][7 - j] == 1) {
-	                                Mk_Use_Map.standardmap[i][7 - j] = 3;
+	                            if (MakeUseMap.standardmap[i][7 - j] == 1) {
+	                                MakeUseMap.standardmap[i][7 - j] = 3;
 	                                break find;
 	                            }
 	                        }
@@ -70,13 +70,13 @@ public class EntryPointSelector {
 	                    for (int j = 0; j < 8; j++) {
 	                        switch (type) {
 	                        case 2:
-	                            if (Mk_Use_Map.standardmap[i][j] == 1) {
-	                                Mk_Use_Map.standardmap[i][j] = 3;
+	                            if (MakeUseMap.standardmap[i][j] == 1) {
+	                                MakeUseMap.standardmap[i][j] = 3;
 	                                break find;
 	                            }
 	                        case 3:
-	                            if (Mk_Use_Map.standardmap[i][7 - j] == 1) {
-	                                Mk_Use_Map.standardmap[i][7 - j] = 3;
+	                            if (MakeUseMap.standardmap[i][7 - j] == 1) {
+	                                MakeUseMap.standardmap[i][7 - j] = 3;
 	                                break find;
 	                            }
 	                        }
