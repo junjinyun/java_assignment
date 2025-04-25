@@ -1,6 +1,6 @@
-package gameplay;
+package gameplay.Party;
 
-import dungeon.Enemy;
+import loaddata.Enemy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,29 +18,38 @@ public class EnemyStatusManager {
         this.position = position;
     }
 
-    // 상태이상 추가: 이름이 같으면 위력은 합산하고, 지속시간은 더 긴 쪽 사용
+    // 상태이상 추가: 이름이 같으면 위력은 합산하고, 지속시간은 더 긴 쪽을 사용
     public void addStatusEffect(StatusEffect newEffect) {
+        // 동일한 상태이상이 있는지 체크
         for (StatusEffect effect : statusEffects) {
             if (effect.getName().equals(newEffect.getName())) {
+                // 중복된 상태이상이 있을 경우, 위력 합산 및 지속시간 갱신
                 effect.setPower(effect.getPower() + newEffect.getPower());
                 effect.setDuration(Math.max(effect.getDuration(), newEffect.getDuration()));
                 return;
             }
         }
+        // 상태이상이 없으면 새 상태이상 추가
         statusEffects.add(newEffect);
     }
 
-    // 상태이상 적용 및 제거
+    // 상태이상 효과 적용: 체력 감소 및 지속시간 감소, 만료된 상태이상 제거
     public void applyStatusEffects() {
         List<StatusEffect> expired = new ArrayList<>();
         for (StatusEffect effect : statusEffects) {
+            // 상태이상의 위력만큼 체력 감소
             int currentHp = baseStats.getHealth();
-            baseStats.setHealth(Math.max(0, currentHp - effect.getPower()));
+            baseStats.setHealth(Math.max(0, currentHp - effect.getPower())); // 체력 0 이하 방지
+
+            // 지속시간 감소
             effect.setDuration(effect.getDuration() - 1);
+
+            // 만료 상태이상 제거 대상에 추가
             if (effect.getDuration() <= 0) {
                 expired.add(effect);
             }
         }
+        // 만료된 상태이상은 리스트에서 제거
         statusEffects.removeAll(expired);
     }
 

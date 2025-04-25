@@ -1,10 +1,10 @@
-package gameplay;
+package gameplay.Party;
 
 import java.util.List;
 import java.util.Random;
 
-import dungeon.Ally;
-import dungeon.GetAllyJson;
+import loaddata.Ally;
+import loaddata.GetAllyJson;
 
 public class SelectAlly {
     String Name; // 이름
@@ -61,4 +61,4 @@ public class SelectAlly {
         }
         // 추후에 도감 파일과 연동하여 캐릭터 리스트를 출력하며 그 중에서 4명을 선택하여 배치하는 방식으로 변경
     }
-}
+}   

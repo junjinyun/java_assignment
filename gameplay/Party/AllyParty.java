@@ -1,16 +1,14 @@
-package data;
+package gameplay.Party;
 
-import dungeon.Ally;
-import dungeon.GetAllyJson;
-import gameplay.AllyStatusManager;
-
+import loaddata.Ally;
+import loaddata.GetAllyJson;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AllyParty {
 	private List<AllyStatusManager> party;
 
-	public AllyPartySpawn() {
+	public AllyParty() {
 		this.party = new ArrayList<>();
 		List<Ally> loadedAllies = GetAllyJson.loadAlly();
 
@@ -27,7 +25,6 @@ public class AllyParty {
 	public List<AllyStatusManager> getParty() {
 		return party;
 	}
-
 	public AllyStatusManager getAllyByPosition(int position) {
 		return party.stream()
 			.filter(ally -> ally.getPosition() == position)

@@ -1,9 +1,10 @@
-package gameplay;
+package gameplay.Party;
 
 import java.util.List;
 import java.util.Random;
 
-import dungeon.*;
+import loaddata.EnemyFactory;
+import loaddata.Enemy;
 
 public class SelectEnemy {
     String Name; // 이름
