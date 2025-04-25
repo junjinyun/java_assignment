@@ -1,4 +1,4 @@
-package gameplay;
+package gameplay.Map;
 
 import java.util.Random;
 
