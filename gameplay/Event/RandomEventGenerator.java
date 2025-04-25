@@ -1,17 +1,18 @@
-package gameplay;
+package gameplay.Event;
 
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import dungeon.MapEvent;
-import dungeon.EventManager;
+import loaddata.MapEvent;
+import loaddata.EventManager;
+import gameplay.Party.AllyParty;  // AllyParty 클래스를 추가로 import 해야 함
 
 public class RandomEventGenerator {
     private static Scanner scan = new Scanner(System.in);
     public static List<MapEvent> SelectedMapEvent = EventManager.loadMapEvents();
 
-    public static void EventGenerator() {
+    public static void EventGenerator(AllyParty allyParty) {  // AllyParty를 매개변수로 받음
         String SelectedItem = "";
         String YesOrNo = "";
         String EventType;
@@ -81,7 +82,8 @@ public class RandomEventGenerator {
 
         // 이벤트 실행
         String internalId = currentEvent.getInternalId();
-        EventLauncher launcher = new EventLauncher();
+        EventLauncher launcher = new EventLauncher(allyParty);  // AllyParty 객체를 전달
+
         Object[] args;
         Class<?>[] paramTypes;
 
@@ -104,9 +106,5 @@ public class RandomEventGenerator {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        EventGenerator();
     }
 }
