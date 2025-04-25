@@ -1,4 +1,4 @@
-package dungeon;
+package loaddata;
 
 /* 적 JSON 정보 관리하는 클래스
 *

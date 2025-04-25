@@ -1,4 +1,4 @@
-package dungeon;
+package loaddata;
 
 /* 적 스킬 정보 클래스 */
 

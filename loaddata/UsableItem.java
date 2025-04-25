@@ -1,4 +1,4 @@
-package dungeon;
+package loaddata;
 
 public class UsableItem {
     private String Name;

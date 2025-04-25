@@ -1,4 +1,4 @@
-package dungeon;
+package loaddata;
 
 /* 기믹아이템 JSON 정보 관리하는 클래스
 1. 경로에 오류가 뜰 경우?

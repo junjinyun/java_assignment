@@ -1,4 +1,4 @@
-package dungeon;
+package loaddata;
 
 public class BattleEvent {
     private int Id;

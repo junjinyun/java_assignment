@@ -1,4 +1,4 @@
-package dungeon;
+package loaddata;
 
 /* 적 정보 클래스 */
 

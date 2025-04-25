@@ -1,4 +1,4 @@
-package dungeon;
+package loaddata;
 
 /* 스테이지 클래스 */
 

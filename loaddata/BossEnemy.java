@@ -1,4 +1,4 @@
-package dungeon;
+package loaddata;
 
 /* 보스 정보 클래스 */
 
