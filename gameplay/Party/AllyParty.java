@@ -10,7 +10,7 @@ import java.util.List;
 public class AllyParty {
 	private List<AllyStatusManager> party;
 
-	public AllyParty() {
+	public AllyPartySpawn() {
 		this.party = new ArrayList<>();
 		List<Ally> loadedAllies = GetAllyJson.loadAlly();
 
