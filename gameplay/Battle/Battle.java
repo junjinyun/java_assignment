@@ -1,21 +1,26 @@
-package gameplay;
+package gameplay.Battle;
+
+
+import gameplay.Party.AllyParty;
+import gameplay.Party.EnemyParty;
+import gameplay.Party.SetSpeedAct;
 
 public class Battle {
 
     public static void main(String[] args) {
         // 아군/적군 초기화
-        AllyParty.initializeParty();
-        EnemyParty.initializeEnemies();
+    	AllyParty ap = new AllyParty(); 
+        EnemyParty ep = new EnemyParty();
 
         // 디버깅용 출력
         System.out.println("적군 생성 완료:");
-        for (int i = 0; i < EnemyParty.enemyParty.length; i++) {
-            System.out.println("  - " + EnemyParty.enemyParty[i].getName());
+        for (int i = 0; i < ep.getEnemyParty().size(); i++) {
+            System.out.println("  - " + ep.getEnemyParty().get(i).getName());
         }
 
         System.out.println("아군 생성 완료:");
-        for (int i = 0; i < AllyParty.party.length; i++) {
-            System.out.println("  - " + AllyParty.party[i].getName());
+        for (int i = 0; i < ap.getParty().size(); i++) {
+            System.out.println("  - " + ap.getParty().get(i).getName());
         }
 
         boolean battleend = false;
@@ -26,26 +31,28 @@ public class Battle {
             System.out.println("\n====== 턴 " + turn + " 시작 ======");
 
             // 속도 및 행동 순서 설정
-            SetSpeedAct.setSpeed(AllyParty.party, EnemyParty.enemyParty);
-            SetSpeedAct.setActionOrder(AllyParty.party, EnemyParty.enemyParty);
+            SetSpeedAct.setSpeed(ap.getParty(), ep.getEnemyParty());
+            SetSpeedAct.setActionOrder(ap.getParty(), ep.getEnemyParty());
 
             for (int i = 1; i <= 8; i++) { // 행동 순서 1~8
                 for (int y = 0; y < 4; y++) {
                     // 아군 행동
-                    if (AllyParty.party[y].getActionOrder() == i && AllyParty.party[y].getBaseStats().getAlive()) {
-                        ActAlly.allyattack(y);
-                        CheckBattleStat.CheckHp();
+                    if (ap.getParty().get(y).getActionOrder() == i && ap.getParty().get(y).getBaseStats().getAlive()) {
+						ActAlly.allyattack(y, ap, ep);
+                        CheckBattleStat.CheckHp(ap, ep);
+                        battleend = CheckBattleStat.CheckEnd(ap, ep);
+                        if (battleend) break battle;
+                        break;
                     }
 
                     // 적군 행동
-                    else if (EnemyParty.enemyParty[y].getActionOrder() == i && EnemyParty.enemyParty[y].isAlive()) {
-                        ActEnemy.enemyattack(y);
-                        CheckBattleStat.CheckHp();
+                    else if (ep.getEnemyParty().get(y).getActionOrder() == i && ep.getEnemyParty().get(y).isAlive()) {
+                        ActEnemy.enemyattack(y,ap,ep);
+                        CheckBattleStat.CheckHp(ap,ep);
+                        battleend = CheckBattleStat.CheckEnd(ap, ep);
+                        if (battleend) break battle;
+                        break;
                     }
-
-                    // 전투 종료 조건
-                    battleend = CheckBattleStat.CheckEnd();
-                    if (battleend) break battle;
                 }
             }
 
