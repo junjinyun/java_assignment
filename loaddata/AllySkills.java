@@ -2,7 +2,7 @@ package loaddata;
 
 /* 아군 스킬 정보 클래스 */
 
-public class AllySkill {
+public class AllySkills {
     private String Name; // 스킬 이름
     private String damageMultiplier; // 기술의 피해량 배율(사용자 공격력 * damageMultiplier = 최종 피해량)
     private String AEffect; // 기술의 부가효과(출혈, 부상, 스텟감소 등)

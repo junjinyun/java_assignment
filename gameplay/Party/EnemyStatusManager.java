@@ -11,6 +11,7 @@ public class EnemyStatusManager {
     private int position; // 적 위치 (0~3 등)
     private int currentSpeed; // 전투 중 동적인 현재 속도
     private int actionOrder; // 행동 순서 (우선순위)
+    private EnemySkills skillList; //캐릭터가 가지고 있는 스킬을 저장하는 리스트
 
     public EnemyStatusManager(Enemy enemy, int position) {
         this.baseStats = enemy;

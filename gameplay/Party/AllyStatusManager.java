@@ -11,7 +11,10 @@ public class AllyStatusManager {
     private int position; // 파티 내 위치 (1~4)
     private int currentSpeed; // 전투 중 동적인 현재 속도
     private int actionOrder; // 행동 순서 (우선순위)
-
+    private AllySkills skillList; //캐릭터가 가지고 있는 스킬을 저장하는 리스트
+    private List<AllySkill> Selectedskills;// 캐릭터가 소지한 스킬 중 전투에서 사용할 스킬(5개 고정)
+    // 스킬을 실제로 저장만 하며 지정하는 기능은 별도의 클래스로 분리하여 생성 할 예정
+    
     public AllyStatusManager(Ally ally, int position) {
         this.baseStats = ally;
         this.statusEffects = new ArrayList<>();

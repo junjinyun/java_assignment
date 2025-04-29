@@ -2,7 +2,7 @@ package loaddata;
 
 /* 적 스킬 정보 클래스 */
 
-public class EnemySkill {
+public class EnemySkills {
     private int Id; // 스킬 ID
     private String Name; // 스킬 이름
     private int damageMultiplier; // 피해 배율 (%)
