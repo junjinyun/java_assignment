@@ -314,7 +314,6 @@
   ],
   "sorcerer":
   [
-    {
       {
         "Id": 1,
         "Name": "매직미사일",
@@ -373,7 +372,6 @@
         "TargetLocation": "1 2 3 4",
         "Owner": "마법사",
         "IsAoE": false
-      },
-    }
+      }
   ]
 }
