@@ -9,7 +9,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2",
-      "Owner": "전사",
+      "Owner": "warrior",
       "IsAoE": false
     },
     {
@@ -21,7 +21,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2",
-      "Owner": "전사",
+      "Owner": "warrior",
       "IsAoE": false
     },
     {
@@ -33,7 +33,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2 3",
-      "Owner": "전사",
+      "Owner": "warrior",
       "IsAoE": false
     },
     {
@@ -45,7 +45,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2",
-      "Owner": "전사",
+      "Owner": "warrior",
       "IsAoE": false
     },
     {
@@ -57,7 +57,7 @@
       "DamageGrowth": "5",
       "SkillActivationZone": "self",
       "TargetLocation": "self",
-      "Owner": "전사",
+      "Owner": "warrior",
       "IsAoE": false
     }
   ],
@@ -71,7 +71,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2 3",
       "TargetLocation": "1 2 3",
-      "Owner": "기사",
+      "Owner": "Knight",
       "IsAoE": false
     },
     {
@@ -83,7 +83,7 @@
       "DamageGrowth": "5",
       "SkillActivationZone": "1 2 3 4",
       "TargetLocation": "1 2 3 4",
-      "Owner": "기사",
+      "Owner": "Knight",
       "IsAoE": false
     },
     {
@@ -95,7 +95,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "3 4",
       "TargetLocation": "1 2",
-      "Owner": "기사",
+      "Owner": "Knight",
       "IsAoE": false
     },
     {
@@ -107,7 +107,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2 3",
-      "Owner": "기사",
+      "Owner": "Knight",
       "IsAoE": false
     },
     {
@@ -119,7 +119,7 @@
       "DamageGrowth": "5",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2",
-      "Owner": "기사",
+      "Owner": "Knight",
       "IsAoE": true
     }
   ],
@@ -134,7 +134,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2 3",
       "TargetLocation": "1 2 3",
-      "Owner": "도적",
+      "Owner": "Rogue",
       "IsAoE": false
     },
     {
@@ -146,7 +146,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2 3",
       "TargetLocation": "1 2 3",
-      "Owner": "기사",
+      "Owner": "Rogue",
       "IsAoE": false
     },
     {
@@ -158,7 +158,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2 3",
       "TargetLocation": "1 2 3",
-      "Owner": "도적",
+      "Owner": "Rogue",
       "IsAoE": false
     },
     {
@@ -170,7 +170,7 @@
       "DamageGrowth": "5",
       "SkillActivationZone": "2 3 4",
       "TargetLocation": "1 2 3",
-      "Owner": "도적",
+      "Owner": "Rogue",
       "IsAoE": true
     },
     {
@@ -182,11 +182,11 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "2 3 4",
       "TargetLocation": "1 2 3 4",
-      "Owner": "도적",
+      "Owner": "Rogue",
       "IsAoE": false
     }
   ],
-  "사수":
+  "marksman":
   [
     {
       "Id": 1,
@@ -197,7 +197,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "3 4",
       "TargetLocation": "2 3 4",
-      "Owner": "사수",
+      "Owner": "marksman",
       "IsAoE": false
     },
     {
@@ -209,7 +209,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "3 4",
       "TargetLocation": "2 3 4",
-      "Owner": "사수",
+      "Owner": "marksman",
       "IsAoE": false
     },
     {
@@ -221,7 +221,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2",
-      "Owner": "사수",
+      "Owner": "marksman",
       "IsAoE": false
     },
     {
@@ -233,19 +233,19 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "2 3 4",
       "TargetLocation": "1 2 3 4",
-      "Owner": "사수",
+      "Owner": "marksman",
       "IsAoE": false
     },
     {
       "Id": 5,
       "Name": "화기정비",
       "Information": "석궁의 줄을 갈고 총기의 부품의 수입을 실시하여 화기의 상태를 끌어올려 최상의 위력을 내도록 합니다.",
-      "DamageMultiplier": "",
+      "DamageMultiplier": "0",
       "AEffect": "공격증가 20",
       "DamageGrowth": "5",
       "SkillActivationZone": "self",
       "TargetLocation": "self",
-      "Owner": "사수",
+      "Owner": "marksman",
       "IsAoE": false
     }
   ],
@@ -260,7 +260,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2 3",
       "TargetLocation": "1 2",
-      "Owner": "사제",
+      "Owner": "priest",
       "IsAoE": false
     },
     {
@@ -272,7 +272,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "2 3 4",
       "TargetLocation": "1 2 3",
-      "Owner": "사제",
+      "Owner": "priest",
       "IsAoE": false
     },
     {
@@ -284,7 +284,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2 3",
       "TargetLocation": "1 2",
-      "Owner": "사제",
+      "Owner": "priest",
       "IsAoE": false
     },
     {
@@ -296,7 +296,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "2 3 4",
       "TargetLocation": "1 2 3 4",
-      "Owner": "사제",
+      "Owner": "priest",
       "IsAoE": false
     },
     {
@@ -308,7 +308,7 @@
       "DamageGrowth": "1",
       "SkillActivationZone": "3 4",
       "TargetLocation": "1 2 3 4",
-      "Owner": "사제",
+      "Owner": "priest",
       "IsAoE": false
     }
   ],
@@ -323,7 +323,7 @@
         "DamageGrowth": "10",
         "SkillActivationZone": "2 3 4",
         "TargetLocation": "1 2 3 4",
-        "Owner": "마법사",
+        "Owner": "sorcerer",
         "IsAoE": false
       },
       {
@@ -335,7 +335,7 @@
         "DamageGrowth": "10",
         "SkillActivationZone": "3 4",
         "TargetLocation": "2 3 4",
-        "Owner": "마법사",
+        "Owner": "sorcerer",
         "IsAoE": false
       },
       {
@@ -347,7 +347,7 @@
         "DamageGrowth": "10",
         "SkillActivationZone": "2 3 4",
         "TargetLocation": "1 2 3 4",
-        "Owner": "마법사",
+        "Owner": "sorcerer",
         "IsAoE": true
       },
       {
@@ -359,7 +359,7 @@
         "DamageGrowth": "1",
         "SkillActivationZone": "2 3 4",
         "TargetLocation": "2 3 4",
-        "Owner": "마법사",
+        "Owner": "sorcerer",
         "IsAoE": true
       },    {
         "Id": 5,
@@ -370,7 +370,7 @@
         "DamageGrowth": "10",
         "SkillActivationZone": "2 3 4",
         "TargetLocation": "1 2 3 4",
-        "Owner": "마법사",
+        "Owner": "sorcerer",
         "IsAoE": false
       }
   ]
