@@ -18,65 +18,44 @@ public class SkillManager {
      * @param type 적 타입 키 (예: "Humanoid", "Beast")
      * @return 해당 타입의 스킬 목록, 없으면 null
      */
-    public static List<Skill> loadEnemySkillsByType(String type) {
+    public static List<EnemySkills> loadEnemySkillsByType(String type) {
         try (FileReader reader = new FileReader(ENEMY_SKILLS_JSON_PATH)) {
             Gson gson = new Gson();
 
-            Map<String, List<Skill>> skillMap = gson.fromJson(reader, new TypeToken<Map<String, List<Skill>>>(){}.getType());
+            Map<String, List<EnemySkills>> skillMap = gson.fromJson(reader, new TypeToken<Map<String, List<EnemySkills>>>(){}.getType());
 
-            return skillMap.getOrDefault(type, null);
+            return skillMap.get(type);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    /**
-     * 아군 Owner에 해당하는 스킬 목록을 가져온다.
-     * @param owner 아군 소유자 (예: "Warrior", "Mage")
-     * @return 해당 Owner의 스킬 목록, 없으면 빈 리스트
-     */
-    public static List<Skill> loadAllySkillsByOwner(String owner) {
+     * 아군 key(캐릭터)Owner(세부전직)에 해당하는 스킬 목록을 가져온다
+        public static List<AllySkills> loadAlltSkillsByKeyName(String key){
+            return loadAlltSkillsByKeyName(key, "default");
+        }// 자바에서는 매개변수의 디폴트 값을 지정 하는것이 불가능 하기에 위와 같이 사용
+
+       public static List<AllySkills> loadAlltSkillsByKeyName(String key, String Name) {
         try (FileReader reader = new FileReader(ALLY_SKILLS_JSON_PATH)) {
             Gson gson = new Gson();
 
-            List<Skill> allSkills = gson.fromJson(reader, new TypeToken<List<Skill>>(){}.getType());
+            Map<String, List<AllySkills>> skillMap = gson.fromJson(reader, new TypeToken<Map<String, List<AllySkills>>>(){}.getType());
 
-            List<Skill> result = new ArrayList<>();
-            for (Skill skill : allSkills) {
-                if (skill.getOwner() != null && skill.getOwner().equalsIgnoreCase(owner)) {
-                    result.add(skill);
-                }
+            List<AllySkills> Simplifymap = skillMap.get(key);
+            List<AllySkills> result = new ArrayList<>();
+            for (AllySkills skill : Simplifymap){
+                if(skill.getOwner().equalsIgnoreCase(key) || skill.getOwner().equalsIgnoreCase(name))
+                result.add(skill);
             }
             return result;
         } catch (IOException e) {
             e.printStackTrace();
-            return new ArrayList<>();
+            return null;
         }
     }
-
-    // 테스트용 메인 함수
-    public static void main(String[] args) {
-        // 적 스킬 테스트
-        List<Skill> humanoidSkills = loadEnemySkillsByType("Humanoid");
-        if (humanoidSkills != null) {
-            System.out.println("[Humanoid 스킬 목록]");
-            for (Skill skill : humanoidSkills) {
-                System.out.println("기술 이름: " + skill.getName() + ", 피해 배율: " + skill.getDamageMultiplier());
-            }
-        } else {
-            System.out.println("Humanoid 스킬 데이터를 불러오지 못했습니다.");
-        }
-
-        // 아군 스킬 테스트
-        List<Skill> warriorSkills = loadAllySkillsByOwner("Warrior");
-        if (warriorSkills != null && !warriorSkills.isEmpty()) {
-            System.out.println("\n[Warrior 스킬 목록]");
-            for (Skill skill : warriorSkills) {
-                System.out.println("기술 이름: " + skill.getName() + ", 피해 배율: " + skill.getDamageMultiplier());
-            }
-        } else {
-            System.out.println("Warrior 스킬을 찾을 수 없습니다.");
-        }
-    }
+    //1. 캐릭터 분류를 위해 key로 스킬을 분류하여 가져옴
+    //2. 캐릭터의 세부전직 에 따른 스킬을 가져오기 위하여 owner 속성에 따라 가져옴(세부전직[ex: 전사는 "현상금사냥꾼"과 "광전사" 로 나뉨]의 이름을 넣음)
+    // 캐릭터가 세부 전직을 하지 않았을 경우 owner는 입력하지 않음(키 이름과 동일한 owner를 가진 스킬만 가져옴)
+    // 세부 전직 이 존재 하면 기본 스킬과 전직 스킬을 가져옴.
 }
