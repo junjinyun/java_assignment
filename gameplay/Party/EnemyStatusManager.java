@@ -1,6 +1,8 @@
 package gameplay.Party;
 
 import loaddata.Enemy;
+import loaddata.EnemySkills;
+
 import java.util.ArrayList;
 import java.util.List;
 

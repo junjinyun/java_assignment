@@ -1,5 +1,5 @@
 {
-  "warrior": [
+  "Warrior": [
     {
       "Id": 1,
       "Name": "도끼강타",
@@ -9,7 +9,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2",
-      "Owner": "warrior",
+      "Owner": "Warrior",
       "IsAoE": false
     },
     {
@@ -21,7 +21,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2",
-      "Owner": "warrior",
+      "Owner": "Warrior",
       "IsAoE": false
     },
     {
@@ -33,7 +33,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2 3",
-      "Owner": "warrior",
+      "Owner": "Warrior",
       "IsAoE": false
     },
     {
@@ -45,7 +45,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2",
-      "Owner": "warrior",
+      "Owner": "Warrior",
       "IsAoE": false
     },
     {
@@ -57,7 +57,7 @@
       "DamageGrowth": "5",
       "SkillActivationZone": "self",
       "TargetLocation": "self",
-      "Owner": "warrior",
+      "Owner": "Warrior",
       "IsAoE": false
     }
   ],
@@ -186,7 +186,7 @@
       "IsAoE": false
     }
   ],
-  "marksman":
+  "Marksman":
   [
     {
       "Id": 1,
@@ -197,7 +197,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "3 4",
       "TargetLocation": "2 3 4",
-      "Owner": "marksman",
+      "Owner": "Marksman",
       "IsAoE": false
     },
     {
@@ -209,7 +209,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "3 4",
       "TargetLocation": "2 3 4",
-      "Owner": "marksman",
+      "Owner": "Marksman",
       "IsAoE": false
     },
     {
@@ -221,7 +221,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2",
       "TargetLocation": "1 2",
-      "Owner": "marksman",
+      "Owner": "Marksman",
       "IsAoE": false
     },
     {
@@ -233,7 +233,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "2 3 4",
       "TargetLocation": "1 2 3 4",
-      "Owner": "marksman",
+      "Owner": "Marksman",
       "IsAoE": false
     },
     {
@@ -245,11 +245,11 @@
       "DamageGrowth": "5",
       "SkillActivationZone": "self",
       "TargetLocation": "self",
-      "Owner": "marksman",
+      "Owner": "Marksman",
       "IsAoE": false
     }
   ],
-  "priest":
+  "Priest":
   [
     {
       "Id": 1,
@@ -260,7 +260,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2 3",
       "TargetLocation": "1 2",
-      "Owner": "priest",
+      "Owner": "Priest",
       "IsAoE": false
     },
     {
@@ -272,7 +272,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "2 3 4",
       "TargetLocation": "1 2 3",
-      "Owner": "priest",
+      "Owner": "Priest",
       "IsAoE": false
     },
     {
@@ -284,7 +284,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "1 2 3",
       "TargetLocation": "1 2",
-      "Owner": "priest",
+      "Owner": "Priest",
       "IsAoE": false
     },
     {
@@ -296,7 +296,7 @@
       "DamageGrowth": "10",
       "SkillActivationZone": "2 3 4",
       "TargetLocation": "1 2 3 4",
-      "Owner": "priest",
+      "Owner": "Priest",
       "IsAoE": false
     },
     {
@@ -308,11 +308,11 @@
       "DamageGrowth": "1",
       "SkillActivationZone": "3 4",
       "TargetLocation": "1 2 3 4",
-      "Owner": "priest",
+      "Owner": "Priest",
       "IsAoE": false
     }
   ],
-  "sorcerer":
+  "Sorcerer":
   [
       {
         "Id": 1,
@@ -323,7 +323,7 @@
         "DamageGrowth": "10",
         "SkillActivationZone": "2 3 4",
         "TargetLocation": "1 2 3 4",
-        "Owner": "sorcerer",
+        "Owner": "Sorcerer",
         "IsAoE": false
       },
       {
@@ -335,7 +335,7 @@
         "DamageGrowth": "10",
         "SkillActivationZone": "3 4",
         "TargetLocation": "2 3 4",
-        "Owner": "sorcerer",
+        "Owner": "Sorcerer",
         "IsAoE": false
       },
       {
@@ -347,7 +347,7 @@
         "DamageGrowth": "10",
         "SkillActivationZone": "2 3 4",
         "TargetLocation": "1 2 3 4",
-        "Owner": "sorcerer",
+        "Owner": "Sorcerer",
         "IsAoE": true
       },
       {
@@ -359,7 +359,7 @@
         "DamageGrowth": "1",
         "SkillActivationZone": "2 3 4",
         "TargetLocation": "2 3 4",
-        "Owner": "sorcerer",
+        "Owner": "Sorcerer",
         "IsAoE": true
       },    {
         "Id": 5,
@@ -370,7 +370,7 @@
         "DamageGrowth": "10",
         "SkillActivationZone": "2 3 4",
         "TargetLocation": "1 2 3 4",
-        "Owner": "sorcerer",
+        "Owner": "Sorcerer",
         "IsAoE": false
       }
   ]
