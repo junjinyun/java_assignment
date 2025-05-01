@@ -31,7 +31,7 @@ public class SkillManager {
         }
     }
 
-     * 아군 key(캐릭터)Owner(세부전직)에 해당하는 스킬 목록을 가져온다
+     //아군 key(캐릭터)Owner(세부전직)에 해당하는 스킬 목록을 가져온다
         public static List<AllySkills> loadAlltSkillsByKeyName(String key){
             return loadAlltSkillsByKeyName(key, "default");
         }// 자바에서는 매개변수의 디폴트 값을 지정 하는것이 불가능 하기에 위와 같이 사용
@@ -45,7 +45,7 @@ public class SkillManager {
             List<AllySkills> Simplifymap = skillMap.get(key);
             List<AllySkills> result = new ArrayList<>();
             for (AllySkills skill : Simplifymap){
-                if(skill.getOwner().equalsIgnoreCase(key) || skill.getOwner().equalsIgnoreCase(name))
+                if(skill.getOwner().equalsIgnoreCase(key) || skill.getOwner().equalsIgnoreCase(Name))
                 result.add(skill);
             }
             return result;

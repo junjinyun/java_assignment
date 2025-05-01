@@ -14,11 +14,11 @@ public class AllySkills {
     private boolean IsAoE; // 해당 기술이 광역기술인지 단일 기술인지
     private String pictureloc; // 해당 기술의 이미지 파일의 주소
 
-    public AllySkill() {
+    public AllySkills() {
     }
 
-    public AllySkill(String name, String Information, String damageMultiplier, String aEffect,
-                     String damageGrowth, String skillActivationZone, String targetLocation, String owner, boolean IsAoE, String pictureloc = "unUsign") {
+    public AllySkills(String name, String Information, String damageMultiplier, String aEffect,
+                     String damageGrowth, String skillActivationZone, String targetLocation, String owner, boolean IsAoE) {
         this.Name = name;
         this.Information = Information;
         this.damageMultiplier = damageMultiplier;
@@ -62,16 +62,12 @@ public class AllySkills {
         return Owner;
     }
     
-    public String getIsAoE() {
+    public boolean getIsAoE() {
         return IsAoE;
     }
 
     public String pictureloc(){
         return pictureloc;
-    }
-
-    public void setId(int id) {
-        this.Id = id;
     }
 
     public void setName(String name) {
@@ -102,7 +98,7 @@ public class AllySkills {
         this.Owner = owner;
     }
 
-    public void setIsAoE(String IsAoE) {
+    public void setIsAoE(boolean IsAoE) {
         this.IsAoE = IsAoE;
     }
     

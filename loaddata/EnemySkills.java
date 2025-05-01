@@ -11,9 +11,9 @@ public class EnemySkills {
     private String targetLocation; // 타겟 위치 (ex. "1 2 3")
     private String OwnerType; // 스킬 소유자 타입 (ex. 인간형, 짐승형 등)
 
-    public EnemySkill() {}
+    public EnemySkills() {}
 
-    public EnemySkill(int id, String name, int damageMultiplier, String aEffect,
+    public EnemySkills(int id, String name, int damageMultiplier, String aEffect,
                       String skillActivationZone, String targetLocation, String ownerType) {
         this.Id = id;
         this.Name = name;
