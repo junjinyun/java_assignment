@@ -24,7 +24,7 @@ public class GetAllyJson {
             // JSON을 Map 형태로 읽기
             Map<String, List<Ally>> list = gson.fromJson(reader, new TypeToken<Map<String, List<Ally>>>() {}.getType());
 
-            return list.get("Ally"); // "Ally" 키에 해당하는 리스트 가져오기
+            return list.get("ally"); // "ally" 키에 해당하는 리스트 가져오기
         } catch (FileNotFoundException e) {
             System.out.println("[오류] 파일을 찾을 수 없습니다: " + JSON_PATH);
             e.printStackTrace();  // 로그를 출력하거나 디버깅에 유용한 스택 추적 출력
