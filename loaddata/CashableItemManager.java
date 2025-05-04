@@ -21,7 +21,7 @@ public class CashableItemManager {
             // JSON을 Map 형태로 읽기
             Map<String, List<CashableItem>> list = gson.fromJson(reader, new TypeToken<Map<String, List<CashableItem>>>(){}.getType());
 
-            return list.get("CashableItem"); // "CashableItem" 키에 해당하는 리스트 가져오기
+            return list.get("cashableItem"); // "cashableItem" 키에 해당하는 리스트 가져오기
         } catch (IOException e) {
             e.printStackTrace();
             return null;

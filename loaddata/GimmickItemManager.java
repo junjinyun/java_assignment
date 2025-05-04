@@ -21,7 +21,7 @@ public class GimmickItemManager {
             // JSON을 Map 형태로 읽기
             Map<String, List<GimmickItem>> list = gson.fromJson(reader, new TypeToken<Map<String, List<GimmickItem>>>(){}.getType());
 
-            return list.get("GimmickItem"); // "GimmickItem" 키에 해당하는 리스트 가져오기
+            return list.get("gimmickItem"); // "GimmickItem" 키에 해당하는 리스트 가져오기
         } catch (IOException e) {
             e.printStackTrace();
             return null;

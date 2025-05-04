@@ -1,121 +1,120 @@
 {
-    "EquipmentArmor": [
-      {
-        "Id": 1,
-        "Name": "a",
-        "Defense": 30,
-        "DefenseGrowth": 5,
-        "Health": 20,
-        "HealthGrowth": 6,
-        "Evade": 10,
-        "EvadeGrowth": 0,
-        "Owner": "전사"
-      },
-      {
-        "Id": 2,
-        "Name": "b",
-        "Defense": 15,
-        "DefenseGrowth": 5,
-        "Health": 15,
-        "HealthGrowth": 5,
-        "Evade": 20,
-        "EvadeGrowth": 5,
-        "Owner": "기사"
-      },
-      {
-      "Id": 3,
-      "Name": "c",
-      "Defense": 30,
-      "DefenseGrowth": 5,
-      "Health": 20,
-      "HealthGrowth": 6,
-      "Evade": 10,
-      "EvadeGrowth": 0,
-      "Owner": "도적"
+  "equipmentArmor": [
+    {
+      "id": 1,
+      "name": "a",
+      "defense": 30,
+      "defenseGrowth": 5,
+      "health": 20,
+      "healthGrowth": 6,
+      "evade": 10,
+      "evadeGrowth": 0,
+      "owner": "warrior"
     },
     {
-      "Id": 4,
-      "Name": "d",
-      "Defense": 15,
-      "DefenseGrowth": 5,
-      "Health": 15,
-      "HealthGrowth": 5,
-      "Evade": 20,
-      "EvadeGrowth": 5,
-      "Owner": "사수"
-    },      
-    {
-      "Id": 5,
-      "Name": "e",
-      "Defense": 30,
-      "DefenseGrowth": 5,
-      "Health": 20,
-      "HealthGrowth": 6,
-      "Evade": 10,
-      "EvadeGrowth": 0,
-      "Owner": "사제"
+      "id": 2,
+      "name": "b",
+      "defense": 15,
+      "defenseGrowth": 5,
+      "health": 15,
+      "healthGrowth": 5,
+      "evade": 20,
+      "evadeGrowth": 5,
+      "owner": "knight"
     },
     {
-      "Id": 6,
-      "Name": "f",
-      "Defense": 15,
-      "DefenseGrowth": 5,
-      "Health": 15,
-      "HealthGrowth": 5,
-      "Evade": 20,
-      "EvadeGrowth": 5,
-      "Owner": "마법사"
+      "id": 3,
+      "name": "c",
+      "defense": 30,
+      "defenseGrowth": 5,
+      "health": 20,
+      "healthGrowth": 6,
+      "evade": 10,
+      "evadeGrowth": 0,
+      "owner": "rogue"
+    },
+    {
+      "id": 4,
+      "name": "d",
+      "defense": 15,
+      "defenseGrowth": 5,
+      "health": 15,
+      "healthGrowth": 5,
+      "evade": 20,
+      "evadeGrowth": 5,
+      "owner": "marksman"
+    },
+    {
+      "id": 5,
+      "name": "e",
+      "defense": 30,
+      "defenseGrowth": 5,
+      "health": 20,
+      "healthGrowth": 6,
+      "evade": 10,
+      "evadeGrowth": 0,
+      "owner": "priest"
+    },
+    {
+      "id": 6,
+      "name": "f",
+      "defense": 15,
+      "defenseGrowth": 5,
+      "health": 15,
+      "healthGrowth": 5,
+      "evade": 20,
+      "evadeGrowth": 5,
+      "owner": "sorcerer"
     }
-    
-    ],
-    "EquipmentWeapon": [
-      {
-        "Id": 1,
-        "Name": "도끼 & 대검",
-        "Attack": 10,
-        "AttackGrowth": 3,
-        "EvadeReductionGrowth": 5,
-        "Owner": "사제"
-      },
-      {
-        "Id": 2,
-        "Name": "롱소드 & 방패",
-        "Attack": 10,
-        "AttackGrowth": 3,
-        "EvadeReductionGrowth": 5,
-        "Owner": "기사"
-      },
-      {
-        "Id": 3,
-        "Name": "단검 & 플린트락 권총",
-        "Attack": 10,
-        "AttackGrowth": 3,
-        "EvadeReductionGrowth": 5,
-        "Owner": "도적"
-      },
-      {
-        "Id": 4,
-        "Name": "석궁 & 머스킷",
-        "Attack": 10,
-        "AttackGrowth": 3,
-        "EvadeReductionGrowth": 5,
-        "Owner": "사수"
-      },
-      {
-        "Id": 5,
-        "Name": "성서 & 철퇴",
-        "Attack": 10,
-        "AttackGrowth": 3,
-        "EvadeReductionGrowth": 5,
-        "Owner": "사제"
-      },
-      {
-        "Id": 6,
-        "Name": "지팡이 & 주술도구",
-        "Attack": 10,
-        "AttackGrowth": 3,
-        "EvadeReductionGrowth": 5,
-        "Owner": "기사"
-      }
-    ]
-  }
+  ],
+  "equipmentWeapon": [
+    {
+      "id": 1,
+      "name": "도끼 & 대검",
+      "attack": 10,
+      "attackGrowth": 3,
+      "evadeReductionGrowth": 5,
+      "owner": "warrior"
+    },
+    {
+      "id": 2,
+      "name": "롱소드 & 방패",
+      "attack": 10,
+      "attackGrowth": 3,
+      "evadeReductionGrowth": 5,
+      "owner": "knight"
+    },
+    {
+      "id": 3,
+      "name": "단검 & 플린트락 권총",
+      "attack": 10,
+      "attackGrowth": 3,
+      "evadeReductionGrowth": 5,
+      "owner": "rogue"
+    },
+    {
+      "id": 4,
+      "name": "석궁 & 머스킷",
+      "attack": 10,
+      "attackGrowth": 3,
+      "evadeReductionGrowth": 5,
+      "owner": "marksman"
+    },
+    {
+      "id": 5,
+      "name": "성서 & 철퇴",
+      "attack": 10,
+      "attackGrowth": 3,
+      "evadeReductionGrowth": 5,
+      "owner": "priest"
+    },
+    {
+      "id": 6,
+      "name": "지팡이 & 주술도구",
+      "attack": 10,
+      "attackGrowth": 3,
+      "evadeReductionGrowth": 5,
+      "owner": "sorcerer"
+    }
+  ]
+}

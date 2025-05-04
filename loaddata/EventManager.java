@@ -19,7 +19,7 @@ public class EventManager {
             // JSON을 Map 형태로 읽기
             Map<String, List<BattleEvent>> events = gson.fromJson(reader, new TypeToken<Map<String, List<BattleEvent>>>(){}.getType());
 
-            return events.get("BattleEvent"); // "BattleEvent" 키에 해당하는 리스트 가져오기
+            return events.get("battleEvent"); // "BattleEvent" 키에 해당하는 리스트 가져오기
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -34,7 +34,7 @@ public class EventManager {
             // JSON을 Map 형태로 읽기
             Map<String, List<MapEvent>> events = gson.fromJson(reader, new TypeToken<Map<String, List<MapEvent>>>(){}.getType());
 
-            return events.get("MapEvent"); // "MapEvent" 키에 해당하는 리스트 가져오기
+            return events.get("mapEvent"); // "MapEvent" 키에 해당하는 리스트 가져오기
         } catch (IOException e) {
             e.printStackTrace();
             return null;
