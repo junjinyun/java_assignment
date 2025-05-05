@@ -74,7 +74,7 @@
       "id": 8,
       "name": "대상지정",
       "damageMultiplier": 0,
-      "aEffect": "마킹 20 3",
+      "aEffect": "마킹 20 2",
       "skillActivationZone": "1 2 3 4",
       "targetLocation": "1 2 3 4",
       "ownerType": "인간형",
@@ -103,12 +103,12 @@
     {
       "id": "11",
       "name": "분쉐",
-      "damageMultiplier": 100,
+      "damageMultiplier": 120,
       "aEffect": "default",
-      "skillActivationZone": "2 3 4",
-      "targetLocation": "3 4",
+      "skillActivationZone": "1 2 3",
+      "targetLocation": "1 2",
       "ownerType": "5",
-      "constraint": "default"
+      "constraint": "마킹"
     }
   ],
   "thive": [],
