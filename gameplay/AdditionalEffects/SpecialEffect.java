@@ -1,3 +1,7 @@
+package gameplay.AdditionalEffects;
+
+import gameplay.Party.AllyStatusManager;
+
 public class SpecialEffect implements Effect {
     private String name;  // 상태 이름 (예: "마킹", "반격", "도발")
     private int duration; // 지속 시간
@@ -27,4 +31,22 @@ public class SpecialEffect implements Effect {
     public boolean isExpired() {
         return duration <= 0;
     }
+
+	@Override
+	public int getPower() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getDuration() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

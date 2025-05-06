@@ -1,3 +1,7 @@
+package gameplay.AdditionalEffects;
+
+import gameplay.Party.AllyStatusManager;
+
 public interface Effect {
     String getName();           // 효과 이름
     int getPower();             // 위력 (예: -20 = 20% 감소, 35 = 35% 증가)

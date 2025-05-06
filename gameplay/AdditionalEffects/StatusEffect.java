@@ -1,3 +1,7 @@
+package gameplay.AdditionalEffects;
+
+import gameplay.Party.AllyStatusManager;
+
 public class StatusEffect implements Effect {
     private String name;
     private int power;       // 위력 (양수로 처리되도록 절대값 적용)
@@ -68,4 +72,10 @@ public class StatusEffect implements Effect {
     public boolean isExpired() {
         return duration <= 0;
     }
+
+	@Override
+	public void apply(AllyStatusManager target) {
+		// TODO Auto-generated method stub
+		
+	}
 }
