@@ -1,48 +1,46 @@
 package loaddata;
 
-
 public class CashableItem {
-	private String Name;
-    private String Information;
-    private int MarketPrice;
-    private int MaxNumber;
-    private int MinDropAmount;
-    private int MaxDropAmount;
+    private String name;
+    private String information;
+    private int marketPrice;
+    private int maxNumber;
+    private int minDropAmount;
+    private int maxDropAmount;
 
-	public CashableItem() {
-	}
+    public CashableItem() {
+    }
 
-	public CashableItem(String name, String information, int marketprice, int max_number, int mindrop_amount, int maxdrop_amount) {
-		this.Name = name;
-        this.Information = information;
-        this.MarketPrice = marketprice;
-        this.MaxNumber = max_number;
-        this.MinDropAmount = mindrop_amount;
-        this.MaxDropAmount = maxdrop_amount;
-	}
+    public CashableItem(String name, String information, int marketPrice, int maxNumber, int minDropAmount, int maxDropAmount) {
+        this.name = name;
+        this.information = information;
+        this.marketPrice = marketPrice;
+        this.maxNumber = maxNumber;
+        this.minDropAmount = minDropAmount;
+        this.maxDropAmount = maxDropAmount;
+    }
 
-	public String getName() {
-		return Name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getInformation() {
-		return Information;
-	}
+    public String getInformation() {
+        return information;
+    }
 
-	public int getmarketprice() {
-		return MarketPrice;
-	}
+    public int getMarketPrice() {
+        return marketPrice;
+    }
 
-	public int getMaxNumber() {
-		return MaxNumber;
-	}
+    public int getMaxNumber() {
+        return maxNumber;
+    }
 
-	public int getMindropAmount() {
-		return MinDropAmount;
-	}
+    public int getMinDropAmount() {
+        return minDropAmount;
+    }
 
-	public int getMaxDropAmount() {
-		return MaxDropAmount;
-	}
-
+    public int getMaxDropAmount() {
+        return maxDropAmount;
+    }
 }

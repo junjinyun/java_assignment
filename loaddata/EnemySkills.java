@@ -3,33 +3,33 @@ package loaddata;
 /* 적 스킬 정보 클래스 */
 
 public class EnemySkills {
-    private int Id; // 스킬 ID
-    private String Name; // 스킬 이름
+    private int id; // 스킬 ID
+    private String name; // 스킬 이름
     private int damageMultiplier; // 피해 배율 (%)
-    private String AEffect; // 추가 효과 (ex. 출혈 3 2, 후퇴 2)
+    private String aEffect; // 추가 효과 (ex. 출혈 3 2, 후퇴 2)
     private String skillActivationZone; // 스킬 사용 가능 위치 (ex. "1 2")
     private String targetLocation; // 타겟 위치 (ex. "1 2 3")
-    private String OwnerType; // 스킬 소유자 타입 (ex. 인간형, 짐승형 등)
+    private String ownerType; // 스킬 소유자 타입 (ex. 인간형, 짐승형 등)
 
     public EnemySkills() {}
 
     public EnemySkills(int id, String name, int damageMultiplier, String aEffect,
                       String skillActivationZone, String targetLocation, String ownerType) {
-        this.Id = id;
-        this.Name = name;
+        this.id = id;
+        this.name = name;
         this.damageMultiplier = damageMultiplier;
-        this.AEffect = aEffect;
+        this.aEffect = aEffect;
         this.skillActivationZone = skillActivationZone;
         this.targetLocation = targetLocation;
-        this.OwnerType = ownerType;
+        this.ownerType = ownerType;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public int getDamageMultiplier() {
@@ -37,7 +37,7 @@ public class EnemySkills {
     }
 
     public String getAEffect() {
-        return AEffect;
+        return aEffect;
     }
 
     public String getSkillActivationZone() {
@@ -49,6 +49,6 @@ public class EnemySkills {
     }
 
     public String getOwnerType() {
-        return OwnerType;
+        return ownerType;
     }
 }

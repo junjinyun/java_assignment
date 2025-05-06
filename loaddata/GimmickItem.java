@@ -2,10 +2,10 @@ package loaddata;
 
 public class GimmickItem {
 
-    private String Name;
-    private String Information;
-    private int Price;
-    private int MaxNumber;
+    private String name;
+    private String information;
+    private int price;
+    private int maxNumber;
 
     // 기본 생성자
     public GimmickItem() {
@@ -13,26 +13,26 @@ public class GimmickItem {
 
     // 매개변수가 있는 생성자
     public GimmickItem(String name, String information, int price, int maxNumber) {
-        this.Name = name;
-        this.Information = information;
-        this.Price = price;
-        this.MaxNumber = maxNumber;
+        this.name = name;
+        this.information = information;
+        this.price = price;
+        this.maxNumber = maxNumber;
     }
 
     // Getter 메서드들
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getInformation() {
-        return Information;
+        return information;
     }
 
     public int getPrice() {
-        return Price;
+        return price;
     }
 
     public int getMaxNumber() {
-        return MaxNumber;
+        return maxNumber;
     }
 }

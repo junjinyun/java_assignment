@@ -1,16 +1,16 @@
 package loaddata;
 
 public class EquipmentArmor {
-    private String Name;
-    private int Defense;
-    private int DefenseGrowth;
-    private int Health;
-    private int HealthGrowth;
-    private int Evade;
-    private int EvadeGrowth;
-    private int Level;
-    private int MaxLevel;
-    private String Owner;
+    private String name;
+    private int defense;
+    private int defenseGrowth;
+    private int health;
+    private int healthGrowth;
+    private int evade;
+    private int evadeGrowth;
+    private int level;
+    private int maxLevel;
+    private String owner;
 
     // 기본 생성자
     public EquipmentArmor() {
@@ -19,56 +19,56 @@ public class EquipmentArmor {
     // 매개변수가 있는 생성자
     public EquipmentArmor(String name, int defense, int defenseGrowth, int health, int healthGrowth, int evade,
             int evadeGrowth, int level, int maxLevel, String owner) {
-        this.Name = name;
-        this.Defense = defense;
-        this.DefenseGrowth = defenseGrowth;
-        this.Health = health;
-        this.HealthGrowth = healthGrowth;
-        this.Evade = evade;
-        this.EvadeGrowth = evadeGrowth;
-        this.Level = level;
-        this.MaxLevel = maxLevel;
-        this.Owner = owner;
+        this.name = name;
+        this.defense = defense;
+        this.defenseGrowth = defenseGrowth;
+        this.health = health;
+        this.healthGrowth = healthGrowth;
+        this.evade = evade;
+        this.evadeGrowth = evadeGrowth;
+        this.level = level;
+        this.maxLevel = maxLevel;
+        this.owner = owner;
     }
 
     // Getter 메서드들
     public String getName() {
-        return Name;
+        return name;
     }
 
     public int getDefense() {
-        return Defense;
+        return defense;
     }
 
     public int getDefenseGrowth() {
-        return DefenseGrowth;
+        return defenseGrowth;
     }
 
     public int getHealth() {
-        return Health;
+        return health;
     }
 
     public int getHealthGrowth() {
-        return HealthGrowth;
+        return healthGrowth;
     }
 
     public int getEvade() {
-        return Evade;
+        return evade;
     }
 
     public int getEvadeGrowth() {
-        return EvadeGrowth;
+        return evadeGrowth;
     }
 
     public int getLevel() {
-        return Level;
+        return level;
     }
 
     public int getMaxLevel() {
-        return MaxLevel;
+        return maxLevel;
     }
 
     public String getOwner() {
-        return Owner;
+        return owner;
     }
 }

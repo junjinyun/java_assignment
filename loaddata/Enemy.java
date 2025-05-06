@@ -3,106 +3,106 @@ package loaddata;
 /* 적 정보 클래스 */
 
 public class Enemy {
-    private int Id; // 아이디
-    private String Name; // 이름
-    private String Category; // 카테고리 (Name 아래로 이동)
-    private int Health; // 현재_체력
-    private int MaxHealth; // 최대_체력
-    private int Attack; // 공격력
-    private int Defense; // 방어력
-    private int MinSpeed; // 최소 스피드
-    private int MaxSpeed; // 최대 스피드
-    private int Evasion; // 회피율
-    private int Cost; // 비용
-    private int EvadeReduction; // 회피율 무시
-    private boolean Alive; // 생사 여부
-    private boolean IsAttackable; // 공격 가능 여부
+    private int id; // 아이디
+    private String name; // 이름
+    private String category; // 카테고리
+    private int health; // 현재 체력
+    private int maxHealth; // 최대 체력
+    private int attack; // 공격력
+    private int defense; // 방어력
+    private int minSpeed; // 최소 스피드
+    private int maxSpeed; // 최대 스피드
+    private int evasion; // 회피율
+    private int cost; // 비용
+    private int evadeReduction; // 회피율 무시
+    private boolean alive; // 생사 여부
+    private boolean isAttackable; // 공격 가능 여부
 
     public Enemy() {}
 
     public Enemy(int id, String name, String category, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed, 
                  int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable) {
-        this.Id = id;
-        this.Name = name;
-        this.Category = category; // Category 초기화
-        this.Health = health;
-        this.MaxHealth = maxHealth;
-        this.Attack = attack;
-        this.Defense = defense;
-        this.MinSpeed = minSpeed;
-        this.MaxSpeed = maxSpeed;
-        this.Evasion = evasion;
-        this.Cost = cost;
-        this.EvadeReduction = evadeReduction;
-        this.Alive = alive;
-        this.IsAttackable = isAttackable;
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.health = health;
+        this.maxHealth = maxHealth;
+        this.attack = attack;
+        this.defense = defense;
+        this.minSpeed = minSpeed;
+        this.maxSpeed = maxSpeed;
+        this.evasion = evasion;
+        this.cost = cost;
+        this.evadeReduction = evadeReduction;
+        this.alive = alive;
+        this.isAttackable = isAttackable;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getCategory() {
-        return Category; // Category getter
+        return category;
     }
 
     public int getHealth() {
-        return Health;
+        return health;
     }
 
     public int getMaxHealth() {
-        return MaxHealth;
+        return maxHealth;
     }
 
     public int getAttack() {
-        return Attack;
+        return attack;
     }
 
     public int getDefense() {
-        return Defense;
+        return defense;
     }
 
     public int getMinSpeed() {
-        return MinSpeed;
+        return minSpeed;
     }
 
     public int getMaxSpeed() {
-        return MaxSpeed;
+        return maxSpeed;
     }
 
     public int getEvasion() {
-        return Evasion;
+        return evasion;
     }
 
     public int getCost() {
-        return Cost;
+        return cost;
     }
 
     public int getEvadeReduction() {
-        return EvadeReduction;
+        return evadeReduction;
     }
 
-    public boolean getAlive() {
-        return Alive;
+    public boolean isAlive() {
+        return alive;
     }
 
-    public boolean getIsAttackable() {
-        return IsAttackable;
+    public boolean isAttackable() {
+        return isAttackable;
     }
 
     public void setHealth(int health) {
-        this.Health = health;
+        this.health = health;
     }
 
-    public void setIsAttackable(boolean isAttackable) {
-        this.IsAttackable = isAttackable;
+    public void setAttackable(boolean isAttackable) {
+        this.isAttackable = isAttackable;
     }
 
     public void setAlive(boolean alive) {
-        this.Alive = alive;
+        this.alive = alive;
     }
 }

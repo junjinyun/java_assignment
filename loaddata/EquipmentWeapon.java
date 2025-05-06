@@ -1,55 +1,55 @@
 package loaddata;
 
 public class EquipmentWeapon {
-    private String Name;
-    private int Attack;
-    private int AttackGrowth;
-    private int EvadereductionGrowth;
-    private int Level;
-    private int MaxLevel;
-    private String Owner;
+    private String name;
+    private int attack;
+    private int attackGrowth;
+    private int evadeReductionGrowth;
+    private int level;
+    private int maxLevel;
+    private String owner;
 
     // 기본 생성자
     public EquipmentWeapon() {
     }
 
     // 매개변수가 있는 생성자
-    public EquipmentWeapon(String name, int attack, int attackGrowth, int evadereductionGrowth, int level, int maxLevel, String owner) {
-        this.Name = name;
-        this.Attack = attack;
-        this.AttackGrowth = attackGrowth;
-        this.EvadereductionGrowth = evadereductionGrowth;
-        this.Level = level;
-        this.MaxLevel = maxLevel;
-        this.Owner = owner;
+    public EquipmentWeapon(String name, int attack, int attackGrowth, int evadeReductionGrowth, int level, int maxLevel, String owner) {
+        this.name = name;
+        this.attack = attack;
+        this.attackGrowth = attackGrowth;
+        this.evadeReductionGrowth = evadeReductionGrowth;
+        this.level = level;
+        this.maxLevel = maxLevel;
+        this.owner = owner;
     }
 
     // Getter 메서드들
     public String getName() {
-        return Name;
+        return name;
     }
 
     public int getAttack() {
-        return Attack;
+        return attack;
     }
 
     public int getAttackGrowth() {
-        return AttackGrowth;
+        return attackGrowth;
     }
 
-    public int getEvadereductionGrowth() {
-        return EvadereductionGrowth;
+    public int getEvadeReductionGrowth() {
+        return evadeReductionGrowth;
     }
 
     public int getLevel() {
-        return Level;
+        return level;
     }
 
     public int getMaxLevel() {
-        return MaxLevel;
+        return maxLevel;
     }
 
     public String getOwner() {
-        return Owner;
+        return owner;
     }
 }
