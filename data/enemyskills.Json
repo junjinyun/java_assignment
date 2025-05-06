@@ -357,13 +357,13 @@
     },
     {
       "id": 10,
-      "name": "상처 찢기",
-      "damageMultiplier": 120,
+      "name": "찢기",
+      "damageMultiplier": 100,
       "aEffect": "출혈 4 2",
       "skillActivationZone": "1 2 3",
       "targetLocation": "1 2 3",
       "ownerType": "5",
-      "constraint": "출혈, 8",
+      "constraint": "",
       "isAoE": false
     },
     {
