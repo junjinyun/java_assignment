@@ -1,7 +1,7 @@
 package gameplay.Party;
 
 import loaddata.Ally;
-import loaddata.GetAllyJson;
+import loaddata.AllyManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class AllyParty {
 
     public AllyParty() {
         this.party = new ArrayList<>();
-        List<Ally> loadedAllies = GetAllyJson.loadAlly(); // 알리 데이터를 JSON에서 로드
+        List<Ally> loadedAllies = AllyManager.loadAlly(); // 알리 데이터를 JSON에서 로드
 
         // 예시: ally.json에서 전사, 기사, 도적, 마법사 선택 (index 0,1,2,5)
         int[] allyIndices = {0, 1, 2, 5};

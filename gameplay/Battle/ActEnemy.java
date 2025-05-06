@@ -16,8 +16,8 @@ public class ActEnemy {
             int target = random.nextInt(ap.getParty().size());
 
             // 대상이 공격 불가능하거나 사망 상태일 경우
-            if (!ap.getParty().get(target).getBaseStats().getisAttackable() || 
-                !ap.getParty().get(target).getBaseStats().getAlive()) {
+            if (!ap.getParty().get(target).getBaseStats().isAttackable() || 
+                !ap.getParty().get(target).getBaseStats().isAlive()) {
                 continue; // 다시 시도
             }
 

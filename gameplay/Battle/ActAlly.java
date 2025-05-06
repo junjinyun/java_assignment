@@ -12,7 +12,7 @@ public class ActAlly {
 	public static void allyattack(int attacker, AllyParty ap, EnemyParty ep) {
 
 		// ap.getParty() 메서드를 통해 파티에 접근합니다.
-		if (ap.getParty().get(attacker).getBaseStats().getAlive()) {
+		if (ap.getParty().get(attacker).getBaseStats().isAlive()) {
 			System.out.print("공격할 적의 번호를 입력하세요 (0부터 " + (ep.getEnemyParty().size() - 1) + "까지): ");
 			int target = 0;
 

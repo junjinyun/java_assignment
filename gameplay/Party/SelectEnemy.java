@@ -3,7 +3,7 @@ package gameplay.Party;
 import java.util.List;
 import java.util.Random;
 
-import loaddata.EnemyFactory;
+import loaddata.EnemyManager;
 import loaddata.Enemy;
 
 public class SelectEnemy {
@@ -40,7 +40,7 @@ public class SelectEnemy {
     }
 
     public static SelectEnemy[] Enemy = new SelectEnemy[4]; // SelectEnemy의 특성을 가진 Enemy 객체 배열로 생성
-    public static List<Enemy> Enemies = EnemyFactory.loadEnemies(); // 적 도감 불러와서 Enemies에 리스트로 저장
+    public static List<Enemy> Enemies = EnemyManager.loadEnemies(); // 적 도감 불러와서 Enemies에 리스트로 저장
 
     // 적 선택 메서드
     public static void SelectEnemyChar() {
@@ -58,8 +58,8 @@ public class SelectEnemy {
                 Enemies.get(CurrentEnemy).getEvasion(),
                 Enemies.get(CurrentEnemy).getCost(),
                 Enemies.get(CurrentEnemy).getEvadeReduction(),
-                Enemies.get(CurrentEnemy).getAlive(),
-                Enemies.get(CurrentEnemy).getIsAttackable()
+                Enemies.get(CurrentEnemy).isAlive(),
+                Enemies.get(CurrentEnemy).isAttackable()
             );
         }
     }

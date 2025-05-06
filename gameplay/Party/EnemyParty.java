@@ -1,7 +1,7 @@
 package gameplay.Party;
 
 import loaddata.Enemy;
-import loaddata.EnemyFactory;
+import loaddata.EnemyManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class EnemyParty {
     // 랜덤하게 적을 선택하여 파티 구성
     public EnemyParty() {
     	this.enemyParty = new ArrayList<>();
-        List<Enemy> enemyList = EnemyFactory.loadEnemies();
+        List<Enemy> enemyList = EnemyManager.loadEnemies();
         Random random = new Random();
 
         for (int i = 0; i < 4; i++) {

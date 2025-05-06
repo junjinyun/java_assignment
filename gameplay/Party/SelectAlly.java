@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import loaddata.Ally;
-import loaddata.GetAllyJson;
+import loaddata.AllyManager;
 
 public class SelectAlly {
     String Name; // 이름
@@ -38,7 +38,7 @@ public class SelectAlly {
     }
 
     public static SelectAlly[] Ally = new SelectAlly[4];
-    public static List<Ally> AllyList = GetAllyJson.loadAlly();
+    public static List<Ally> AllyList = AllyManager.loadAlly();
 
     // 배열의 형식으로 아군 편성창을 생성
     public static void SelectAllyChar() {
@@ -54,9 +54,9 @@ public class SelectAlly {
                 AllyList.get(CurrentAlly).getMinSpeed(),
                 AllyList.get(CurrentAlly).getMaxSpeed(),
                 AllyList.get(CurrentAlly).getEvasion(),
-                AllyList.get(CurrentAlly).getEvadereduction(),
-                AllyList.get(CurrentAlly).getAlive(),
-                AllyList.get(CurrentAlly).getisAttackable()
+                AllyList.get(CurrentAlly).getEvadeReduction(),
+                AllyList.get(CurrentAlly).isAlive(),
+                AllyList.get(CurrentAlly).isAttackable()
             );
         }
         // 추후에 도감 파일과 연동하여 캐릭터 리스트를 출력하며 그 중에서 4명을 선택하여 배치하는 방식으로 변경

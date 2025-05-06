@@ -37,7 +37,7 @@ public class Battle {
             for (int i = 1; i <= 8; i++) { // 행동 순서 1~8
                 for (int y = 0; y < 4; y++) {
                     // 아군 행동
-                    if (ap.getParty().get(y).getActionOrder() == i && ap.getParty().get(y).getBaseStats().getAlive()) {
+                    if (ap.getParty().get(y).getActionOrder() == i && ap.getParty().get(y).getBaseStats().isAlive()) {
 						ActAlly.allyattack(y, ap, ep);
                         CheckBattleStat.CheckHp(ap, ep);
                         battleend = CheckBattleStat.CheckEnd(ap, ep);

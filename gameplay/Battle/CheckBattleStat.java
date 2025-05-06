@@ -10,10 +10,10 @@ public class CheckBattleStat {
         // 아군 체력 확인
         for (int i = 0; i < ap.getParty().size(); i++) {
             if (ap.getParty().get(i).getBaseStats().getHealth() <= 0 &&
-                ap.getParty().get(i).getBaseStats().getAlive()) {
+                ap.getParty().get(i).getBaseStats().isAlive()) {
 
                 ap.getParty().get(i).getBaseStats().setAlive(false);
-                ap.getParty().get(i).getBaseStats().setIsAttackable(false);
+                ap.getParty().get(i).getBaseStats().setAttackable(false);
                 System.out.println(ap.getParty().get(i).getName() + "이(가) 사망하였습니다.");
             }
         }
@@ -38,7 +38,7 @@ public class CheckBattleStat {
 
         // 아군 생존 여부 확인
         for (int i = 0; i < ap.getParty().size(); i++) {
-            if (ap.getParty().get(i).getBaseStats().getAlive()) {
+            if (ap.getParty().get(i).getBaseStats().isAlive()) {
                 allyend = false;
                 break;
             }

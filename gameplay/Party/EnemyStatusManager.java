@@ -9,7 +9,7 @@ import java.util.List;
 // 적 캐릭터의 상태 및 상태이상을 관리하는 클래스
 public class EnemyStatusManager {
     private Enemy baseStats; // 기본 스탯 (EnemyFactory에서 불러온 원본 정보)
-    private List<StatusEffect> statusEffects; // 현재 적용 중인 상태이상 목록
+    private List<StatusEffect241> statusEffects; // 현재 적용 중인 상태이상 목록
     private int position; // 적 위치 (0~3 등)
     private int currentSpeed; // 전투 중 동적인 현재 속도
     private int actionOrder; // 행동 순서 (우선순위)
@@ -22,9 +22,9 @@ public class EnemyStatusManager {
     }
 
     // 상태이상 추가: 이름이 같으면 위력은 합산하고, 지속시간은 더 긴 쪽을 사용
-    public void addStatusEffect(StatusEffect newEffect) {
+    public void addStatusEffect(StatusEffect241 newEffect) {
         // 동일한 상태이상이 있는지 체크
-        for (StatusEffect effect : statusEffects) {
+        for (StatusEffect241 effect : statusEffects) {
             if (effect.getName().equals(newEffect.getName())) {
                 // 중복된 상태이상이 있을 경우, 위력 합산 및 지속시간 갱신
                 effect.setPower(effect.getPower() + newEffect.getPower());
@@ -38,8 +38,8 @@ public class EnemyStatusManager {
 
     // 상태이상 효과 적용: 체력 감소 및 지속시간 감소, 만료된 상태이상 제거
     public void applyStatusEffects() {
-        List<StatusEffect> expired = new ArrayList<>();
-        for (StatusEffect effect : statusEffects) {
+        List<StatusEffect241> expired = new ArrayList<>();
+        for (StatusEffect241 effect : statusEffects) {
             // 상태이상의 위력만큼 체력 감소
             int currentHp = baseStats.getHealth();
             baseStats.setHealth(Math.max(0, currentHp - effect.getPower())); // 체력 0 이하 방지
@@ -57,7 +57,7 @@ public class EnemyStatusManager {
     }
 
     // Getter 및 Setter
-    public List<StatusEffect> getStatusEffects() {
+    public List<StatusEffect241> getStatusEffects() {
         return statusEffects;
     }
 
@@ -94,7 +94,7 @@ public class EnemyStatusManager {
     }
 
     public boolean isAlive() {
-        return baseStats.getAlive();
+        return baseStats.isAlive();
     }
 
     public void setAlive(boolean alive) {
@@ -102,11 +102,11 @@ public class EnemyStatusManager {
     }
 
     public boolean isAttackable() {
-        return baseStats.getIsAttackable();
+        return baseStats.isAttackable();
     }
 
     public void setAttackable(boolean isAttackable) {
-        baseStats.setIsAttackable(isAttackable);
+        baseStats.setAttackable(isAttackable);
     }
 
     @Override
@@ -116,7 +116,7 @@ public class EnemyStatusManager {
         sb.append("체력: ").append(baseStats.getHealth()).append("/").append(baseStats.getMaxHealth()).append("\n");
         sb.append("속도: ").append(currentSpeed).append(" / 행동순서: ").append(actionOrder).append("\n");
         sb.append("상태이상: ").append(statusEffects.isEmpty() ? "없음" : "\n");
-        for (StatusEffect effect : statusEffects) {
+        for (StatusEffect241 effect : statusEffects) {
             sb.append("  - ").append(effect.toString()).append("\n");
         }
         return sb.toString();
