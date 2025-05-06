@@ -67,7 +67,7 @@
       "name": "페어체젠",
       "information": "중세 독일에서 사용되던 기술로 대상의 공격을 방어 함과 동시에 검으로 반격을 가합니다.",
       "damageMultiplier": "0",
-      "aEffect": "방어반격 10 3",
+      "aEffect": "반격획득",
       "damageGrowth": "10",
       "skillActivationZone": "1 2 3",
       "targetLocation": "1 2 3",
