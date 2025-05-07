@@ -30,7 +30,7 @@ public class MainGameUI extends JFrame {
 	            super.paintComponent(g);
 
 	            // 배경 이미지 처리
-	            ImageIcon icon = new ImageIcon("src/image/cave.jpg"); // 기존 이미지
+	            ImageIcon icon = new ImageIcon("src/image/Interface/cave.jpg");
 	            Image img = icon.getImage();
 
 	            BufferedImage resizedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -146,8 +146,8 @@ public class MainGameUI extends JFrame {
 		JPanel skillPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 40, 0));
 
 		// 이미지 아이콘 준비
-		ImageIcon activeIcon = new ImageIcon("src/image/green.png"); // 활성화 이미지
-		ImageIcon inactiveIcon = new ImageIcon("src/image/red.png"); // 비활성화 이미지
+		ImageIcon activeIcon = new ImageIcon("src/image/Interface/green.png");
+		ImageIcon inactiveIcon = new ImageIcon("src/image/Interface/red.png");
 
 		// 버튼 크기에 맞게 이미지 크기 조정
 		int buttonWidth = 100;
