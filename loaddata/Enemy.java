@@ -3,7 +3,7 @@ package loaddata;
 /* 적 정보 클래스 */
 
 public class Enemy {
-    private int id; // 아이디
+    static int int nextID = 1;
     private String name; // 이름
     private String category; // 카테고리
     private int health; // 현재 체력
@@ -21,9 +21,8 @@ public class Enemy {
 
     public Enemy() {}
 
-    public Enemy(int id, String name, String category, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed, 
-                 int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable, String mappingId) {
-        this.id = id;
+    public Enemy(String name, String category, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed, 
+                 int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable) {
         this.name = name;
         this.category = category;
         this.health = health;
@@ -37,11 +36,7 @@ public class Enemy {
         this.evadeReduction = evadeReduction;
         this.alive = alive;
         this.isAttackable = isAttackable;
-        this.mappingId = mappingId;
-    }
-
-    public int getId() {
-        return id;
+        this.mappingId = (E + nextID++);
     }
 
     public String getName() {
@@ -98,10 +93,6 @@ public class Enemy {
 
     public String getMappingId() {
         return mappingId;
-    }
-
-    public void setMappingId(String mappingId) {
-        this.mappingId = mappingId;
     }
 
     public void setHealth(int health) {

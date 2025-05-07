@@ -10,7 +10,7 @@ public class AllyParty {
 
     public AllyParty() {
         this.party = new ArrayList<>();
-        List<Ally> loadedAllies = AllyManager.loadAlly(); // 알리 데이터를 JSON에서 로드
+        List<Ally> loadedAllies = AllyManager.loadAlly(); // 아군 데이터를 JSON에서 로드
 
         // 예시: ally.json에서 전사, 기사, 도적, 마법사 선택 (index 0,1,2,5)
         int[] allyIndices = {0, 1, 2, 5};
@@ -18,7 +18,7 @@ public class AllyParty {
         // 각 아군에 대해 AllyStatusManager 객체 생성
         for (int i = 0; i < 4; i++) {
             Ally ally = loadedAllies.get(allyIndices[i]);
-            AllyStatusManager manager = new AllyStatusManager(ally, i + 1); // 위치 1~4
+            AllyStatusManager manager = new AllyStatusManager(ally, ally.mappingId); // 고유 식별자에 따라 인스턴스 생성
             party.add(manager);
         }
     }
@@ -29,9 +29,9 @@ public class AllyParty {
     }
 
     // 위치를 기반으로 아군 찾기
-    public AllyStatusManager getAllyByPosition(int position) {
+    public AllyStatusManager getAllyByPosition(int mappingId) {
         return party.stream()
-            .filter(ally -> ally.getPosition() == position)
+            .filter(ally -> ally.mappingId() == mappingId)
             .findFirst()
             .orElse(null);
     }

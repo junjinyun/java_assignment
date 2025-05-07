@@ -1,6 +1,7 @@
 package loaddata;
 
 public class Ally {
+    static int int nextID = 1;
     private String name; // 이름
     private String information; // 추가 정보
     private int health; // 현재 체력
@@ -13,7 +14,7 @@ public class Ally {
     private int evadeReduction; // 회피율 무시
     private boolean alive; // 생사 여부
     private boolean isAttackable; // 공격 가능 여부
-    private String mappingId;//스테이터스 매니저(각 아군별 스킬, 상태이상 등의 효과를 관리)를 각각의 인스턴스로 관리하기 위한 식별코드
+    private String mappingId=A;//스테이터스 매니저(각 아군별 스킬, 상태이상 등의 효과를 관리)를 각각의 인스턴스로 관리하기 위한 식별코드
 
     public Ally() {
     }
@@ -32,6 +33,8 @@ public class Ally {
         this.evadeReduction = evadeReduction;
         this.alive = alive;
         this.isAttackable = isAttackable;
+
+        this.mappingId = (A + nextID++);
     }
 
     public String getName() {
@@ -108,9 +111,5 @@ public class Ally {
 
     public void setEvasion(int evasion) {
         this.evasion = evasion;
-    }
-    
-    public void setMappingId(String mappingId){
-        this.mappingId = mappingId;
     }
 }
