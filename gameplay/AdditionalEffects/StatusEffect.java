@@ -35,16 +35,17 @@ public class StatusEffect implements Effect {
 
     // 상태이상 갱신 처리 (중복 상태이상의 위력 합산 및 지속시간 갱신)
     public static StatusEffect mergeEffects(StatusEffect existingEffect, StatusEffect newEffect) {
+        // 상태이상 이름이 동일하면 병합
         if (existingEffect.getName().trim().equalsIgnoreCase(newEffect.getName().trim())) {
-         // 중복 상태이상의 위력 합산
-         int newPower = existingEffect.getPower() + newEffect.getPower();
-         // 지속시간 갱신
-         int newDuration = Math.max(existingEffect.getDuration(), newEffect.getDuration());
-         // 새로운 상태이상 객체 반환
-         return new StatusEffect(existingEffect.getName(), newPower, newDuration);
-    }
+            // 중복 상태이상의 위력 합산
+            int newPower = existingEffect.getPower() + newEffect.getPower();
+            // 지속시간 갱신
+            int newDuration = Math.max(existingEffect.getDuration(), newEffect.getDuration());
+            // 새로운 상태이상 객체 반환
+            return new StatusEffect(existingEffect.getName(), newPower, newDuration);
+        }
         return null;
-}
+    }
 
 
     @Override
@@ -58,7 +59,7 @@ public class StatusEffect implements Effect {
             int hp = target.getBaseStats().getHealth();
             target.getBaseStats().setHealth(Math.max(0, hp - power)); // 체력 0 이하 방지
         }
-        
+
         // 지속시간 감소
         duration--;
     }
@@ -78,4 +79,5 @@ public class StatusEffect implements Effect {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }

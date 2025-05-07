@@ -35,43 +35,42 @@ public class AllyStatusManager {
 	}
 
 	public void addStatModifierEffect(StatModifierEffect newEffect) {
-	    // 새 효과가 상반되는 기존 효과가 있는지 확인
-	    List<StatModifierEffect> toRemove = new ArrayList<>();
+		// 새 효과가 상반되는 기존 효과가 있는지 확인
+		List<StatModifierEffect> toRemove = new ArrayList<>();
 
-	    String newStat = newEffect.getStatName();         // 예: "방어"
-	    String newType = newEffect.getEffectType();       // 예: "증가" or "감소"
+		String newStat = newEffect.getStatName(); // 예: "방어"
+		String newType = newEffect.getEffectType(); // 예: "증가" or "감소"
 
-	    for (StatModifierEffect existing : statModifierEffects) {
-	        String existingStat = existing.getStatName();
-	        String existingType = existing.getEffectType();
+		for (StatModifierEffect existing : statModifierEffects) {
+			String existingStat = existing.getStatName();
+			String existingType = existing.getEffectType();
 
-	        // 상반 조건: 같은 스탯 + 효과 타입 다름 (증가 vs 감소)
-	        if (newStat.equals(existingStat) && !newType.equals(existingType)) {
-	            toRemove.add(existing); // 상반 효과 제거 대상
-	        }
-	    }
+			// 상반 조건: 같은 스탯 + 효과 타입 다름 (증가 vs 감소)
+			if (newStat.equals(existingStat) && !newType.equals(existingType)) {
+				toRemove.add(existing); // 상반 효과 제거 대상
+			}
+		}
 
-	    if (!toRemove.isEmpty()) {
-	        for (StatModifierEffect effect : toRemove) {
-	            effect.forceRemove(this); // 원본 스탯 복원
-	            statModifierEffects.remove(effect);
-	        }
-	        return;
-	    }
+		if (!toRemove.isEmpty()) {
+			for (StatModifierEffect effect : toRemove) {
+				effect.forceRemove(this); // 원본 스탯 복원
+				statModifierEffects.remove(effect);
+			}
+			return;
+		}
 
-	    // 병합 가능한 기존 효과가 있으면 병합
-	    for (Effect e : statModifierEffects) {
-	        if (e instanceof StatModifierEffect existing && existing.canMerge(newEffect)) {
-	            existing.merge(newEffect, this);
-	            return;
-	        }
-	    }
+		// 병합 가능한 기존 효과가 있으면 병합
+		for (Effect e : statModifierEffects) {
+			if (e instanceof StatModifierEffect existing && existing.canMerge(newEffect)) {
+				existing.merge(newEffect, this);
+				return;
+			}
+		}
 
-	    // 아무 문제 없으면 적용
-	    newEffect.apply(this);
-	    statModifierEffects.add(newEffect);
+		// 아무 문제 없으면 적용
+		newEffect.apply(this);
+		statModifierEffects.add(newEffect);
 	}
-
 
 	public void checkStatModifierEffectsEnd() {
 		List<StatModifierEffect> expired = new ArrayList<>();
@@ -109,12 +108,16 @@ public class AllyStatusManager {
 
 	public void applyStatusEffects() {
 		List<StatusEffect> expired = new ArrayList<>();
+
+		// 상태이상 효과를 한 턴 동안 적용
 		for (StatusEffect effect : statusEffects) {
-			effect.onTurnEnd(this);
+			effect.onTurnEnd(this); // 턴 종료 시 상태이상 효과 적용
 			if (effect.isExpired()) {
-				expired.add(effect);
+				expired.add(effect); // 만료된 상태이상 효과를 리스트에 추가
 			}
 		}
+
+		// 만료된 상태이상 효과를 상태 목록에서 제거
 		statusEffects.removeAll(expired);
 	}
 
@@ -164,8 +167,9 @@ public class AllyStatusManager {
 	}
 
 	public List<StatModifierEffect> getStatModifierEffects() {
-	    return statModifierEffects;
+		return statModifierEffects;
 	}
+
 	public List<AllySkills> getSkillList() {
 		return skillList;
 	}
@@ -204,6 +208,10 @@ public class AllyStatusManager {
 
 	public String getName() {
 		return baseStats.getName();
+	}
+
+	public List<StatusEffect> getStatusEffects() {
+		return statusEffects;
 	}
 
 }

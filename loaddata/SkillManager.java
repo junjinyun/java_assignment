@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Arrays;
 
 public class SkillManager {
     private static final String ENEMY_SKILLS_JSON_PATH = "src/data/enemyskills.json"; // 적 스킬 JSON 경로
