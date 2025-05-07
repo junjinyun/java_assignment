@@ -17,11 +17,12 @@ public class Enemy {
     private int evadeReduction; // 회피율 무시
     private boolean alive; // 생사 여부
     private boolean isAttackable; // 공격 가능 여부
+    private String mappingId; // 상태 관리용 식별자
 
     public Enemy() {}
 
     public Enemy(int id, String name, String category, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed, 
-                 int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable) {
+                 int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable, String mappingId) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -36,6 +37,7 @@ public class Enemy {
         this.evadeReduction = evadeReduction;
         this.alive = alive;
         this.isAttackable = isAttackable;
+        this.mappingId = mappingId;
     }
 
     public int getId() {
@@ -92,6 +94,14 @@ public class Enemy {
 
     public boolean isAttackable() {
         return isAttackable;
+    }
+
+    public String getMappingId() {
+        return mappingId;
+    }
+
+    public void setMappingId(String mappingId) {
+        this.mappingId = mappingId;
     }
 
     public void setHealth(int health) {

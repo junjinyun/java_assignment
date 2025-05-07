@@ -13,6 +13,7 @@ public class Ally {
     private int evadeReduction; // 회피율 무시
     private boolean alive; // 생사 여부
     private boolean isAttackable; // 공격 가능 여부
+    private String mappingId;//스테이터스 매니저(각 아군별 스킬, 상태이상 등의 효과를 관리)를 각각의 인스턴스로 관리하기 위한 식별코드
 
     public Ally() {
     }
@@ -72,6 +73,10 @@ public class Ally {
     public int getEvadeReduction() {
         return evadeReduction;
     }
+    
+    public String getMappingId(){
+        return mappingId;
+    }
 
     public boolean isAlive() {
         return alive;
@@ -103,5 +108,9 @@ public class Ally {
 
     public void setEvasion(int evasion) {
         this.evasion = evasion;
+    }
+    
+    public void setMappingId(String mappingId){
+        this.mappingId = mappingId;
     }
 }
