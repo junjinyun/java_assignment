@@ -23,10 +23,10 @@ public class AllyStatusManager {
 
 	// 스킬을 실제로 저장만 하며 지정하는 기능은 별도의 클래스로 분리하여 생성할 예정
 
-	public AllyStatusManager(Ally ally, int private String mappingId) {
+	public AllyStatusManager(Ally ally, String mappingId) {
 		this.baseStats = ally;
 		this.position = Integer.parseInt(mappingId.replaceAll("[^0-9]", ""));
-		this.mappingId = mappingId
+		this.mappingId = mappingId;
 		this.skillList = new ArrayList<>(); // 각 캐릭터는 개별적인 스킬 리스트를 가짐
 		this.selectedSkills = new ArrayList<>();
 		this.statusEffects = new ArrayList<>();
