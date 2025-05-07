@@ -10,15 +10,18 @@ import java.util.List;
 public class EnemyStatusManager {
     private Enemy baseStats; // 기본 스탯 (EnemyFactory에서 불러온 원본 정보)
     private List<StatusEffect241> statusEffects; // 현재 적용 중인 상태이상 목록
-    private int position; // 적 위치 (0~3 등)
+    private int position;
     private int currentSpeed; // 전투 중 동적인 현재 속도
     private int actionOrder; // 행동 순서 (우선순위)
+    private String mappingId;// 적군 객체와 인스턴스로 연결하기 위한 변수
     private EnemySkills skillList; //캐릭터가 가지고 있는 스킬을 저장하는 리스트
 
-    public EnemyStatusManager(Enemy enemy, int position) {
+    public EnemyStatusManager(Enemy enemy, int mappingId) {
         this.baseStats = enemy;
         this.statusEffects = new ArrayList<>();
-        this.position = position;
+        this.position = Integer.parseInt(mappingId.replaceAll("[^0-9]", ""));
+		this.mappingId = mappingId;
+
     }
 
     // 상태이상 추가: 이름이 같으면 위력은 합산하고, 지속시간은 더 긴 쪽을 사용

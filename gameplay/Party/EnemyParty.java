@@ -21,7 +21,7 @@ public class EnemyParty {
             Enemy selected = enemyList.get(random.nextInt(enemyList.size()));
 
             // EnemyStatusManager 생성 (위치 정보 포함)
-            EnemyStatusManager esm = new EnemyStatusManager(selected, i + 1);
+            EnemyStatusManager esm = new EnemyStatusManager(selected, selected.mappingId);
             // 적 파티에 등록
             enemyParty.add(esm);
         }
@@ -29,5 +29,11 @@ public class EnemyParty {
 	public List<EnemyStatusManager> getEnemyParty() {
 		return enemyParty;
 	}
-
+    // 고유 값를 기반으로 적군 찾기
+    public EnemyStatusManager getAllyByMappingID(int mappingId) {
+        return enemyparty.stream()
+            .filter(selected -> selected.mappingId() == mappingId)
+            .findFirst()
+            .orElse(null);
+    }
 }
