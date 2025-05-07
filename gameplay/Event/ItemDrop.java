@@ -29,7 +29,7 @@ public class ItemDrop {
         if (dropCashable) {
             CashableItem item = getRandomCashableItem();
             if (random.nextDouble() < CASHABLE_DROP_RATE) {
-                int amount = getRandomAmount(item.getMindropAmount(), item.getMaxDropAmount());
+                int amount = getRandomAmount(item.getMinDropAmount(), item.getMaxDropAmount());
                 if (amount > 0) {
                     System.out.println("▶ [보물 드랍] " + item.getName() + " x" + amount);
                 }

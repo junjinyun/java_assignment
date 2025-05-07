@@ -5,12 +5,12 @@ public class Stage {
     private String stageName;
     private String enemyType;
     private String bgImagesource;
-    private int powerGrowth;
+    private String powerGrowth;
     private String bosstype;
 
     public Stage() {}
 
-    public Stage(int id, String stageName, String enemyType, String bgImagesource, int powerGrowth, String bosstype) {
+    public Stage(int id, String stageName, String enemyType, String bgImagesource, String powerGrowth, String bosstype) {
         this.id = id;
         this.stageName = stageName;
         this.enemyType = enemyType;
@@ -35,7 +35,7 @@ public class Stage {
         return bgImagesource;
     }
 
-    public int getPowerGrowth() {
+    public String getPowerGrowth() {
         return powerGrowth;
     }
 

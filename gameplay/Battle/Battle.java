@@ -1,16 +1,27 @@
 package gameplay.Battle;
 
 
+import java.util.Random;
+
+import gameplay.Event.StageInfo;
 import gameplay.Party.AllyParty;
 import gameplay.Party.EnemyParty;
 import gameplay.Party.SetSpeedAct;
+import loaddata.Stage;
 
 public class Battle {
 
     public static void main(String[] args) {
         // 아군/적군 초기화
     	AllyParty ap = new AllyParty(); 
-        EnemyParty ep = new EnemyParty();
+    	
+        //적 파티 생성에는 스테이지의 정보를 요구함
+        StageInfo stageInfo = new StageInfo();
+    	Stage randomStage = stageInfo.getRandomValidStage();
+        stageInfo.printStageInfo(randomStage.getId());
+
+        // 적 파티 초기화
+        EnemyParty ep = new EnemyParty(randomStage);
 
         // 디버깅용 출력
         System.out.println("적군 생성 완료:");

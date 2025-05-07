@@ -10,11 +10,14 @@ public class EnemySkills {
     private String skillActivationZone; // 스킬 사용 가능 위치 (ex. "1 2")
     private String targetLocation; // 타겟 위치 (ex. "1 2 3")
     private String ownerType; // 스킬 소유자 타입 (ex. 인간형, 짐승형 등)
+    private String constraint; // 스킬 사용 제약 조건 (ex. 마킹, 약화 등)
+    private boolean isAoE; // 범위 공격 여부
 
     public EnemySkills() {}
 
     public EnemySkills(int id, String name, int damageMultiplier, String aEffect,
-                      String skillActivationZone, String targetLocation, String ownerType) {
+                       String skillActivationZone, String targetLocation, String ownerType,
+                       String constraint, boolean isAoE) {
         this.id = id;
         this.name = name;
         this.damageMultiplier = damageMultiplier;
@@ -22,6 +25,8 @@ public class EnemySkills {
         this.skillActivationZone = skillActivationZone;
         this.targetLocation = targetLocation;
         this.ownerType = ownerType;
+        this.constraint = constraint;
+        this.isAoE = isAoE;
     }
 
     public int getId() {
@@ -50,5 +55,13 @@ public class EnemySkills {
 
     public String getOwnerType() {
         return ownerType;
+    }
+
+    public String getConstraint() {
+        return constraint;
+    }
+
+    public boolean isAoE() {
+        return isAoE;
     }
 }

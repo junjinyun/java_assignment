@@ -2,67 +2,58 @@ package gameplay.Party;
 
 import loaddata.Enemy;
 import loaddata.EnemySkills;
-
+import loaddata.SkillManager;
+import gameplay.AdditionalEffects.StatusEffect;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-// 적 캐릭터의 상태 및 상태이상을 관리하는 클래스
 public class EnemyStatusManager {
-    private Enemy baseStats; // 기본 스탯 (EnemyFactory에서 불러온 원본 정보)
-    private List<StatusEffect241> statusEffects; // 현재 적용 중인 상태이상 목록
+    private Enemy baseStats;
+    private List<StatusEffect> statusEffects;
     private int position;
-    private int currentSpeed; // 전투 중 동적인 현재 속도
-    private int actionOrder; // 행동 순서 (우선순위)
-    private String mappingId;// 적군 객체와 인스턴스로 연결하기 위한 변수
-    private EnemySkills skillList; //캐릭터가 가지고 있는 스킬을 저장하는 리스트
+    private int currentSpeed;
+    private int actionOrder;
+    private String mappingId;
+    private List<EnemySkills> skillList;
 
-    public EnemyStatusManager(Enemy enemy, int mappingId) {
+    public EnemyStatusManager(Enemy enemy, String mappingId) {
         this.baseStats = enemy;
         this.statusEffects = new ArrayList<>();
         this.position = Integer.parseInt(mappingId.replaceAll("[^0-9]", ""));
-		this.mappingId = mappingId;
-
+        this.mappingId = mappingId;
+        this.skillList = new ArrayList<>();
+        loadSkillsForEnemy(enemy.getCategory(), enemy.getId()); // 적의 카테고리와 mobId로 스킬 로드
     }
 
-    // 상태이상 추가: 이름이 같으면 위력은 합산하고, 지속시간은 더 긴 쪽을 사용
-    public void addStatusEffect(StatusEffect241 newEffect) {
-        // 동일한 상태이상이 있는지 체크
-        for (StatusEffect241 effect : statusEffects) {
-            if (effect.getName().equals(newEffect.getName())) {
-                // 중복된 상태이상이 있을 경우, 위력 합산 및 지속시간 갱신
-                effect.setPower(effect.getPower() + newEffect.getPower());
-                effect.setDuration(Math.max(effect.getDuration(), newEffect.getDuration()));
-                return;
+    // 적의 카테고리와 mobId로 스킬을 로드하는 메소드
+    private void loadSkillsForEnemy(String category, int mobId) {
+        List<EnemySkills> skills = SkillManager.loadUsableEnemySkillsByType(category, mobId); // 스킬 매니저에서 스킬 로드
+
+        if (skills != null && !skills.isEmpty()) {
+            for (EnemySkills skill : skills) {
+                addSkill(skill); // 로드한 스킬을 추가
+            }
+        } else {
+            // 스킬이 없으면 캐릭터 이름을 출력
+            System.out.println("No skills available for enemy: " + getName());  // 변경된 부분
+        }
+    }
+
+    // 스킬을 추가하는 메소드
+    public void addSkill(EnemySkills newSkill) {
+        for (EnemySkills existingSkill : skillList) {
+            if (existingSkill.getName().equalsIgnoreCase(newSkill.getName())) {
+                return; // 중복된 스킬은 추가하지 않음
             }
         }
-        // 상태이상이 없으면 새 상태이상 추가
-        statusEffects.add(newEffect);
+        skillList.add(newSkill); // 새로운 스킬 추가
     }
 
-    // 상태이상 효과 적용: 체력 감소 및 지속시간 감소, 만료된 상태이상 제거
-    public void applyStatusEffects() {
-        List<StatusEffect241> expired = new ArrayList<>();
-        for (StatusEffect241 effect : statusEffects) {
-            // 상태이상의 위력만큼 체력 감소
-            int currentHp = baseStats.getHealth();
-            baseStats.setHealth(Math.max(0, currentHp - effect.getPower())); // 체력 0 이하 방지
-
-            // 지속시간 감소
-            effect.setDuration(effect.getDuration() - 1);
-
-            // 만료 상태이상 제거 대상에 추가
-            if (effect.getDuration() <= 0) {
-                expired.add(effect);
-            }
-        }
-        // 만료된 상태이상은 리스트에서 제거
-        statusEffects.removeAll(expired);
-    }
-
-    // Getter 및 Setter
-    public List<StatusEffect241> getStatusEffects() {
-        return statusEffects;
-    }
+    // Getter 및 Setter들
 
     public int getPosition() {
         return position;
@@ -112,6 +103,14 @@ public class EnemyStatusManager {
         baseStats.setAttackable(isAttackable);
     }
 
+    public String getMappingId() {
+        return mappingId;
+    }
+
+    public List<EnemySkills> getSkillList() {
+        return skillList;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -119,9 +118,8 @@ public class EnemyStatusManager {
         sb.append("체력: ").append(baseStats.getHealth()).append("/").append(baseStats.getMaxHealth()).append("\n");
         sb.append("속도: ").append(currentSpeed).append(" / 행동순서: ").append(actionOrder).append("\n");
         sb.append("상태이상: ").append(statusEffects.isEmpty() ? "없음" : "\n");
-        for (StatusEffect241 effect : statusEffects) {
-            sb.append("  - ").append(effect.toString()).append("\n");
-        }
+        sb.append("스킬: ").append(skillList.isEmpty() ? "없음" : "\n");
+
         return sb.toString();
     }
 }

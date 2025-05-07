@@ -13,7 +13,7 @@ public class LoadAllySkills {
 
         // 각 아군의 상태 관리 객체를 가져와 스킬 로드
         for (int i = 1; i <= allyParty.getParty().size(); i++) {
-            AllyStatusManager allyStatusManager = allyParty.getAllyByPosition(i); // 해당 위치의 AllyStatusManager 객체 가져오기
+            AllyStatusManager allyStatusManager = allyParty.getAllyByMappingID("A"+i); // AllyStatusManager 객체 가져오기
             if (allyStatusManager != null) {
                 String allyName = NameMapper.toSystemName(allyStatusManager.getName()); // 아군의 이름을 시스템 이름으로 변환
                 System.out.println("Loading skills for: " + allyName);
@@ -24,7 +24,7 @@ public class LoadAllySkills {
 
         // 스킬이 로드된 후, 각 캐릭터의 스킬 리스트 출력
         for (int i = 1; i <= allyParty.getParty().size(); i++) {
-            AllyStatusManager allyStatusManager = allyParty.getAllyByPosition(i); // 해당 위치의 AllyStatusManager 객체 가져오기
+            AllyStatusManager allyStatusManager = allyParty.getAllyByMappingID("A"+i); //  AllyStatusManager 객체 가져오기
             if (allyStatusManager != null) {
                 System.out.println("Character: " + allyStatusManager.getName());
 

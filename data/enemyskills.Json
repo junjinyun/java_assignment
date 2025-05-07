@@ -218,7 +218,7 @@
       "aEffect": "디버프제거",
       "skillActivationZone": "2 3 4",
       "targetLocation": "1 2 3 4",
-      "ownerType": "2",
+      "ownerType": "4",
       "constraint": "약화",
       "isAoE": true
     },    {
@@ -228,7 +228,7 @@
       "aEffect": "지속회복 5 3",
       "skillActivationZone": "2 3 4",
       "targetLocation": "1 2 3 4",
-      "ownerType": "2",
+      "ownerType": "4",
       "constraint": "",
       "isAoE": false
     },
@@ -363,7 +363,7 @@
       "skillActivationZone": "1 2 3",
       "targetLocation": "1 2 3",
       "ownerType": "5",
-      "constraint": "",
+      "constraint": "default",
       "isAoE": false
     },
     {

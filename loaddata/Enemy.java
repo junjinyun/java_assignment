@@ -1,9 +1,7 @@
 package loaddata;
 
-/* 적 정보 클래스 */
-
 public class Enemy {
-    static int int nextID = 1;
+    private int id; // 스킬 가져올 떄 사용 할 제이슨 파일의 식별자
     private String name; // 이름
     private String category; // 카테고리
     private int health; // 현재 체력
@@ -18,11 +16,14 @@ public class Enemy {
     private boolean alive; // 생사 여부
     private boolean isAttackable; // 공격 가능 여부
     private String mappingId; // 상태 관리용 식별자
+    private String spawnPosition; // 생성 위치
+    private boolean isElite; // 엘리트 여부
 
     public Enemy() {}
 
-    public Enemy(String name, String category, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed, 
-                 int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable) {
+    public Enemy(int id, String name, String category, int health, int maxHealth, int attack, int defense, int minSpeed, 
+                 int maxSpeed, int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable, String spawnPosition, boolean isElite) {
+        this.id = id; // id 초기화
         this.name = name;
         this.category = category;
         this.health = health;
@@ -36,7 +37,12 @@ public class Enemy {
         this.evadeReduction = evadeReduction;
         this.alive = alive;
         this.isAttackable = isAttackable;
-        this.mappingId = (E + nextID++);
+        this.spawnPosition = spawnPosition;
+        this.isElite = isElite;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -95,6 +101,10 @@ public class Enemy {
         return mappingId;
     }
 
+    public void setMappingId(String mappingId) {
+        this.mappingId = mappingId;
+    }
+
     public void setHealth(int health) {
         this.health = health;
     }
@@ -105,5 +115,21 @@ public class Enemy {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public String getSpawnPosition() {
+        return spawnPosition;
+    }
+
+    public void setSpawnPosition(String spawnPosition) {
+        this.spawnPosition = spawnPosition;
+    }
+
+    public boolean isElite() {
+        return isElite;
+    }
+
+    public void setElite(boolean isElite) {
+        this.isElite = isElite;
     }
 }
