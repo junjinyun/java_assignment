@@ -28,8 +28,8 @@ public class AllyParty {
         return party;
     }
 
-    // 위치를 기반으로 아군 찾기
-    public AllyStatusManager getAllyByPosition(int mappingId) {
+    // 고유 값를 기반으로 아군 찾기
+    public AllyStatusManager getAllyByMappingID(int mappingId) {
         return party.stream()
             .filter(ally -> ally.mappingId() == mappingId)
             .findFirst()
