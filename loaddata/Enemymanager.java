@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class EnemyFactory {
     private static final String JSON_PATH = "src/data/enemies.json"; // JSON 파일 경로
-
+/*
     public static List<Enemy> loadEnemies() {
         try (FileReader reader = new FileReader(JSON_PATH)) {
             Gson gson = new Gson();
@@ -30,11 +30,11 @@ public class EnemyFactory {
         }
 
     }
-
-	    // 특정 카테고리의 적 4개를 랜덤으로 (중복 가능) 골라서 반환하는 메서드
-    public static List<Enemy> SpawnEnemyCategory(List<Enemy> enemies, String targetCategory) {
+*/
+	    // 특정 카테고리의 적 4개를 랜덤으로 (중복 가능) 골라서 반환하는 메서드[디버깅용]
+    public static List<Enemy> SpawnEnemyCategory(String targetCategory) {
         // 카테고리별로 적 분류
-        Map<String, List<Enemy>> categorizedEnemies = categorizeEnemies(enemies);
+        Map<String, List<Enemy>> categorizedEnemies = gson.fromJson(reader, new TypeToken<Map<String, List<Enemy>>>(){}.getType());
         
         // 특정 카테고리의 적 리스트 가져오기
         List<Enemy> targetEnemies = categorizedEnemies.get(targetCategory);
@@ -55,8 +55,8 @@ public class EnemyFactory {
         }
 
         return randomEnemies;
-    }
-
+    }// 선택된 카테고리의 적을 생성하는 매서드
+/*
     // category별로 적을 분류하는 메서드
     public static Map<String, List<Enemy>> categorizeEnemies(List<Enemy> enemies) {
         Map<String, List<Enemy>> categorizedEnemies = new java.util.HashMap<>();
@@ -69,6 +69,6 @@ public class EnemyFactory {
         }
 
         return categorizedEnemies;
-    }
-
+    }// json 파일이 이미 카테고리 별로 키를 나뉘기에 필요 없으며, 추후에 적 스킬 로드 할 떄에 활용
+*/
 }

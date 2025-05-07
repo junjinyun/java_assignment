@@ -12,17 +12,33 @@ public class EnemyParty {
 
     // 랜덤하게 적을 선택하여 파티 구성
     public EnemyParty() {
-    	this.enemyParty = new ArrayList<>();
-        List<Enemy> enemyList = EnemyManager.loadEnemies();
-        Random random = new Random();
+        this(null); // 스테이지 생성 없이 테스팅 용 코드
+}
+    public EnemyParty(Stage stage) {
+        this.enemyParty = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
-            // 리스트에서 무작위 적 선택
-            Enemy selected = enemyList.get(random.nextInt(enemyList.size()));
+        // 예외 처리: 스테이지나 적 타입이 잘못된 경우 기본값 사용
+        String enemyType;
 
-            // EnemyStatusManager 생성 (위치 정보 포함)
-            EnemyStatusManager esm = new EnemyStatusManager(selected, selected.mappingId);
-            // 적 파티에 등록
+        if (stage == null || stage.getEnemyType() == null || stage.getEnemyType().isEmpty()) {
+            System.out.println("스테이지 정보가 없거나 잘못되었습니다. 기본 적 타입 'humanoid'를 사용합니다.");
+            enemyType = "humanoid";
+        } else {
+            enemyType = stage.getEnemyType();
+        }
+
+        List<Enemy> enemyList = EnemyManager.SpawnEnemyCategory(enemyType);
+
+        if (enemyList == null || enemyList.isEmpty()) {
+            System.out.println("적 리스트가 비어 있습니다. 적 생성 실패.");
+            return;
+        }
+
+        for (int i = 0; i < enemyList.size(); i++) {
+            Enemy selected = enemyList.get(i);  
+
+            // mappingId를 고유 인스턴스 생성 기준으로 사용
+            EnemyStatusManager esm = new EnemyStatusManager(selected, selected.getMappingId());
             enemyParty.add(esm);
         }
     }
