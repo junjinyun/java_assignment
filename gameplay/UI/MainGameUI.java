@@ -12,7 +12,7 @@ public class MainGameUI extends JFrame {
         setLayout(new BorderLayout());
 
         JPanel mainPanel = new JPanel(new GridLayout(2, 1));
-        mainPanel.add(new TopCharacterPanel());
+        mainPanel.add(new TopPanel());
         mainPanel.add(new BottomPanel());
 
         add(mainPanel, BorderLayout.CENTER);
