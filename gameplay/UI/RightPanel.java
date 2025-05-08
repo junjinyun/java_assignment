@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class RightPanel extends JPanel {
 
-    public RightPanel(BattleAreaPanel battlePanel) {
+    public RightPanel(MidPanel battlePanel) {
         setPreferredSize(new Dimension(150, 0));
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createTitledBorder("보기 선택"));

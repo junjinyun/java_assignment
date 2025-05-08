@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class LeftPanel extends JPanel {
 
-    public LeftPanel(BattleAreaPanel battlePanel) {
+    public LeftPanel(MidPanel battlePanel) {
         setPreferredSize(new Dimension(920, 0));
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createTitledBorder("스킬 및 아군 정보"));
