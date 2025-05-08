@@ -1,0 +1,35 @@
+package UI;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class MidPanel extends JPanel {
+
+    private final CardLayout cardLayout;
+
+    public MidPanel() {
+        cardLayout = new CardLayout();
+        setLayout(cardLayout);
+        setPreferredSize(new Dimension(800, 800));
+        setBorder(BorderFactory.createTitledBorder("전투영역 A"));
+
+        JPanel mapPanel = new JPanel();
+        mapPanel.add(new JLabel("A - 지도"));
+
+        JPanel inventoryPanel = new JPanel();
+        inventoryPanel.add(new JLabel("A - 인벤토리"));
+
+        JPanel enemyPanel = new JPanel();
+        enemyPanel.add(new JLabel("A - 적 정보"));
+
+        add(mapPanel, "지도");
+        add(inventoryPanel, "인벤토리");
+        add(enemyPanel, "적 정보");
+
+        cardLayout.show(this, "지도");
+    }
+
+    public void showCard(String name) {
+        cardLayout.show(this, name);
+    }
+}
