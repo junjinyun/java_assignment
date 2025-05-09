@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class LeftPanel extends JPanel {
@@ -21,6 +22,18 @@ public class LeftPanel extends JPanel {
         setPreferredSize(new Dimension(920, 0));
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createTitledBorder("스킬 및 아군 정보"));
+
+        // System.out을 consoleTextArea로 리디렉션
+        System.setOut(new PrintStream(System.out) {
+            @Override
+            public void print(String s) {
+                logToConsole(s);
+            }
+            @Override
+            public void println(String s) {
+                logToConsole(s);
+            }
+        });
 
         // Skill Group
         JPanel skillPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 40, 0));
@@ -108,7 +121,7 @@ public class LeftPanel extends JPanel {
                     return;
                 }
 
-                String[] commands = {"start", "spawn", "stage", "help", "exit"};
+                String[] commands = {"spawn", "stage", "allyskill", "enemyskill", "exit"};
                 ArrayList<String> matchingCommands = new ArrayList<>();
                 for (String command : commands) {
                     if (command.contains(typedText)) {

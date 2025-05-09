@@ -11,10 +11,6 @@ public class CommandProcessor {
 
     public String processCommand(String command) {
         return switch (command.toLowerCase()) {
-            case "start" -> {
-                gamePlayer.startGame();
-                yield "게임을 시작합니다.";
-            }
             case "spawn" -> {
                 gamePlayer.generateParties();
                 yield "파티를 생성합니다.";
@@ -22,6 +18,18 @@ public class CommandProcessor {
             case "stage" -> {
                 gamePlayer.generateStage();
                 yield "스테이지를 랜덤으로 선정합니다.";
+            }
+            case "allyskill" -> {
+                gamePlayer.generateStage();
+                yield "아군 스킬을 최신화합니다.";
+            }
+            case "enemyskill" -> {
+                gamePlayer.generateStage();
+                yield "적군 스킬을 최신화합니다.";
+            }
+            case "exit" -> {
+                System.exit(0); // 프로그램 종료
+                yield "프로그램을 종료합니다."; // 실제로는 이 줄은 실행되지 않음
             }
             default -> "알 수 없는 명령어입니다: " + command;
         };
