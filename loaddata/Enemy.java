@@ -40,6 +40,28 @@ public class Enemy {
         this.spawnPosition = spawnPosition;
         this.isElite = isElite;
     }
+    
+ // 적 소환시 같은 객체를 여러개 생성하면 얕은 복사 로 인해 데이터를 공유 함 -> 해당 방식을 통해 깊은 복사를 실행하여 서로 다른 인스턴스를 부여
+    public Enemy(Enemy other) {
+        this.id = other.id;
+        this.name = other.name;
+        this.category = other.category;
+        this.health = other.health;
+        this.maxHealth = other.maxHealth;
+        this.attack = other.attack;
+        this.defense = other.defense;
+        this.minSpeed = other.minSpeed;
+        this.maxSpeed = other.maxSpeed;
+        this.evasion = other.evasion;
+        this.cost = other.cost;
+        this.evadeReduction = other.evadeReduction;
+        this.alive = other.alive;
+        this.isAttackable = other.isAttackable;
+        this.mappingId = other.mappingId; // 복사 후 새로운 ID 할당 가능
+        this.spawnPosition = other.spawnPosition;
+        this.isElite = other.isElite;
+    }
+
 
     public int getId() {
         return id;
@@ -131,5 +153,8 @@ public class Enemy {
 
     public void setElite(boolean isElite) {
         this.isElite = isElite;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 }
