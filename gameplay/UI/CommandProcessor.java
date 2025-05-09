@@ -20,11 +20,11 @@ public class CommandProcessor {
                 yield "스테이지를 랜덤으로 선정합니다.";
             }
             case "allyskill" -> {
-                gamePlayer.generateStage();
+                gamePlayer.loadAllySkills();
                 yield "아군 스킬을 최신화합니다.";
             }
             case "enemyskill" -> {
-                gamePlayer.generateStage();
+                gamePlayer.loadEnemySkills(null);
                 yield "적군 스킬을 최신화합니다.";
             }
             case "exit" -> {
