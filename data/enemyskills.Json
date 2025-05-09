@@ -84,8 +84,8 @@
       "aEffect": "마킹 2",
       "skillActivationZone": "1 2 3 4",
       "targetLocation": "1 2 3 4",
-      "ownerType": "인간형",
-      "constraint": "default",
+      "ownerType": "5",
+      "constraint": "2, 턴",
       "isAoE": false
     },
     {
@@ -384,7 +384,7 @@
       "aEffect": "지속회복 10 3",
       "skillActivationZone": "self",
       "targetLocation": "1 2 3 4",
-      "ownerType": "1",
+      "ownerType": "5",
       "constraint": "3, 턴",
       "isAoE": false
     }

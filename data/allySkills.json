@@ -370,5 +370,20 @@
         "owner": "sorcerer",
         "isAoE": false
       }
-    ]
+    ],
+	"default":
+	[
+		{
+		"id": 1,
+		"name": "이동",
+		"information": "대상 위치로 1칸 이동합니다.",
+		"damageMultiplier": "0",
+		"aEffect": "이동 1",
+		"damageGrowth": "0",
+		"skillActivationZone": "1 2 3 4",
+		"targetLocation": "1 2 3 4",
+		"owner": "default",
+		"isAoE": false
+		}
+	]
   }
