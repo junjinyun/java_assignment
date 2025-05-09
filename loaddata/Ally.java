@@ -13,13 +13,14 @@ public class Ally {
     private int evadeReduction; // 회피율 무시
     private boolean alive; // 생사 여부
     private boolean isAttackable; // 공격 가능 여부
-    private String mappingId;//스테이터스 매니저(각 아군별 스킬, 상태이상 등의 효과를 관리)를 각각의 인스턴스로 관리하기 위한 식별코드
+    private String mappingId; // 스테이터스 매니저(각 아군별 스킬, 상태이상 등의 효과를 관리)를 각각의 인스턴스로 관리하기 위한 식별코드
+    private String imagePath; // 이미지 파일 경로
 
     public Ally() {
     }
 
     public Ally(String name, String information, int health, int maxHealth, int attack, int defense, int minSpeed, int maxSpeed,
-                int evasion, int evadeReduction, boolean alive, boolean isAttackable) {
+                int evasion, int evadeReduction, boolean alive, boolean isAttackable, String imagePath) {
         this.name = name;
         this.information = information;
         this.health = health;
@@ -32,7 +33,7 @@ public class Ally {
         this.evadeReduction = evadeReduction;
         this.alive = alive;
         this.isAttackable = isAttackable;
-
+        this.imagePath = imagePath; // 이미지 경로 설정
     }
 
     public String getName() {
@@ -74,8 +75,8 @@ public class Ally {
     public int getEvadeReduction() {
         return evadeReduction;
     }
-    
-    public String getMappingId(){
+
+    public String getMappingId() {
         return mappingId;
     }
 
@@ -85,6 +86,10 @@ public class Ally {
 
     public boolean isAttackable() {
         return isAttackable;
+    }
+
+    public String getImagePath() {
+        return imagePath; // 이미지 경로 반환
     }
 
     public void setHealth(int health) {
@@ -111,8 +116,11 @@ public class Ally {
         this.evasion = evasion;
     }
 
-	public void setMappingId(String string) {
-		this.mappingId = string;
-		
-	}
+    public void setMappingId(String mappingId) {
+        this.mappingId = mappingId;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath; // 이미지 경로 설정
+    }
 }
