@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllyParty {
-    private List<AllyStatusManager> party;
+    private static List<AllyStatusManager> party;
 
     public AllyParty() {
         this.party = new ArrayList<>();
@@ -38,7 +38,7 @@ public class AllyParty {
     }
 
     // 고유 값을 기반으로 아군 찾기
-    public AllyStatusManager getAllyByMappingID(String mappingId) {
+    public static AllyStatusManager getAllyByMappingID(String mappingId) {
         if (mappingId == null)
             return null;
         return party.stream()
