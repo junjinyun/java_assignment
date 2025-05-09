@@ -214,4 +214,8 @@ public class AllyStatusManager {
 		return statusEffects;
 	}
 
+	public String getMappingId() {
+		return mappingId;
+	}
+
 }
