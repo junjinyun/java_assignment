@@ -40,7 +40,7 @@ public class StageInfo {
             System.out.println("스테이지 ID: " + stage.getId());
             System.out.println("스테이지 이름: " + stage.getStageName());
             System.out.println("적 유형: " + stage.getEnemyType());
-            System.out.println("배경 이미지 소스: " + stage.getBgImagesource());
+            System.out.println("배경 이미지 소스: " + stage.getBgImagePath());
             System.out.println("파워 성장: " + stage.getPowerGrowth());
             System.out.println("보스 유형: " + stage.getBosstype());
         }
