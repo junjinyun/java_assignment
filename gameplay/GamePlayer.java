@@ -1,5 +1,9 @@
 package gameplay;
 
+import java.util.ArrayList;
+
+import javax.swing.JRadioButton;
+
 import gameplay.Event.StageInfo;
 import gameplay.Party.AllyParty;
 import gameplay.Party.EnemyParty;
@@ -13,77 +17,139 @@ import gameplay.Party.EnemyStatusManager;
 public class GamePlayer {
 
     private AllyParty allyParty;
-    private Stage randomStage;  // 클래스 수준에서 Stage 객체 선언
+    private EnemyParty enemyParty;
+    private Stage randomStage;
+/*
+    // updateSkillButtonIcons() 메서드를 추가합니다.
+    private void updateSkillButtonIcons() {
+        if (allyParty == null || allyParty.getParty() == null) return;
 
-    // 랜덤 스테이지 생성 및 최신화
+        ArrayList<String> skills = new ArrayList<>();
+        for (int i = 1; i <= allyParty.getParty().size(); i++) {
+            AllyStatusManager statusManager = allyParty.getAllyByMappingID("A" + i);
+            if (statusManager != null) {
+                statusManager.getSkillList().forEach(skill -> skills.add(skill.getName()));
+            }
+        }
+
+        for (int i = 0; i < 5; i++) {  // 6번 버튼은 예비용으로 제외
+            if (i < skills.size()) {
+                JRadioButton skillButton = (JRadioButton) skillPanel.getComponent(i);
+                skillButton.setText(skills.get(i));
+            } else {
+                JRadioButton skillButton = (JRadioButton) skillPanel.getComponent(i);
+                skillButton.setText("");
+            }
+        }
+    }
+*/
+    // 스테이지 생성
     public void generateStage() {
-        // randomStage가 없으면 새로 생성, 있으면 최신화
         StageInfo stageInfo = new StageInfo();
         randomStage = stageInfo.getRandomValidStage();
         stageInfo.printStageInfo(randomStage.getId());
     }
 
-    // 아군과 적 파티 생성 및 스킬 로딩
+    // 아군과 적군 파티 생성
     public void generateParties() {
+        // 아군 파티가 없으면 생성
         if (allyParty == null) {
             allyParty = new AllyParty();
+            for (int i = 1; i <= 4; i++) {
+                AllyStatusManager statusManager = allyParty.getAllyByMappingID("A" + i);
+                }
+            }
+            loadAllySkills();  // 아군 스킬 로드 (생성 시)
+        
 
-            AllyStatusManager allyStatusManager1 = allyParty.getAllyByMappingID("A" + 1);
-            AllyStatusManager allyStatusManager2 = allyParty.getAllyByMappingID("A" + 2);
-            AllyStatusManager allyStatusManager3 = allyParty.getAllyByMappingID("A" + 3);
-            AllyStatusManager allyStatusManager4 = allyParty.getAllyByMappingID("A" + 4);
-        }
-
-        // randomStage가 null일 경우 스테이지 생성
+        // 스테이지가 없으면 생성
         if (randomStage == null) {
-            generateStage();  // 스테이지 생성 메서드 호출
+            generateStage();
         }
 
-        // 이미 생성된 randomStage 사용 (또는 최신화)
-        EnemyParty enemyParty = new EnemyParty(randomStage);
-
-        // 아군 스킬 로드
-        loadAllySkills();
-
-        // 적군 스킬 로드
-        loadEnemySkills();
+        // 적 파티 생성
+        enemyParty = new EnemyParty(randomStage);
+        loadEnemySkills();  // 적군 스킬 로드 (적 생성 시마다)
 
         // 속도 및 행동 순서 설정
         SetSpeedAct.setSpeed(allyParty.getParty(), enemyParty.getEnemyParty());
         SetSpeedAct.setActionOrder(allyParty.getParty(), enemyParty.getEnemyParty());
 
-        // 파티 정보 출력
+        // 정보 출력
         PartyInfoPrinter infoPrinter = new PartyInfoPrinter();
         infoPrinter.printAllyInfo(allyParty);
         infoPrinter.printEnemyInfo(enemyParty);
     }
 
-
-    // 아군 스킬 로딩
+    // 아군 스킬 로딩 (생성 시, 강화 시에만 로드)
     public void loadAllySkills() {
+        if (allyParty == null) return;
+
         for (int i = 1; i <= allyParty.getParty().size(); i++) {
-            AllyStatusManager allyStatusManager = allyParty.getAllyByMappingID("A" + i);
-            if (allyStatusManager != null) {
-                String allyName = NameMapper.toSystemName(allyStatusManager.getName());
-                System.out.println("Loading skills for: " + allyName);
-                // 아군 스킬 로드
-                SkillManager.loadAlltSkillsByKeyName(allyName).forEach(skill -> allyStatusManager.loadSkills(skill));
+            AllyStatusManager statusManager = AllyParty.getAllyByMappingID("A" + i);
+            if (statusManager != null) {
+                String name = NameMapper.toSystemName(statusManager.getName());
+                System.out.println("Loading skills for: " + name);
+                SkillManager.loadAlltSkillsByKeyName(name)
+                            .forEach(skill -> statusManager.loadSkills(skill));
             }
         }
     }
 
-    // 적군 스킬 로딩
+    // 적군 스킬 로딩 (적 생성 시마다 수시로 호출)
     public void loadEnemySkills() {
-        EnemyParty enemyParty = new EnemyParty(randomStage);
+        if (enemyParty == null) {
+            System.out.println("Enemy party is not initialized.");
+            return;
+        }
 
+        // 적군 파티에서 각 캐릭터에 대해 스킬을 로드
         for (int i = 1; i <= enemyParty.getEnemyParty().size(); i++) {
-            EnemyStatusManager enemyStatusManager = enemyParty.getEnemyByMappingID("E" + i);
-            if (enemyStatusManager != null) {
-                String enemyName = NameMapper.toSystemName(enemyStatusManager.getName());
-                System.out.println("Loading skills for: " + enemyName);
-                // 적군 스킬 로드
-                SkillManager.loadUsableEnemySkillsByType(enemyName, i).forEach(skill -> enemyStatusManager.addSkill(skill));
+            EnemyStatusManager statusManager = enemyParty.getEnemyByMappingID("E" + i);
+            if (statusManager != null) {
+                // 적군 캐릭터의 이름을 시스템 이름으로 변환
+                String name = NameMapper.toSystemName(statusManager.getName());
+                System.out.println("Loading skills for (ID: E" + i + "): " + name);
+
+                // 스킬 로드: 적군의 매핑 아이디와 ID를 이용하여 스킬 부여
+                SkillManager.loadUsableEnemySkillsByType(name, enemyParty.getEnemyParty().get(i - 1).getId())
+                            .forEach(skill -> statusManager.addSkill(skill));  // 해당 적군 캐릭터에 스킬 부여
             }
         }
+    }
+
+    // 아군 스킬 출력 (소지자와 스킬 이름만)
+    public void printAllySkills() {
+        if (allyParty == null) return;
+
+        for (int i = 1; i <= allyParty.getParty().size(); i++) {
+            AllyStatusManager statusManager = allyParty.getAllyByMappingID("A" + i);
+            if (statusManager != null) {
+                System.out.println("Ally: " + statusManager.getName());
+                statusManager.getSkillList().forEach(skill -> {
+                    System.out.println("    Skill Name: " + skill.getName());
+                });
+            }
+        }
+    }
+
+    // 적군 스킬 출력 (소지자와 스킬 이름만) - 중복 이름도 각각 구별하여 출력
+    public void printEnemySkills() {
+        if (enemyParty == null) return;
+
+        for (int i = 1; i <= enemyParty.getEnemyParty().size(); i++) {
+            EnemyStatusManager statusManager = enemyParty.getEnemyByMappingID("E" + i);
+            if (statusManager != null) {
+                // 적군의 ID를 출력하여 중복되는 캐릭터도 구별 가능하게 함
+                System.out.println("Enemy (ID: " + "E" + i + "): " + statusManager.getName());
+                statusManager.getSkillList().forEach(skill -> {
+                    System.out.println("    Skill Name: " + skill.getName());
+                });
+            }
+        }
+    }
+
+    public AllyParty getAllyParty() {
+        return allyParty;
     }
 }
