@@ -16,18 +16,6 @@ import java.util.Random;
 
 public class EnemyManager {
 	private static final String JSON_PATH = "src/data/enemies.json"; // JSON 파일 경로
-	/*
-	 * public static List<Enemy> loadEnemies() { try (FileReader reader = new
-	 * FileReader(JSON_PATH)) { Gson gson = new Gson();
-	 * 
-	 * // JSON을 Map 형태로 읽기 Map<String, List<Enemy>> list = gson.fromJson(reader, new
-	 * TypeToken<Map<String, List<Enemy>>>(){}.getType()); return
-	 * list.get("enemies"); // "enemies" 키에 해당하는 리스트 가져오기 } catch (IOException e) {
-	 * e.printStackTrace(); return null; }
-	 * 
-	 * }
-	 */
-	// 특정 카테고리의 적 4개를 랜덤으로 (중복 가능) 골라서 반환하는 메서드[디버깅용]
 
 	public static List<Enemy> SpawnEnemyCategory(String targetCategory) {
 		try (FileReader reader = new FileReader(JSON_PATH)) {
@@ -45,33 +33,21 @@ public class EnemyManager {
 				System.out.println("해당 카테고리의 적이 없습니다: " + targetCategory);
 				return new ArrayList<>(); // 빈 리스트 반환
 			}
-
+/*
 			List<Enemy> randomEnemies = new ArrayList<>();
 			Random random = new Random();
 
 			// 중복 가능하게 4개의 적을 랜덤으로 선택
 			for (int i = 0; i < 4; i++) {
 				int randomIndex = random.nextInt(targetEnemies.size()); // 랜덤 인덱스
+				
 				randomEnemies.add(targetEnemies.get(randomIndex)); // 해당 인덱스의 적을 리스트에 추가
 			}
-
-			return randomEnemies;
+*/
+			return targetEnemies;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	// 선택된 카테고리의 적을 생성하는 매서드
-	/*
-	 * // category별로 적을 분류하는 메서드 public static Map<String, List<Enemy>>
-	 * categorizeEnemies(List<Enemy> enemies) { Map<String, List<Enemy>>
-	 * categorizedEnemies = new java.util.HashMap<>();
-	 * 
-	 * // 카테고리별로 적들을 분류 for (Enemy enemy : enemies) { String category =
-	 * enemy.getCategory(); categorizedEnemies.putIfAbsent(category, new
-	 * ArrayList<>()); categorizedEnemies.get(category).add(enemy); }
-	 * 
-	 * return categorizedEnemies; }// json 파일이 이미 카테고리 별로 키를 나뉘기에 필요 없으며, 추후에 적 스킬
-	 * 로드 할 떄에 활용
-	 */
 }
