@@ -5,9 +5,8 @@ import loaddata.EnemyManager;
 import loaddata.Stage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Random;
 
 public class EnemyParty {
     private List<EnemyStatusManager> enemyParty;
@@ -22,7 +21,7 @@ public class EnemyParty {
 
         if (stage == null || stage.getEnemyType() == null || stage.getEnemyType().isEmpty()) {
             System.out.println("스테이지 정보가 없거나 잘못되었습니다. 기본 적 타입 'humanoid'를 사용합니다.");
-            enemyType = "humanoid";  // 기본값 'humanoid'
+            enemyType = "humanoid"; // 기본값
         } else {
             enemyType = stage.getEnemyType();
         }
@@ -35,45 +34,79 @@ public class EnemyParty {
             return;
         }
 
-        int idCounter = 1; // 매핑 ID 순번 카운터
-        Set<String> eliteMappingIds = new HashSet<>();  // 엘리트 적군 ID 중복을 막기 위한 Set
+        List<Enemy> selectedEnemy = new ArrayList<>();
+        List<Enemy> spawnedEnemy = new ArrayList<>();
+        Random random = new Random();
 
-        // 각 적에 대해 EnemyStatusManager 객체 생성
-        for (Enemy selected : enemyList) {
-            // 엘리트 적군인 경우 중복 ID를 체크
-            if (selected.isElite()) {
-                if (eliteMappingIds.contains(selected.getMappingId())) {
-                    continue;  // 이미 추가된 엘리트 적군이면 추가하지 않음
-                } else {
-                    eliteMappingIds.add(selected.getMappingId());
+        boolean eliteGenerated = false; // 엘리트 적이 이미 생성되었는지 확인하는 변수
+
+        for (int i = 1; i < 5; i++) { // 4명의 적을 생성
+            selectedEnemy.clear();
+
+            // enemyList에서 spawnPosition이 해당 인덱스를 포함하는 적을 찾음
+            for (Enemy enemy : enemyList) {
+                if (enemy.getSpawnPosition().contains(String.valueOf(i))) {
+                    selectedEnemy.add(enemy);
                 }
             }
 
-            // 매핑 ID가 없을 경우 자동으로 부여
+            if (!selectedEnemy.isEmpty()) {
+                int spawnindex = random.nextInt(selectedEnemy.size());
+
+                Enemy original = selectedEnemy.get(spawnindex);
+
+                // 엘리트 적을 먼저 처리
+                if (!eliteGenerated && original.isElite()) {
+                    eliteGenerated = true;
+                } else {
+                    if (original.isElite()) {
+                        continue; // 이미 엘리트 생성됨 → 스킵
+                    }
+                }
+
+                // 깊은 복사로 적 생성
+                Enemy copied = new Enemy(original);
+                spawnedEnemy.add(copied);
+            }
+        }
+
+        // 4명이 아니라면, 남은 자리를 일반 적으로 채운다.
+        while (spawnedEnemy.size() < 4) {
+            selectedEnemy.clear();
+            selectedEnemy.addAll(enemyList);
+
+            int spawnindex = random.nextInt(selectedEnemy.size());
+            Enemy original = selectedEnemy.get(spawnindex);
+
+            if (!original.isElite()) {
+                Enemy copied = new Enemy(original);
+                spawnedEnemy.add(copied);
+            }
+        }
+
+        // 선택된 적들만 파티에 추가
+        int idCounter = 1;
+        for (Enemy selected : spawnedEnemy) {
             if (selected.getMappingId() == null || selected.getMappingId().isBlank()) {
-                selected.setMappingId("E" + idCounter++);  // 'E'는 적군을 의미
+                selected.setMappingId("E" + idCounter++);
             }
 
-            // EnemyStatusManager 객체 생성 및 enemyParty에 추가
             EnemyStatusManager esm = new EnemyStatusManager(selected, selected.getMappingId());
             enemyParty.add(esm);
         }
     }
 
-    // 파티에 속한 모든 적군 객체를 반환
     public List<EnemyStatusManager> getEnemyParty() {
         return enemyParty;
     }
 
-    // 고유 값을 기반으로 적군 찾기
     public EnemyStatusManager getEnemyByMappingID(String mappingId) {
         return enemyParty.stream()
-            .filter(esm -> mappingId.equalsIgnoreCase(esm.getBaseStats().getMappingId()))  // 대소문자 구분없이 비교
-            .findFirst()
-            .orElse(null);
+                .filter(esm -> mappingId.equalsIgnoreCase(esm.getBaseStats().getMappingId()))
+                .findFirst()
+                .orElse(null);
     }
 
-    // 적군 상태 출력
     public void printEnemyStatus() {
         for (EnemyStatusManager enemy : enemyParty) {
             System.out.println(enemy);
