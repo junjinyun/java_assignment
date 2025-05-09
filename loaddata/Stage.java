@@ -4,17 +4,17 @@ public class Stage {
     private int id;
     private String stageName;
     private String enemyType;
-    private String bgImagesource;
+    private String bgImagePath; // 수정된 변수명
     private String powerGrowth;
     private String bosstype;
 
     public Stage() {}
 
-    public Stage(int id, String stageName, String enemyType, String bgImagesource, String powerGrowth, String bosstype) {
+    public Stage(int id, String stageName, String enemyType, String bgImagePath, String powerGrowth, String bosstype) {
         this.id = id;
         this.stageName = stageName;
         this.enemyType = enemyType;
-        this.bgImagesource = bgImagesource;
+        this.bgImagePath = bgImagePath; // 수정된 변수명
         this.powerGrowth = powerGrowth;
         this.bosstype = bosstype;
     }
@@ -31,8 +31,8 @@ public class Stage {
         return enemyType;
     }
 
-    public String getBgImagesource() {
-        return bgImagesource;
+    public String getBgImagePath() {
+        return bgImagePath; // 수정된 변수명
     }
 
     public String getPowerGrowth() {
@@ -41,5 +41,9 @@ public class Stage {
 
     public String getBosstype() {
         return bosstype;
+    }
+
+    public void setBgImagePath(String bgImagePath) {
+        this.bgImagePath = bgImagePath; // 수정된 변수명
     }
 }
