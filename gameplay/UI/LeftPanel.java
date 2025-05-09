@@ -1,16 +1,28 @@
-package UI;
+package gameplay.UI;
+
+import gameplay.GamePlayer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class LeftPanel extends JPanel {
 
-    public LeftPanel(MidPanel battlePanel) {
+    private final JTextArea consoleTextArea;
+    private final JTextField inputField;
+    private final CommandProcessor commandProcessor;
+    private JPopupMenu popup;  // 팝업 메뉴를 클래스 레벨에 저장
+
+    public LeftPanel(MidPanel battlePanel, GamePlayer gamePlayer) {
+        this.commandProcessor = new CommandProcessor(gamePlayer);
+
         setPreferredSize(new Dimension(920, 0));
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createTitledBorder("스킬 및 아군 정보"));
 
-        // 스킬 버튼 패널
+        // Skill Group
         JPanel skillPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 40, 0));
         ButtonGroup skillGroup = new ButtonGroup();
 
@@ -45,64 +57,152 @@ public class LeftPanel extends JPanel {
         skillGroupPanel.setBorder(BorderFactory.createTitledBorder("스킬 그룹"));
         skillGroupPanel.add(skillPanel, BorderLayout.CENTER);
 
-        // 로그 창 및 아군 스탯 패널 (1:2 비율 분할)
+        // Info Panel (Log and Stats)
         JPanel infoPanel = new JPanel(new BorderLayout());
 
-        // 로그 창 패널
+        // Log Panel
         JPanel logPanel = new JPanel(new BorderLayout());
         logPanel.setBorder(BorderFactory.createTitledBorder("로그 창"));
 
-        // JTextArea로 콘솔 창 구현
-        JTextArea consoleTextArea = new JTextArea();
-        consoleTextArea.setEditable(false); // 사용자가 수정할 수 없도록 설정
-        consoleTextArea.setBackground(Color.BLACK); // 배경 색상
-        consoleTextArea.setForeground(Color.GREEN); // 텍스트 색상
-        consoleTextArea.setFont(new Font("Courier New", Font.PLAIN, 14)); // 폰트 설정
+        consoleTextArea = new JTextArea();
+        consoleTextArea.setEditable(false);
+        consoleTextArea.setBackground(Color.BLACK);
+        consoleTextArea.setForeground(Color.GREEN);
+        consoleTextArea.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
 
-        // 콘솔 영역을 스크롤 가능하게 만들기
         JScrollPane scrollPane = new JScrollPane(consoleTextArea);
         logPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // 아군 스탯 표시 패널
+        inputField = new JTextField();
+        inputField.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
+        inputField.setBackground(Color.DARK_GRAY);
+        inputField.setForeground(Color.WHITE);
+        inputField.setCaretColor(Color.WHITE);
+
+        inputField.addActionListener(e -> {
+            String text = inputField.getText().trim();
+            if (!text.isEmpty()) {
+                logToConsole("> " + text);
+                String result = commandProcessor.processCommand(text);
+                logToConsole(result);
+                inputField.setText("");
+            }
+        });
+
+        // Auto-complete popup
+        inputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String typedText = inputField.getText().toLowerCase();
+
+                if (typedText.isEmpty()) {
+                    if (popup != null) {
+                        popup.setVisible(false);
+                    }
+                    return;
+                }
+
+                String[] commands = {"start", "spawn", "stage", "help", "exit"};
+                ArrayList<String> matchingCommands = new ArrayList<>();
+                for (String command : commands) {
+                    if (command.contains(typedText)) {
+                        matchingCommands.add(command);
+                    }
+                }
+
+                if (matchingCommands.isEmpty()) {
+                    if (popup != null) {
+                        popup.setVisible(false);
+                    }
+                    return;
+                }
+
+                if (matchingCommands.size() > 10) {
+                    matchingCommands = new ArrayList<>(matchingCommands.subList(0, 10));
+                }
+
+                if (popup != null) {
+                    popup.setVisible(false);
+                }
+
+                popup = new JPopupMenu();
+                popup.setPreferredSize(new Dimension(60, matchingCommands.size() * 20));
+
+                for (String command : matchingCommands) {
+                    JMenuItem item = new JMenuItem(command);
+                    item.setPreferredSize(new Dimension(200, 20));
+                    item.addActionListener(ev -> {
+                        inputField.setText(command);
+                        popup.setVisible(false);
+                    });
+                    popup.add(item);
+                }
+
+                try {
+                    Point screenLoc = inputField.getLocationOnScreen();
+                    SwingUtilities.convertPointFromScreen(screenLoc, inputField.getParent());
+                    popup.show(inputField.getParent(), screenLoc.x + 300, screenLoc.y);
+                    inputField.requestFocusInWindow();
+                } catch (IllegalComponentStateException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        logPanel.add(inputField, BorderLayout.SOUTH);
+
+        // Stats Panel (Split into two sections)
         JPanel statsPanel = new JPanel(new BorderLayout());
         statsPanel.setBorder(BorderFactory.createTitledBorder("아군 스탯 표시창"));
-        statsPanel.add(new JLabel("아군 스탯 표시창", SwingConstants.CENTER), BorderLayout.CENTER);
 
+        // Upper Panel for Skill Data
+        JPanel upperStatsPanel = new JPanel(new BorderLayout());
+        upperStatsPanel.setBorder(BorderFactory.createTitledBorder("스킬 데이터"));
+        upperStatsPanel.add(new JLabel("스킬 관련 데이터 표시", SwingConstants.CENTER), BorderLayout.CENTER);
+
+        // Lower Panel for Character Stats
+        JPanel lowerStatsPanel = new JPanel(new BorderLayout());
+        lowerStatsPanel.setBorder(BorderFactory.createTitledBorder("캐릭터 스탯"));
+        lowerStatsPanel.add(new JLabel("캐릭터 스탯 데이터 표시", SwingConstants.CENTER), BorderLayout.CENTER);
+
+        // Split the statsPanel 1:2 ratio
+        JSplitPane statsSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, upperStatsPanel, lowerStatsPanel);
+        statsSplitPane.setResizeWeight(0.33);  // Upper panel takes 1/3 of the space
+        statsSplitPane.setDividerSize(2);
+        statsPanel.add(statsSplitPane, BorderLayout.CENTER);
+
+        // Split the main panel
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, logPanel, statsPanel);
-        splitPane.setResizeWeight(0.33); // 1:2 비율 설정
-        splitPane.setDividerSize(2); // 얇은 분할선
-        splitPane.setEnabled(false); // 사용자 조정 비활성화
+        splitPane.setResizeWeight(0.33);
+        splitPane.setDividerSize(2);
+        splitPane.setEnabled(false);
 
         infoPanel.add(splitPane, BorderLayout.CENTER);
 
-        // 상단: 스킬, 하단: 정보
+        // Add panels to main panel
         add(skillGroupPanel, BorderLayout.NORTH);
         add(infoPanel, BorderLayout.CENTER);
 
-        // 예시 로그 출력 (디버깅 및 로그 확보용)
-        logToConsole(consoleTextArea, "게임이 시작되었습니다.");
-        logToConsole(consoleTextArea, "전투 준비 중...");
+        logToConsole("게임이 시작되었습니다.");
+        logToConsole("전투 준비 중...");
     }
 
-    // 콘솔에 로그를 출력하는 메서드 (최대 20개 로그 유지)
-    private void logToConsole(JTextArea consoleTextArea, String message) {
-        // 현재 텍스트 영역의 모든 텍스트를 가져와서 분리
+    private void logToConsole(String message) {
         String currentText = consoleTextArea.getText();
         String[] lines = currentText.split("\n");
 
-        // 최대 20개 로그 유지
         if (lines.length >= 20) {
-            // 첫 번째 줄(가장 오래된 로그)을 삭제
             currentText = currentText.substring(currentText.indexOf("\n") + 1);
         }
 
-        // 새 메시지를 추가
         currentText += message + "\n";
-
-        // 텍스트 영역에 다시 설정
         consoleTextArea.setText(currentText);
-
-        // 스크롤을 항상 최신 로그로
         consoleTextArea.setCaretPosition(consoleTextArea.getDocument().getLength());
     }
 }
