@@ -1,13 +1,17 @@
-package UI;
+package gameplay.UI;
 
 import javax.swing.*;
 import java.awt.*;
+import gameplay.GamePlayer;
 
 public class MidPanel extends JPanel {
 
     private final CardLayout cardLayout;
+    private final GamePlayer gamePlayer;  // GamePlayer 객체 선언
 
-    public MidPanel() {
+    // GamePlayer 객체를 받는 생성자 추가
+    public MidPanel(GamePlayer gamePlayer) {
+        this.gamePlayer = gamePlayer;  // 전달된 GamePlayer 객체 저장
         cardLayout = new CardLayout();
         setLayout(cardLayout);
         setPreferredSize(new Dimension(800, 800));

@@ -1,12 +1,17 @@
-package UI;
+package gameplay.UI;
 
 import javax.swing.*;
 import java.awt.*;
+import gameplay.GamePlayer;
 import java.awt.image.BufferedImage;
 
 public class TopPanel extends JPanel {
 
-    public TopPanel() {
+    private GamePlayer gamePlayer;
+
+    public TopPanel(GamePlayer gamePlayer) {
+        this.gamePlayer = gamePlayer;  // GamePlayer 객체 전달
+        
         setLayout(new BorderLayout());
         setOpaque(false);
 
