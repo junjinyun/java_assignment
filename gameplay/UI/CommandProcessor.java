@@ -24,7 +24,15 @@ public class CommandProcessor {
                 yield "아군 스킬을 최신화합니다.";
             }
             case "enemyskill" -> {
-                gamePlayer.loadEnemySkills(null);
+                gamePlayer.loadEnemySkills();
+                yield "적군 스킬을 최신화합니다.";
+            }
+            case "showask" -> {
+                gamePlayer.printAllySkills();
+                yield "아군 스킬을 최신화합니다.";
+            }
+            case "showesk" -> {
+                gamePlayer.printEnemySkills();
                 yield "적군 스킬을 최신화합니다.";
             }
             case "exit" -> {

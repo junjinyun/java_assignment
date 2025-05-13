@@ -32,7 +32,7 @@ public class MainGameUI extends JFrame {
             // 전체화면 설정
             GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
             if (gd.isFullScreenSupported()) {
-                gd.setFullScreenWindow(frame); // 진짜 전체화면 모드 진입
+                gd.setFullScreenWindow(frame); 
             } else {
                 // Fallback: 최대화 + undecorated (거의 전체화면)
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
