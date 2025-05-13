@@ -1,13 +1,14 @@
 package gameplay;
 
 import java.util.ArrayList;
-
-import javax.swing.JRadioButton;
+import java.util.List;
 
 import gameplay.Event.StageInfo;
 import gameplay.Party.AllyParty;
 import gameplay.Party.EnemyParty;
 import gameplay.Party.SetSpeedAct;
+import gameplay.UI.SkillButtonPanel;
+import gameplay.UI.UIObserver;
 import loaddata.SkillManager;
 import loaddata.Stage;
 import gameplay.Party.NameMapper;
@@ -15,34 +16,24 @@ import gameplay.Party.AllyStatusManager;
 import gameplay.Party.EnemyStatusManager;
 
 public class GamePlayer {
-
     private AllyParty allyParty;
     private EnemyParty enemyParty;
     private Stage randomStage;
-/*
-    // updateSkillButtonIcons() 메서드를 추가합니다.
-    private void updateSkillButtonIcons() {
-        if (allyParty == null || allyParty.getParty() == null) return;
+    private String MappingId = "A1";
+    private List<UIObserver> observers = new ArrayList<>();  // 옵저버 리스트 추가
 
-        ArrayList<String> skills = new ArrayList<>();
-        for (int i = 1; i <= allyParty.getParty().size(); i++) {
-            AllyStatusManager statusManager = allyParty.getAllyByMappingID("A" + i);
-            if (statusManager != null) {
-                statusManager.getSkillList().forEach(skill -> skills.add(skill.getName()));
-            }
-        }
+    // 옵저버 등록
+    public void addObserver(UIObserver observer) {
+        observers.add(observer);
+    }
 
-        for (int i = 0; i < 5; i++) {  // 6번 버튼은 예비용으로 제외
-            if (i < skills.size()) {
-                JRadioButton skillButton = (JRadioButton) skillPanel.getComponent(i);
-                skillButton.setText(skills.get(i));
-            } else {
-                JRadioButton skillButton = (JRadioButton) skillPanel.getComponent(i);
-                skillButton.setText("");
-            }
+    // 옵저버 알림
+    public void notifyObservers() {
+        for (UIObserver observer : observers) {
+            observer.update(this);  // 상태를 전달하여 UI 갱신
         }
     }
-*/
+
     // 스테이지 생성
     public void generateStage() {
         StageInfo stageInfo = new StageInfo();
@@ -57,10 +48,13 @@ public class GamePlayer {
             allyParty = new AllyParty();
             for (int i = 1; i <= 4; i++) {
                 AllyStatusManager statusManager = allyParty.getAllyByMappingID("A" + i);
+                if (statusManager != null) {
+                    String name = NameMapper.toSystemName(statusManager.getName());
+                    System.out.println("Ally " + name + " added to the party.");
                 }
             }
-            loadAllySkills();  // 아군 스킬 로드 (생성 시)
-        
+            loadAllySkills(); // 아군 스킬 로드 (생성 시)
+        }
 
         // 스테이지가 없으면 생성
         if (randomStage == null) {
@@ -69,7 +63,7 @@ public class GamePlayer {
 
         // 적 파티 생성
         enemyParty = new EnemyParty(randomStage);
-        loadEnemySkills();  // 적군 스킬 로드 (적 생성 시마다)
+        loadEnemySkills(); // 적군 스킬 로드 (적 생성 시마다)
 
         // 속도 및 행동 순서 설정
         SetSpeedAct.setSpeed(allyParty.getParty(), enemyParty.getEnemyParty());
@@ -86,12 +80,11 @@ public class GamePlayer {
         if (allyParty == null) return;
 
         for (int i = 1; i <= allyParty.getParty().size(); i++) {
-            AllyStatusManager statusManager = AllyParty.getAllyByMappingID("A" + i);
+            AllyStatusManager statusManager = allyParty.getAllyByMappingID("A" + i);
             if (statusManager != null) {
                 String name = NameMapper.toSystemName(statusManager.getName());
                 System.out.println("Loading skills for: " + name);
-                SkillManager.loadAlltSkillsByKeyName(name)
-                            .forEach(skill -> statusManager.loadSkills(skill));
+                SkillManager.loadAlltSkillsByKeyName(name).forEach(skill -> statusManager.loadSkills(skill));
             }
         }
     }
@@ -107,13 +100,10 @@ public class GamePlayer {
         for (int i = 1; i <= enemyParty.getEnemyParty().size(); i++) {
             EnemyStatusManager statusManager = enemyParty.getEnemyByMappingID("E" + i);
             if (statusManager != null) {
-                // 적군 캐릭터의 이름을 시스템 이름으로 변환
                 String name = NameMapper.toSystemName(statusManager.getName());
                 System.out.println("Loading skills for (ID: E" + i + "): " + name);
-
-                // 스킬 로드: 적군의 매핑 아이디와 ID를 이용하여 스킬 부여
                 SkillManager.loadUsableEnemySkillsByType(name, enemyParty.getEnemyParty().get(i - 1).getId())
-                            .forEach(skill -> statusManager.addSkill(skill));  // 해당 적군 캐릭터에 스킬 부여
+                        .forEach(skill -> statusManager.addSkill(skill));
             }
         }
     }
@@ -133,14 +123,13 @@ public class GamePlayer {
         }
     }
 
-    // 적군 스킬 출력 (소지자와 스킬 이름만) - 중복 이름도 각각 구별하여 출력
+    // 적군 스킬 출력 (소지자와 스킬 이름만)
     public void printEnemySkills() {
         if (enemyParty == null) return;
 
         for (int i = 1; i <= enemyParty.getEnemyParty().size(); i++) {
             EnemyStatusManager statusManager = enemyParty.getEnemyByMappingID("E" + i);
             if (statusManager != null) {
-                // 적군의 ID를 출력하여 중복되는 캐릭터도 구별 가능하게 함
                 System.out.println("Enemy (ID: " + "E" + i + "): " + statusManager.getName());
                 statusManager.getSkillList().forEach(skill -> {
                     System.out.println("    Skill Name: " + skill.getName());
@@ -149,7 +138,18 @@ public class GamePlayer {
         }
     }
 
+    // 아군 선택
+    public void selectAllyByMid(int num) {
+        System.out.println(("A" + num) + " 의 아군을 로드합니다");
+        MappingId = "A" + num;
+        notifyObservers();  // 상태 변경 후 모든 옵저버에게 알림
+    }
+
     public AllyParty getAllyParty() {
         return allyParty;
+    }
+
+    public String getMappingId() {
+        return MappingId;
     }
 }

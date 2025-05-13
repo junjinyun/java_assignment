@@ -4,15 +4,18 @@ import gameplay.GamePlayer;
 
 public class CommandProcessor {
     private final GamePlayer gamePlayer;
+    private final SkillButtonPanel skillButtonPanel;
 
-    public CommandProcessor(GamePlayer gamePlayer) {
+    public CommandProcessor(GamePlayer gamePlayer, SkillButtonPanel skillButtonPanel) {
         this.gamePlayer = gamePlayer;
+        this.skillButtonPanel = skillButtonPanel;
     }
 
     public String processCommand(String command) {
         return switch (command.toLowerCase()) {
             case "spawn" -> {
                 gamePlayer.generateParties();
+                skillButtonPanel.updateSkillButtons();  // 스킬 버튼 업데이트
                 yield "파티를 생성합니다.";
             }
             case "stage" -> {
@@ -21,6 +24,7 @@ public class CommandProcessor {
             }
             case "allyskill" -> {
                 gamePlayer.loadAllySkills();
+                skillButtonPanel.updateSkillButtons();  // 스킬 버튼 업데이트
                 yield "아군 스킬을 최신화합니다.";
             }
             case "enemyskill" -> {
@@ -29,11 +33,27 @@ public class CommandProcessor {
             }
             case "showask" -> {
                 gamePlayer.printAllySkills();
-                yield "아군 스킬을 최신화합니다.";
+                yield "아군 스킬을 출력합니다.";
             }
             case "showesk" -> {
                 gamePlayer.printEnemySkills();
-                yield "적군 스킬을 최신화합니다.";
+                yield "적군 스킬을 출력합니다.";
+            }
+            case "selectally(1)" ->{
+            	gamePlayer.selectAllyByMid(1);
+            	yield "1번 아군 선택.";
+            }
+            case "selectally(2)" ->{
+            	gamePlayer.selectAllyByMid(2);
+            	yield "2번 아군 선택.";
+            }
+            case "selectally(3)" ->{
+            	gamePlayer.selectAllyByMid(3);
+            	yield "3번 아군 선택.";
+            }
+            case "selectally(4)" ->{
+            	gamePlayer.selectAllyByMid(4);
+            	yield "4번 아군 선택.";
             }
             case "exit" -> {
                 System.exit(0); // 프로그램 종료

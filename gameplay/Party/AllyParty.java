@@ -38,7 +38,7 @@ public class AllyParty {
     }
 
     // 고유 값을 기반으로 아군 찾기
-    public static AllyStatusManager getAllyByMappingID(String mappingId) {
+    public AllyStatusManager getAllyByMappingID(String mappingId) {
         if (mappingId == null)
             return null;
         return party.stream()
