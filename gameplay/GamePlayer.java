@@ -7,7 +7,6 @@ import gameplay.Event.StageInfo;
 import gameplay.Party.AllyParty;
 import gameplay.Party.EnemyParty;
 import gameplay.Party.SetSpeedAct;
-import gameplay.UI.SkillButtonPanel;
 import gameplay.UI.UIObserver;
 import loaddata.SkillManager;
 import loaddata.Stage;
