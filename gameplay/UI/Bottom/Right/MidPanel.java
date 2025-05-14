@@ -18,13 +18,13 @@ public class MidPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("멀티"));
 
         JPanel mapPanel = new JPanel();
-        mapPanel.add(new JLabel("A - 지도"));
+        mapPanel.add(new JLabel("지도"));
 
         JPanel inventoryPanel = new JPanel();
-        inventoryPanel.add(new JLabel("A - 인벤토리"));
+        inventoryPanel.add(new JLabel("인벤토리"));
 
         JPanel enemyPanel = new JPanel();
-        enemyPanel.add(new JLabel("A - 적 정보"));
+        enemyPanel.add(new JLabel("적 정보"));
 
         add(mapPanel, "지도");
         add(inventoryPanel, "인벤토리");

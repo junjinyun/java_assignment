@@ -20,6 +20,7 @@ public class GamePlayer {
     private EnemyParty enemyParty;
     private Stage randomStage;
     private String MappingId = "A1";
+    private String EMappingId = "E1";
     private List<UIObserver> observers = new ArrayList<>();  // 옵저버 리스트 추가
 
     // 옵저버 등록
@@ -144,12 +145,25 @@ public class GamePlayer {
         MappingId = "A" + num;
         notifyObservers();  // 상태 변경 후 모든 옵저버에게 알림
     }
+    // 적군 선택
+    public void selectEnemyByMid(int num) {
+        System.out.println(("E" + num) + " 의 적군을 로드합니다");
+        EMappingId = "E" + num;
+        notifyObservers();  // 상태 변경 후 모든 옵저버에게 알림
+    }
 
     public AllyParty getAllyParty() {
         return allyParty;
     }
 
+    public EnemyParty getEnemyParty() {
+        return enemyParty;
+    }
+
     public String getMappingId() {
         return MappingId;
+    }
+    public String getEMappingId() {
+        return EMappingId;
     }
 }

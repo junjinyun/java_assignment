@@ -39,21 +39,17 @@ public class CommandProcessor {
                 gamePlayer.printEnemySkills();
                 yield "적군 스킬을 출력합니다.";
             }
-            case "selectally(1)" ->{
-            	gamePlayer.selectAllyByMid(1);
-            	yield "1번 아군 선택.";
+            case String selectAlly when selectAlly.matches("selectally\\((\\d+)\\)") -> {
+                // selectally(1), selectally(2) 등에서 숫자를 추출
+                int allyNumber = Integer.parseInt(selectAlly.replaceAll("[^0-9]", ""));
+                gamePlayer.selectAllyByMid(allyNumber);
+                yield allyNumber + "번 아군 선택.";
             }
-            case "selectally(2)" ->{
-            	gamePlayer.selectAllyByMid(2);
-            	yield "2번 아군 선택.";
-            }
-            case "selectally(3)" ->{
-            	gamePlayer.selectAllyByMid(3);
-            	yield "3번 아군 선택.";
-            }
-            case "selectally(4)" ->{
-            	gamePlayer.selectAllyByMid(4);
-            	yield "4번 아군 선택.";
+            case String selectEnemy when selecEnemy.matches("selectenemy\\((\\d+)\\)") -> {
+                // selectenemy(1), selectenemy(2) 등에서 숫자를 추출
+                int enemyNumber = Integer.parseInt(selecEnemy.replaceAll("[^0-9]", ""));
+                gamePlayer.selectEnemyByMid(enemyNumber);
+                yield enemyNumber + "번 적군 선택.";
             }
             case "exit" -> {
                 System.exit(0); // 프로그램 종료
