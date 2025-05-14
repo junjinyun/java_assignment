@@ -15,7 +15,7 @@ public class MidPanel extends JPanel {
         cardLayout = new CardLayout();
         setLayout(cardLayout);
         setPreferredSize(new Dimension(800, 800));
-        setBorder(BorderFactory.createTitledBorder("전투영역 A"));
+        setBorder(BorderFactory.createTitledBorder("멀티"));
 
         JPanel mapPanel = new JPanel();
         mapPanel.add(new JLabel("A - 지도"));
