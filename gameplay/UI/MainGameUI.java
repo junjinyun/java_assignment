@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import gameplay.GamePlayer;
+import gameplay.UI.Bottom.BottomPanel;
+import gameplay.UI.Top.TopPanel;
 
 public class MainGameUI extends JFrame {
 

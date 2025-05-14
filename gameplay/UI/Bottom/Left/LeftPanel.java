@@ -1,6 +1,7 @@
-package gameplay.UI;
+package gameplay.UI.Bottom.Left;
 
 import gameplay.GamePlayer;
+import gameplay.UI.Bottom.Right.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ public class LeftPanel extends JPanel {
     private StatsPanel statsPanel;
     private SkillInfoPanel skillInfoPanel;
 
-    public LeftPanel(MidPanel battlePanel, GamePlayer gamePlayer) {
+    public LeftPanel(GamePlayer gamePlayer) {
         this.gamePlayer = gamePlayer;
         this.skillInfoPanel = new SkillInfoPanel(null);
         this.skillButtonPanel = new SkillButtonPanel(gamePlayer, skillInfoPanel);
@@ -48,7 +49,8 @@ public class LeftPanel extends JPanel {
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
-        statsPanel = new StatsPanel(gamePlayer);    
+        statsPanel = new StatsPanel(gamePlayer);  
+        gamePlayer.addObserver(statsPanel);
 
         skillInfoPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 180));
         statsPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 360));

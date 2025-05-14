@@ -1,4 +1,4 @@
-package gameplay.UI;
+package gameplay.UI.Top;
 
 import javax.swing.*;
 import java.awt.*;

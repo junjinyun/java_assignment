@@ -1,5 +1,4 @@
-    
-package gameplay.UI;
+package gameplay.UI.Bottom.Left;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +47,7 @@ public class LogPanel extends JPanel {
                     return;
                 }
 
-                String[] commands = { "spawn", "stage", "allyskill", "enemyskill", "showask", "showesk", "exit","selectally()" };
+                String[] commands = { "spawn", "stage", "allyskill", "enemyskill", "showask", "showesk", "exit","selectally()","selectenemy()" };
                 ArrayList<String> matchingCommands = new ArrayList<>();
                 for (String command : commands) {
                     if (command.contains(typedText)) {

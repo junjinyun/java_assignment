@@ -1,7 +1,8 @@
-package gameplay.UI;
+package gameplay.UI.Bottom.Left;
 
 import gameplay.GamePlayer;
 import gameplay.Party.AllyStatusManager;
+import gameplay.UI.UIObserver;
 import loaddata.AllySkills;
 
 import javax.swing.*;
@@ -48,6 +49,7 @@ public class SkillButtonPanel extends JPanel implements UIObserver {
         }
 
         removeAll();
+        skillGroup = new ButtonGroup(); // 버튼 그룹도 새로 초기화
         for (int i = 0; i < 6; i++) {
             if (i < skills.size()) {
                 final AllySkills skill = skills.get(i); // 스킬 객체 저장
@@ -65,9 +67,14 @@ public class SkillButtonPanel extends JPanel implements UIObserver {
                 add(skillButton);  // 버튼을 패널에 추가
             }
         }
+
+        // 🔹 스킬 정보 초기화
+        skillInfoPanel.showDefaultSkillInfo();
+
         revalidate();
         repaint();
     }
+
 
     private void handleSkillButtonSelection(JRadioButton selectedButton, AllySkills skill) {
         // 모든 버튼을 비활성화 아이콘으로 설정

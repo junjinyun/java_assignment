@@ -1,4 +1,4 @@
-	package gameplay.UI;
+package gameplay.UI.Bottom.Left;
 	
 	import javax.swing.*;
 	import java.awt.*;
