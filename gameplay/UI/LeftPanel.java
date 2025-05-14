@@ -48,7 +48,7 @@ public class LeftPanel extends JPanel {
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
-        statsPanel = new StatsPanel();
+        statsPanel = new StatsPanel(gamePlayer);    
 
         skillInfoPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 180));
         statsPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 360));

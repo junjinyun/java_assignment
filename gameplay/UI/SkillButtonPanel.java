@@ -52,8 +52,6 @@ public class SkillButtonPanel extends JPanel implements UIObserver {
             if (i < skills.size()) {
                 final AllySkills skill = skills.get(i); // 스킬 객체 저장
                 JRadioButton skillButton = new JRadioButton();
-
-                // 아이콘만 설정하고 텍스트 제거
                 skillButton.setIcon(inactiveIcon);  // 기본 비활성화 아이콘 설정
                 skillButton.setSelectedIcon(activeIcon);  // 선택된 상태에서의 아이콘 설정
 
