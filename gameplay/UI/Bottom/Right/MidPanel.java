@@ -1,21 +1,25 @@
-package gameplay.UI;
+package gameplay.UI.Bottom.Right;
 
 import javax.swing.*;
 import java.awt.*;
 import gameplay.GamePlayer;
+import gameplay.UI.UIObserver;
 
-public class MidPanel extends JPanel {
+public class MidPanel extends JPanel implements UIObserver {
 
     private final CardLayout cardLayout;
-    private final GamePlayer gamePlayer;  // GamePlayer 객체 선언
+    private final GamePlayer gamePlayer;
+    private final EnemyStatsPanel enemyStatsPanel;
 
-    // GamePlayer 객체를 받는 생성자 추가
     public MidPanel(GamePlayer gamePlayer) {
-        this.gamePlayer = gamePlayer;  // 전달된 GamePlayer 객체 저장
+        this.gamePlayer = gamePlayer;
         cardLayout = new CardLayout();
         setLayout(cardLayout);
         setPreferredSize(new Dimension(800, 800));
         setBorder(BorderFactory.createTitledBorder("멀티"));
+
+        // 아군 및 적군 스탯 패널
+        enemyStatsPanel = new EnemyStatsPanel(gamePlayer);  // 적군용 EnemyStatsPanel
 
         JPanel mapPanel = new JPanel();
         mapPanel.add(new JLabel("지도"));
@@ -23,12 +27,9 @@ public class MidPanel extends JPanel {
         JPanel inventoryPanel = new JPanel();
         inventoryPanel.add(new JLabel("인벤토리"));
 
-        JPanel enemyPanel = new JPanel();
-        enemyPanel.add(new JLabel("적 정보"));
-
         add(mapPanel, "지도");
         add(inventoryPanel, "인벤토리");
-        add(enemyPanel, "적 정보");
+        add(enemyStatsPanel, "적군 스탯");
 
         cardLayout.show(this, "지도");
     }
@@ -36,4 +37,12 @@ public class MidPanel extends JPanel {
     public void showCard(String name) {
         cardLayout.show(this, name);
     }
+
+
+	@Override
+	public void update(GamePlayer gamePlayer) {
+        enemyStatsPanel.updateStatsFromGamePlayer();
+        cardLayout.show(this, "적군 스탯");
+		
+	}
 }
