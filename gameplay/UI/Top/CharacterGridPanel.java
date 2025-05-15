@@ -6,21 +6,31 @@ import gameplay.GamePlayer;
 
 public class CharacterGridPanel extends JPanel {
 
+    private GamePlayer gamePlayer;
+
     public CharacterGridPanel(GamePlayer gamePlayer) {
+        this.gamePlayer = gamePlayer;
         setLayout(new GridLayout(1, 9));
         setOpaque(false);
 
         for (int i = 4; i >= 1; i--) {
-            add(CharacterPanelMaker.create("A" + i, "아군"));
+            JButton allyButton = new JButton("A" + i + " - 아군");
+            allyButton.setOpaque(false);
+            allyButton.setForeground(Color.WHITE);
+            allyButton.addActionListener(e -> gamePlayer.selectAllyByMid(i));
+            add(allyButton);
         }
 
-        JLabel turnLabel = new JLabel("턴 표시", SwingConstants.CENTER);
-        turnLabel.setForeground(Color.YELLOW);
-        turnLabel.setOpaque(false);
-        add(turnLabel);
+        JPanel emptyPanel = new JPanel();
+        emptyPanel.setOpaque(false);  // 텍스트 없이 빈 공간만 차지하도록 설정
+        add(emptyPanel);
 
         for (int i = 1; i <= 4; i++) {
-            add(CharacterPanelMaker.create("E" + i, "적군"));
+            JButton enemyButton = new JButton("E" + i + " - 적군");
+            enemyButton.setOpaque(false);
+            enemyButton.setForeground(Color.RED);
+            enemyButton.addActionListener(e -> gamePlayer.selectEnemyByMid(i));
+            add(enemyButton);
         }
     }
 }

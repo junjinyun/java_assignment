@@ -160,17 +160,16 @@ public class GamePlayer {
         }
     }
 
-    // 아군 선택
     public void selectAllyByMid(int num) {
-        System.out.println(("A" + num) + " 의 아군을 로드합니다");
         MappingId = "A" + num;
-        notifyObservers();  // 상태 변경 후 모든 옵저버에게 알림
+        System.out.println(MappingId + " 의 아군을 로드합니다");
+        notifyObservers();
     }
-    // 적군 선택
+
     public void selectEnemyByMid(int num) {
-        System.out.println(("E" + num) + " 의 적군을 로드합니다");
         EMappingId = "E" + num;
-        notifyObservers();  // 상태 변경 후 모든 옵저버에게 알림
+        System.out.println(EMappingId + " 의 적군을 로드합니다");
+        notifyObservers();
     }
 
     public AllyParty getAllyParty() {
