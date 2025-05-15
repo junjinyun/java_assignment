@@ -13,6 +13,7 @@ import loaddata.Stage;
 import gameplay.Party.NameMapper;
 import gameplay.Party.AllyStatusManager;
 import gameplay.Party.EnemyStatusManager;
+import gameplay.Map.MakeUseMap;
 
 public class GamePlayer {
     private AllyParty allyParty;
@@ -21,7 +22,11 @@ public class GamePlayer {
     private String MappingId = "A1";
     private String EMappingId = "E1";
     private List<UIObserver> observers = new ArrayList<>();  // 옵저버 리스트 추가
-
+    private int[][] MapData;
+    //각 옵저버 별로 트리거 조건을 다르게 함(현제는 해당 클래스의 값이 1개라도 수정 되면 연동된 모든 레이아웃을 돔트리 부터 다시 구성하게 되어있음 -> 성능저하 크게 유발 -> 트리거 조건을 부여하여 해당하는 클래스의 UI만 수정하게 변경)
+    //(ex : 아군데이터 관련은 allyParty 와 MappingId)
+    //(ex : 적군데이터 관련은 enemyParty 와 EMappingId)
+    
     // 옵저버 등록
     public void addObserver(UIObserver observer) {
         observers.add(observer);
@@ -32,6 +37,23 @@ public class GamePlayer {
         for (UIObserver observer : observers) {
             observer.update(this);  // 상태를 전달하여 UI 갱신
         }
+    }
+
+    public void generateMap(){
+        MakeUseMap mapmaker = new MakeUseMap();
+        EntryPointSelector selecter = new EntryPointSelector();
+        mapmaker.mkMap();
+        mapmaker.mkRoom();
+        selecter.EntryPoint();
+        //mapmaker.loadMap(); 디버깅 용으로 현제 지도 데이터를 print문으로 출력
+        MapData = mapmaker.getMapdata();
+    }
+
+    public void moveMap(MapData){
+        MakeUseMap mapmaker = new MakeUseMap();
+        mapmaker.moveMap();
+        //mapmaker.loadMap(); 디버깅 용으로 현제 지도 데이터를 print문으로 출력
+        MapData = mapmaker.getMapdata();
     }
 
     // 스테이지 생성
@@ -162,7 +184,12 @@ public class GamePlayer {
     public String getMappingId() {
         return MappingId;
     }
+
     public String getEMappingId() {
         return EMappingId;
+    }
+
+    public int[][] getMapData() {
+        return MapData;
     }
 }

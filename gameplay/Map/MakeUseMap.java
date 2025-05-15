@@ -9,14 +9,14 @@ public class MakeUseMap {
 
 	public static int[][] standardmap = new int[8][8];
 
-	public static void mkmap() {
+	public static void mkMap() {
 
 		for (int i = 0; i < standardmap.length; i++)
 			for (int x = 0; x < standardmap[i].length; x++)
 				standardmap[i][x] = 0;
-	}// 0 : 빈 칸, 1 : 이벤트가 발생 하지 않은 방 2 : 빈방(이벤트 없음) 3 : 현제 위치
+	}// 0 : 빈 칸 :이미지 없음 , 1 : 이벤트가 발생 하지 않은 방 : ? 가 네모 안에 포함 2 : 빈방(이벤트 없음) : 네모 3 : 현제 위치 네모 + 하이라이트 효과
 
-	public static void mkroom() {
+	public static void mkRoom() {
 		Integer selected_row_or_col, startlocation;
 		ArrayList<Integer> created_row = new ArrayList<Integer>();
 		ArrayList<Integer> created_col = new ArrayList<Integer>();
@@ -55,7 +55,7 @@ public class MakeUseMap {
 		}
 	}
 
-	public static void loadmap() {
+	public static void loadMap() {
 		for (int i = 0; i < standardmap.length; i++) {
 			for (int x = 0; x < standardmap[i].length; x++) {
 				if (standardmap[i][x] == 1 || standardmap[i][x] == 2)
@@ -76,7 +76,7 @@ public class MakeUseMap {
 
 	private static Scanner scan = new Scanner(System.in);
 
-	public static void move_map() {
+	public static void moveMap() {
 		int row = current_loc.get(0), col = current_loc.get(1); // 현제 행, 열을 current_loc 에서 가져옴
 		boolean top = false, down = false, left = false, right = false; // 현제위치를 기반으로 상, 하, 좌, 우 중에서 방이 존재 하는지 판별하는 변수
 		for (int i = 0; i < 4; i++) {
@@ -153,4 +153,7 @@ public class MakeUseMap {
 		loadmap();//맵을 이동 후 이동 후의 맵 상태를 재 출력
 	}// 현재 위치 기반으로 인접한 1칸의 방 으로만 이동 가능
 
+	public static getMapdata(){
+		return standardmap;
+	}
 }
