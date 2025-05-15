@@ -19,11 +19,11 @@ public class CharacterGridPanel extends JPanel {
             allyButton.setForeground(Color.WHITE);
             allyButton.addActionListener(e -> gamePlayer.selectAllyByMid(i));
             add(allyButton);
-        }
 
-        JPanel emptyPanel = new JPanel();
-        emptyPanel.setOpaque(false);  // 텍스트 없이 빈 공간만 차지하도록 설정
-        add(emptyPanel);
+            // 아군 캐릭터 패널 생성
+            JPanel allyPanel = CharacterPanelMaker.create("A" + i, "아군", gamePlayer);
+            add(allyPanel);
+        }
 
         for (int i = 1; i <= 4; i++) {
             JButton enemyButton = new JButton("E" + i + " - 적군");
@@ -31,6 +31,10 @@ public class CharacterGridPanel extends JPanel {
             enemyButton.setForeground(Color.RED);
             enemyButton.addActionListener(e -> gamePlayer.selectEnemyByMid(i));
             add(enemyButton);
+
+            // 적군 캐릭터 패널 생성
+            JPanel enemyPanel = CharacterPanelMaker.create("E" + i, "적군", gamePlayer);
+            add(enemyPanel);
         }
     }
 }
