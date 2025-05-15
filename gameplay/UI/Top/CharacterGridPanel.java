@@ -22,6 +22,7 @@ public class CharacterGridPanel extends JPanel {
 
             // 아군 캐릭터 패널 생성
             JPanel allyPanel = CharacterPanelMaker.create("A" + i, "아군", gamePlayer);
+            gamePlayer.addObserver(allyPanel);
             add(allyPanel);
         }
 
@@ -34,6 +35,7 @@ public class CharacterGridPanel extends JPanel {
 
             // 적군 캐릭터 패널 생성
             JPanel enemyPanel = CharacterPanelMaker.create("E" + i, "적군", gamePlayer);
+            gamePlayer.addObserver(enemyPanel);
             add(enemyPanel);
         }
     }
