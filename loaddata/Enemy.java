@@ -1,7 +1,7 @@
 package loaddata;
 
 public class Enemy {
-    private int id; // 스킬 가져올 떄 사용 할 제이슨 파일의 식별자
+    private int id; // 스킬 가져올 때 사용 할 제이슨 파일의 식별자
     private String name; // 이름
     private String category; // 카테고리
     private int health; // 현재 체력
@@ -19,11 +19,14 @@ public class Enemy {
     private String spawnPosition; // 생성 위치
     private boolean isElite; // 엘리트 여부
 
+    private String imagePath; // 이미지 경로 추가
+
     public Enemy() {}
 
     public Enemy(int id, String name, String category, int health, int maxHealth, int attack, int defense, int minSpeed, 
-                 int maxSpeed, int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable, String spawnPosition, boolean isElite) {
-        this.id = id; // id 초기화
+                 int maxSpeed, int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable, String spawnPosition, boolean isElite,
+                 String imagePath) {  // 생성자에 imagePath 추가
+        this.id = id; 
         this.name = name;
         this.category = category;
         this.health = health;
@@ -39,9 +42,9 @@ public class Enemy {
         this.isAttackable = isAttackable;
         this.spawnPosition = spawnPosition;
         this.isElite = isElite;
+        this.imagePath = imagePath;
     }
-    
- // 적 소환시 같은 객체를 여러개 생성하면 얕은 복사 로 인해 데이터를 공유 함 -> 해당 방식을 통해 깊은 복사를 실행하여 서로 다른 인스턴스를 부여
+
     public Enemy(Enemy other) {
         this.id = other.id;
         this.name = other.name;
@@ -57,11 +60,11 @@ public class Enemy {
         this.evadeReduction = other.evadeReduction;
         this.alive = other.alive;
         this.isAttackable = other.isAttackable;
-        this.mappingId = other.mappingId; // 복사 후 새로운 ID 할당 가능
+        this.mappingId = other.mappingId;
         this.spawnPosition = other.spawnPosition;
         this.isElite = other.isElite;
+        this.imagePath = other.imagePath;  // 깊은 복사 시 imagePath도 복사
     }
-
 
     public int getId() {
         return id;
@@ -154,7 +157,16 @@ public class Enemy {
     public void setElite(boolean isElite) {
         this.isElite = isElite;
     }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
