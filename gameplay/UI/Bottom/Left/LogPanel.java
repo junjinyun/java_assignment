@@ -47,7 +47,7 @@ public class LogPanel extends JPanel {
                     return;
                 }
 
-                String[] commands = { "spawn", "stage", "allyskill", "enemyskill", "showask", "showesk", "exit","selectally()","selectenemy()" };
+                String[] commands = { "spawn", "stage", "allyskill", "enemyskill", "showask", "showesk", "exit","selectally()","selectenemy()","map" };
                 ArrayList<String> matchingCommands = new ArrayList<>();
                 for (String command : commands) {
                     if (command.contains(typedText)) {
