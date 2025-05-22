@@ -1,32 +1,31 @@
 package loaddata;
 
 public class Enemy {
-    private int id; // 스킬 가져올 때 사용 할 제이슨 파일의 식별자
-    private String name; // 이름
-    private String category; // 카테고리
-    private int health; // 현재 체력
-    private int maxHealth; // 최대 체력
-    private int attack; // 공격력
-    private int defense; // 방어력
-    private int minSpeed; // 최소 스피드
-    private int maxSpeed; // 최대 스피드
-    private int evasion; // 회피율
-    private int cost; // 비용
-    private int evadeReduction; // 회피율 무시
-    private boolean alive; // 생사 여부
-    private boolean isAttackable; // 공격 가능 여부
-    private String mappingId; // 상태 관리용 식별자
-    private String spawnPosition; // 생성 위치
-    private boolean isElite; // 엘리트 여부
-
-    private String imagePath; // 이미지 경로 추가
+    private int id;
+    private String name;
+    private String category;
+    private int health;
+    private int maxHealth;
+    private int attack;
+    private int defense;
+    private int minSpeed;
+    private int maxSpeed;
+    private int evasion;
+    private int cost;
+    private int evadeReduction;
+    private boolean alive;
+    private boolean isAttackable;
+    private String mappingId;
+    private String spawnPosition;
+    private boolean isElite;
+    private String imagePath;
 
     public Enemy() {}
 
     public Enemy(int id, String name, String category, int health, int maxHealth, int attack, int defense, int minSpeed, 
                  int maxSpeed, int evasion, int cost, int evadeReduction, boolean alive, boolean isAttackable, String spawnPosition, boolean isElite,
-                 String imagePath) {  // 생성자에 imagePath 추가
-        this.id = id; 
+                 String imagePath) {
+        this.id = id;
         this.name = name;
         this.category = category;
         this.health = health;
@@ -63,9 +62,10 @@ public class Enemy {
         this.mappingId = other.mappingId;
         this.spawnPosition = other.spawnPosition;
         this.isElite = other.isElite;
-        this.imagePath = other.imagePath;  // 깊은 복사 시 imagePath도 복사
+        this.imagePath = other.imagePath;
     }
 
+    // Getters
     public int getId() {
         return id;
     }
@@ -126,44 +126,85 @@ public class Enemy {
         return mappingId;
     }
 
-    public void setMappingId(String mappingId) {
-        this.mappingId = mappingId;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public void setAttackable(boolean isAttackable) {
-        this.isAttackable = isAttackable;
-    }
-
-    public void setAlive(boolean alive) {
-        this.alive = alive;
-    }
-
     public String getSpawnPosition() {
         return spawnPosition;
-    }
-
-    public void setSpawnPosition(String spawnPosition) {
-        this.spawnPosition = spawnPosition;
     }
 
     public boolean isElite() {
         return isElite;
     }
 
-    public void setElite(boolean isElite) {
-        this.isElite = isElite;
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    // Setters
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public void setMinSpeed(int minSpeed) {
+        this.minSpeed = minSpeed;
+    }
+
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
+    public void setEvasion(int evasion) {
+        this.evasion = evasion;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public void setEvadeReduction(int evadeReduction) {
+        this.evadeReduction = evadeReduction;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public void setAttackable(boolean isAttackable) {
+        this.isAttackable = isAttackable;
+    }
+
+    public void setMappingId(String mappingId) {
+        this.mappingId = mappingId;
+    }
+
+    public void setSpawnPosition(String spawnPosition) {
+        this.spawnPosition = spawnPosition;
+    }
+
+    public void setElite(boolean isElite) {
+        this.isElite = isElite;
     }
 
     public void setImagePath(String imagePath) {

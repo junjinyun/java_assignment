@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class EnemyManager {
 	private static final String JSON_PATH = "src/data/enemies.json"; // JSON 파일 경로
