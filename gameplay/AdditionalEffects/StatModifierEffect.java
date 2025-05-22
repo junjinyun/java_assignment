@@ -1,11 +1,9 @@
 package gameplay.AdditionalEffects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import gameplay.Party.AllyStatusManager;
+import gameplay.Party.EnemyStatusManager;
+
+import java.util.*;
 
 public class StatModifierEffect implements Effect {
 	private String name;
@@ -48,110 +46,143 @@ public class StatModifierEffect implements Effect {
 		this.duration = duration;
 	}
 
-	private List<String> extractStatNames() {
-		List<String> stats = new ArrayList<>();
-		if (name.contains("공"))
-			stats.add("damage");
-		if (name.contains("방"))
-			stats.add("defense");
-		if (name.contains("회피"))
-			stats.add("evasion");
-		if (name.contains("속도"))
-			stats.add("speed");
-		return stats;
+	@Override
+	public void apply(Object target) {
+		if (applied) return;
+
+		for (String stat : extractStatNames()) {
+			applyToStat(target, stat, true);
+		}
+		applied = true;
 	}
 
 	@Override
-	public void apply(AllyStatusManager target) {
-		if (applied)
-			return;
+	public void onTurnEnd(Object target) {
+	    if (applied) {
+	        duration--;
+	        if (isExpired()) {
+	            for (String stat : extractStatNames()) {
+	                applyToStat(target, stat, false);
+	            }
+	        }
+	    }
+	}
 
-		List<String> statNames = extractStatNames();
-		// 본 효과 적용
-		for (String stat : statNames) {
-			applyToStat(target, stat, true);
+
+	private List<String> extractStatNames() {
+		List<String> stats = new ArrayList<>();
+		if (name.contains("공")) stats.add("damage");
+		if (name.contains("방")) stats.add("defense");
+		if (name.contains("회피")) stats.add("evasion");
+		if (name.contains("속도")) stats.add("speed");
+		return stats;
+	}
+
+	private void applyToStat(Object target, String stat, boolean apply) {
+		double multiplier = 1 + (isDebuff() ? -power : power) / 100.0;
+
+		if (apply) {
+			if (target instanceof AllyStatusManager ally) {
+				switch (stat) {
+					case "damage" -> {
+						int original = ally.getBaseStats().getAttack();
+						originalStatValues.putIfAbsent("damage", original);
+						ally.getBaseStats().setAttack((int) (original * multiplier));
+					}
+					case "defense" -> {
+						int original = ally.getBaseStats().getDefense();
+						originalStatValues.putIfAbsent("defense", original);
+						ally.getBaseStats().setDefense((int) (original * multiplier));
+					}
+					case "evasion" -> {
+						int original = ally.getBaseStats().getEvasion();
+						originalStatValues.putIfAbsent("evasion", original);
+						ally.getBaseStats().setEvasion((int) (original * multiplier));
+					}
+					case "speed" -> {
+						int original = ally.getCurrentSpeed();
+						originalStatValues.putIfAbsent("speed", original);
+						ally.setCurrentSpeed((int) (original * multiplier));
+					}
+				}
+			} else if (target instanceof EnemyStatusManager enemy) {
+				switch (stat) {
+					case "damage" -> {
+						int original = enemy.getBaseStats().getAttack();
+						originalStatValues.putIfAbsent("damage", original);
+						enemy.getBaseStats().setAttack((int) (original * multiplier));
+					}
+					case "defense" -> {
+						int original = enemy.getBaseStats().getDefense();
+						originalStatValues.putIfAbsent("defense", original);
+						enemy.getBaseStats().setDefense((int) (original * multiplier));
+					}
+					case "evasion" -> {
+						int original = enemy.getBaseStats().getEvasion();
+						originalStatValues.putIfAbsent("evasion", original);
+						enemy.getBaseStats().setEvasion((int) (original * multiplier));
+					}
+					case "speed" -> {
+						int original = enemy.getCurrentSpeed();
+						originalStatValues.putIfAbsent("speed", original);
+						enemy.setCurrentSpeed((int) (original * multiplier));
+					}
+				}
+			}
+		} else {
+			Integer original = originalStatValues.get(stat);
+			if (original == null) return;
+
+			if (target instanceof AllyStatusManager ally) {
+				switch (stat) {
+					case "damage" -> ally.getBaseStats().setAttack(original);
+					case "defense" -> ally.getBaseStats().setDefense(original);
+					case "evasion" -> ally.getBaseStats().setEvasion(original);
+					case "speed" -> ally.setCurrentSpeed(original);
+				}
+			} else if (target instanceof EnemyStatusManager enemy) {
+				switch (stat) {
+					case "damage" -> enemy.getBaseStats().setAttack(original);
+					case "defense" -> enemy.getBaseStats().setDefense(original);
+					case "evasion" -> enemy.getBaseStats().setEvasion(original);
+					case "speed" -> enemy.setCurrentSpeed(original);
+				}
+			}
 		}
+	}
 
-		applied = true;
+	public void forceRemove(Object target) {
+		for (String stat : extractStatNames()) {
+			applyToStat(target, stat, false);
+		}
 	}
 
 	public boolean canMerge(StatModifierEffect other) {
 		return this.name.equals(other.name);
 	}
 
-	public void merge(StatModifierEffect other, AllyStatusManager target) {
-	    boolean reapplied = false;
+	public void merge(StatModifierEffect other, Object target) {
+		boolean reapplied = false;
 
-	    if (other.power > this.power) {
-	        // 기존 효과 제거 (원래 스탯으로 복원)
-	        applyToAllStats(target, false);
+		if (other.power > this.power) {
+			applyToAllStats(target, false);
+			this.power = other.power;
+			this.applied = false;
+			reapplied = true;
+		}
 
-	        // power 업데이트 및 재적용 플래그 설정
-	        this.power = other.power;
-	        this.applied = false;
-	        reapplied = true;
-	    }
+		if (other.duration > this.duration) {
+			this.duration = other.duration;
+		}
 
-	    if (other.duration > this.duration) {
-	        this.duration = other.duration;
-	    }
-
-	    if (reapplied) {
-	        // 더 강한 효과를 다시 적용
-	        this.apply(target);
-	    }
-	}
-	private void applyToAllStats(AllyStatusManager target, boolean apply) {
-	    for (String stat : extractStatNames()) {
-	        applyToStat(target, stat, apply);
-	    }
-	}
-	@Override
-	public void onTurnEnd(AllyStatusManager target) {
-		duration--;
-		if (isExpired()) {
-			for (String stat : extractStatNames()) {
-				applyToStat(target, stat, false);
-			}
+		if (reapplied) {
+			this.apply(target);
 		}
 	}
 
-	private void applyToStat(AllyStatusManager target, String stat, boolean apply) {
-		if (apply) {
-			double multiplier = 1 + (isDebuff() ? -power : power) / 100.0;
-
-			switch (stat) {
-			case "damage" -> {
-				int original = target.getBaseStats().getAttack();
-				originalStatValues.put("damage", original);
-				target.getBaseStats().setAttack((int) (original * multiplier));
-			}
-			case "defense" -> {
-				int original = target.getBaseStats().getDefense();
-				originalStatValues.put("defense", original);
-				target.getBaseStats().setDefense((int) (original * multiplier));
-			}
-			case "evasion" -> {
-				int original = target.getBaseStats().getEvasion();
-				originalStatValues.put("evasion", original);
-				target.getBaseStats().setEvasion((int) (original * multiplier));
-			}
-			case "speed" -> {
-				int original = target.getCurrentSpeed();
-				originalStatValues.put("speed", original);
-				target.setCurrentSpeed((int) (original * multiplier));
-			}
-			}
-		} else {
-			Integer original = originalStatValues.get(stat);
-			if (original != null) {
-				switch (stat) {
-				case "damage" -> target.getBaseStats().setAttack(original);
-				case "defense" -> target.getBaseStats().setDefense(original);
-				case "evasion" -> target.getBaseStats().setEvasion(original);
-				case "speed" -> target.setCurrentSpeed(original);
-				}
-			}
+	private void applyToAllStats(Object target, boolean apply) {
+		for (String stat : extractStatNames()) {
+			applyToStat(target, stat, apply);
 		}
 	}
 
@@ -160,45 +191,15 @@ public class StatModifierEffect implements Effect {
 		return duration <= 0;
 	}
 
-	public void setApplied(boolean applied) {
-		this.applied = applied;
-	}
-
 	public boolean isDebuff() {
 		return name.contains("감소");
 	}
 
-	// 이름에서 스탯을 추출하는 메서드
-	private String extractStatName(String effectName) {
-		// "방어증가"에서 "방어"와 같은 스탯 이름만 추출
-		return effectName.replaceAll("[증가|감소]", "").trim();
-	}
-
-	// 이름에서 효과 타입을 추출하는 메서드
-	private String extractEffectType(String effectName) {
-		// "증가"와 "감소"만 추출
-		if (effectName.contains("증가")) {
-			return "증가";
-		} else if (effectName.contains("감소")) {
-			return "감소";
-		}
-		return "";
-	}
-
-	// "방어증가"에서 "방어" 반환
 	public String getStatName() {
-		return extractStatName(this.name);
+		return name.replaceAll("[증가|감소]", "").trim();
 	}
 
-	// "방어증가"에서 "증가" 반환
 	public String getEffectType() {
-		return extractEffectType(this.name);
-	}
-
-	public void forceRemove(AllyStatusManager target) {
-		// 원래 값으로 복원
-		for (String stat : extractStatNames()) {
-			applyToStat(target, stat, false);
-		}
+		return name.contains("증가") ? "증가" : name.contains("감소") ? "감소" : "";
 	}
 }

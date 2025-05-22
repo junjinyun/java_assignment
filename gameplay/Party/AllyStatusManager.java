@@ -33,7 +33,36 @@ public class AllyStatusManager {
 		this.statModifierEffects = new ArrayList<>();
 		this.specialEffects = new ArrayList<>();
 	}
+	
+	public void addEffects(String data) {
+	    String[] parts = data.split(" ");
+	    if (parts.length != 3) {
+	        System.out.println("잘못된 형식의 데이터입니다: " + data);
+	        return;
+	    }
 
+	    String name = parts[0];
+	    int power;
+	    int duration;
+
+	    try {
+	        power = Integer.parseInt(parts[1]);
+	        duration = Integer.parseInt(parts[2]);
+	    } catch (NumberFormatException e) {
+	        System.out.println("숫자 변환 실패: " + data);
+	        return;
+	    }
+
+	    if (name.contains("증가") || name.contains("감소")) {
+	        StatModifierEffect buff = new StatModifierEffect(name, power, duration);
+	        addStatModifierEffect(buff);
+	    } else {
+	        StatusEffect effect = new StatusEffect(name, power, duration);
+	        addStatusEffect(effect);
+	    }
+	}
+
+	
 	public void addStatModifierEffect(StatModifierEffect newEffect) {
 		// 새 효과가 상반되는 기존 효과가 있는지 확인
 		List<StatModifierEffect> toRemove = new ArrayList<>();
@@ -107,18 +136,33 @@ public class AllyStatusManager {
 	}
 
 	public void applyStatusEffects() {
-		List<StatusEffect> expired = new ArrayList<>();
+	    int totalRecovery = 0;
+	    int totalDamage = 0;
+	    List<StatusEffect> expired = new ArrayList<>();
 
-		// 상태이상 효과를 한 턴 동안 적용
-		for (StatusEffect effect : statusEffects) {
-			effect.onTurnEnd(this); // 턴 종료 시 상태이상 효과 적용
-			if (effect.isExpired()) {
-				expired.add(effect); // 만료된 상태이상 효과를 리스트에 추가
-			}
-		}
+	    for (StatusEffect effect : statusEffects) {
+	        if (effect.isRecoveryEffect()) {
+	            totalRecovery += effect.getPower();
+	        } else {
+	            totalDamage += effect.getPower();
+	        }
+	        effect.setDuration(effect.getDuration() - 1);
+	        if (effect.isExpired()) {
+	            expired.add(effect);
+	        }
+	    }
 
-		// 만료된 상태이상 효과를 상태 목록에서 제거
-		statusEffects.removeAll(expired);
+	    int netEffect = totalRecovery - totalDamage;
+	    int currentHp = baseStats.getHealth();
+	    int maxHp = baseStats.getMaxHealth();
+
+	    if (netEffect > 0) {
+	        baseStats.setHealth(Math.min(maxHp, currentHp + netEffect));
+	    } else if (netEffect < 0) {
+	        baseStats.setHealth(Math.max(0, currentHp + netEffect)); // netEffect 음수이므로 더함
+	    }
+
+	    statusEffects.removeAll(expired);
 	}
 
 	public void printStatusEffects() {
