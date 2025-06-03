@@ -7,6 +7,7 @@ import gameplay.Model.Player;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
 
 public class InventoryItem {
     private String category;
@@ -42,6 +43,27 @@ public class InventoryItem {
                 ", itemId=" + itemId +
                 ", quantity=" + quantity +
                 '}';
+    }
+
+    public boolean hasItemtoInventory(Player player, InventoryItem hasItem) {
+        List<InventoryItem> inventory = player.getInventory();
+
+        // 인벤토리에 가지고 있는 아이템이면 true 리턴
+        for (InventoryItem item : inventory) {
+            if (item.getItemId() == hasItem.getItemId() &&
+                    item.getCategory().equals(hasItem.getCategory())) {
+                return true;
+            }
+        }
+
+        // 가지고 있지 않다면 false 리턴
+        return false;
+    }
+
+    public void removeItemtoInventory(Player player, InventoryItem Item) {
+        if (hasItemtoInventory(player, Item)) {
+            Item.setQuantity(Item.getQuantity() - 1);
+        }
     }
 
     public void savePlayerData(Player player) {
