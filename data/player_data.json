@@ -1,0 +1,32 @@
+{
+  "name": "용사",
+  "level": 1,
+  "gold": 1000,
+  "inventory": [
+    {
+      "category": "gimmick_item",
+      "itemId": 1,
+      "quantity": 2
+    },
+    {
+      "category": "gimmick_item",
+      "itemId": 2,
+      "quantity": 1
+    },
+    {
+      "category": "gimmick_item",
+      "itemId": 3,
+      "quantity": 1
+    },
+    {
+      "category": "gimmick_item",
+      "itemId": 5,
+      "quantity": 1
+    },
+    {
+      "category": "gimmick_item",
+      "itemId": 6,
+      "quantity": 1
+    }
+  ]
+}
