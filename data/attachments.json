@@ -1,0 +1,15 @@
+{
+  "attachments": [
+    {
+      "id": 1,
+      "name": "공격의 부적",
+      "defense": 0,
+      "attack": 10,
+      "health": 0,
+      "evade": 0,
+      "evadeReduction": 0,
+      "rarity": 1,
+      "owner": "없음"
+    }
+  ]
+}
